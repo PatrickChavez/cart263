@@ -28,8 +28,13 @@ function setup() {
 }
 
 function paint(e) {
+  // Mapping the value to 1 to 255 and generating values for red blue and green
+  let randomRed = Math.random() * 256;
+  let randomBlue = Math.random() * 256;
+  let randomGreen = Math.random() * 256;
   let pixel = e.target;
-  pixel.style.backgroundColor = 'white';
+  // The mouse will paint a different color each time
+  pixel.style.backgroundColor = `rgb(${randomRed}, ${randomBlue}, ${randomGreen})`;
   setTimeout(resetPixel, 1000, pixel);
 }
 
