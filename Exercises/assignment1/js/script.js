@@ -10,15 +10,19 @@ to match your project! Write JavaScript to do amazing things below!
 
 *********************************************************************/
 
-// The functions will be called when the page has loaded
+// The functions will be called when the webpage has loaded
 window.onload = setup;
+
+// Adding the global variable "rotation"
+let rotation = 0;
 
 // setup()
 //
 // Makes it so pixels are painted by moving the mouse
 function setup() {
+  // Console.log to check if the page has loaded
   console.log("The page has loaded!");
-  // Pixel Numbers
+  // Generating a variable for the pixel numbers
   let pixelNumber = 1000;
   // Generating a for loop to manage the pixels
   for (let i = 0; i < pixelNumber; i++) {
@@ -29,6 +33,8 @@ function setup() {
     // Clicking a pixel will make it disappear
     pixel.addEventListener('click', remove);
   }
+  // Adding the 'keydown' event listener for rotation
+  document.addEventListener('keydown', rotate);
 }
 
 // paint()
@@ -62,4 +68,19 @@ function remove(e) {
   let pixel = e.target;
   // Clicking will make a pixel white
   pixel.style.backgroundColor = `rgb(${0}, ${0}, ${0}, ${0})`;
+}
+
+// rotate()
+//
+// Rotates onscreen pixels by 1 degree depending on the key pressed
+// using the rotation variable
+function rotate(e) {
+  // The right arrow key rotates clockwise
+  if (e.keyCode === 39) {
+    rotate(rotation);
+  }
+  // The left arrow key rotates counter-clockwise
+  else if (e.keyCode === 37) {
+    rotate(-rotation);
+  }
 }
