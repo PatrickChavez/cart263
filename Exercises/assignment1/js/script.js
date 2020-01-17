@@ -5,15 +5,12 @@
 Assignment 1
 Patrick Chavez-Nadarajah
 
-This is a template. Fill in the title, author, and this description
-to match your project! Write JavaScript to do amazing things below!
-
 *********************************************************************/
 
 // The functions will be called when the webpage has loaded
 window.onload = setup;
 
-// Adding the global variable "rotation"
+// Adding the global variable for rotation
 let rotation = 0;
 
 // setup()
@@ -22,6 +19,8 @@ let rotation = 0;
 function setup() {
   // Console.log to check if the page has loaded
   console.log("The page has loaded!");
+  // Adding the 'keydown' event listener for rotation
+  document.addEventListener('keydown', rotate);
   // Generating a variable for the pixel numbers
   let pixelNumber = 1000;
   // Generating a for loop to manage the pixels
@@ -33,8 +32,6 @@ function setup() {
     // Clicking a pixel will make it disappear
     pixel.addEventListener('click', remove);
   }
-  // Adding the 'keydown' event listener for rotation
-  document.addEventListener('keydown', rotate);
 }
 
 // paint()
@@ -49,6 +46,7 @@ function paint(e) {
   // Targeting the pixels
   let pixel = e.target;
   // The mouse will paint a different color each time
+  // Activating the style using template literals and expressions
   pixel.style.backgroundColor = `rgb(${randomRed}, ${randomBlue}, ${randomGreen})`;
   setTimeout(resetPixel, 1000, pixel);
 }
@@ -67,6 +65,7 @@ function remove(e) {
   // Targeting the pixels
   let pixel = e.target;
   // Clicking will make a pixel white
+  // Activating the style using template literals and expressions
   pixel.style.backgroundColor = `rgb(${0}, ${0}, ${0}, ${0})`;
 }
 
@@ -75,12 +74,26 @@ function remove(e) {
 // Rotates onscreen pixels by 1 degree depending on the key pressed
 // using the rotation variable
 function rotate(e) {
+  // Targetting the document to rotate the webpage
+  let document = e.target;
   // The right arrow key rotates clockwise
   if (e.keyCode === 39) {
-    rotate(rotation);
+    // The rotation increases by 1 every time the key is pressed
+    rotation += 1;
+    // Activating the transform style property using template literals
+    document.style.transform = `rotate(${rotation}deg)`;
+    // Console logs to keep track of rotation
+    console.log("Right press!");
+    console.log("Rotation is currently " + rotation);
   }
   // The left arrow key rotates counter-clockwise
   else if (e.keyCode === 37) {
-    rotate(-rotation);
+    // The rotation decreases by 1 every time the key is pressed
+    rotation -= 1;
+    // Activating the transform style property using template literals
+    document.style.transform = `rotate(${rotation}deg)`;
+    // Console logs to keep track of rotation
+    console.log("Left press!");
+    console.log("Rotation is currently " + rotation);
   }
 }
