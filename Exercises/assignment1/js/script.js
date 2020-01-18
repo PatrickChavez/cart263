@@ -25,6 +25,8 @@ function setup() {
   let pixelNumber = 1000;
   // Generating a for loop to manage the pixels
   for (let i = 0; i < pixelNumber; i++) {
+    // Creating the pixel 'div', setting its class and adding
+    // it to the page's body
     let pixel = document.createElement('div');
     pixel.setAttribute('class', 'pixel');
     document.body.appendChild(pixel);
@@ -48,6 +50,7 @@ function paint(e) {
   // The mouse will paint a different color each time
   // Activating the style using template literals and expressions
   pixel.style.backgroundColor = `rgb(${randomRed}, ${randomBlue}, ${randomGreen})`;
+  // The pixels will turn black after 1 second / 1000 milliseconds
   setTimeout(resetPixel, 1000, pixel);
 }
 
