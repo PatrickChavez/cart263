@@ -1,14 +1,24 @@
 body {
+  /* The text font will be sans-serif */
 font-family: sans-serif;
 }
-/* hi */
+
+/* Adding a "redacted" class that hides a certain sentence*/
 .redacted {
+  /* The censored text cannot be highlighted */
   user-select: none;
   background-color: black;
   color: transparent;
 }
 
+/* Adding a "revealed" class that shows the censored sentence*/
 .revealed {
   background-color: transparent;
   color: red;
+}
+
+/* Adding a "found" class that highlights a secret */
+.found {
+  background-color: yellow;
+  color: transparent;
 }
