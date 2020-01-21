@@ -1,0 +1,14 @@
+body {
+font-family: sans-serif;
+}
+/* hi */
+.redacted {
+  user-select: none;
+  background-color: black;
+  color: transparent;
+}
+
+.revealed {
+  background-color: transparent;
+  color: red;
+}
