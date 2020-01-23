@@ -15,12 +15,22 @@ let intervalTime = 500;
 // Setting the probability rate for the random number generator
 let randomProbability = 0.1;
 
+// Adding a variable for tracking found secrets
+let secretsFound;
+
+// Adding a variable for tracking the total number of secrets
+let secretsTotal;
+
+// Seeing the total number of secrets
+console.log($('.secret').length);
+
 // setup()
 //
-// Calls the update() function on a set interval and calls the
-// spanClicked() function when clicking certain blocks of text
+// Activates various functions upon loading the webpage
 function setup() {
+  // Calling the update() function on a set interval and calls
   setInterval(update, intervalTime);
+  // Calling the spanClicked() function when clicking certain blocks of text
   $('span').on('click', spanClicked);
 }
 
