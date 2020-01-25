@@ -16,7 +16,7 @@ let intervalTime = 500;
 let randomProbability = 0.1;
 
 // Adding a variable for tracking found secrets
-let secretsFound;
+let secretsFound = 0;
 
 // Adding a variable for tracking the total number of secrets
 let secretsTotal;
@@ -35,7 +35,8 @@ function setup() {
   secretsTotal = $('.secret').length;
   // Putting the actual total number of secrets by modifying the span's id
   $('#totalSecrets').text(secretsTotal);
-
+  // Adding an event for mouseover() to all secrets
+  $('.secret').on('mouseover', discoverSecret);
 }
 
 // update()
@@ -66,4 +67,18 @@ function updateSpan() {
 function spanClicked() {
   $(this).addClass('redacted');
   $(this).removeClass('revealed');
+}
+
+// discoverSecret
+//
+// Turns a secret into the "Found" class when the mouse hovers over it
+function discoverSecret() {
+  // Adding the "Found" class to the moused-over element
+  $(this).addClass('found');
+  // Removing the mouseover element from the found text
+  $(this).off('mouseover');
+  // Increasing the secretsFound variable by 1
+  secretsFound += 1;
+  // Presenting the text of the found secrets
+  $('#foundSecrets').text(secretsFound);
 }
