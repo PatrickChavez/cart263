@@ -52,8 +52,7 @@ function update() {
 // Checks each "span" on the webpage and changes its nature
 function updateSpan() {
   console.log("Updating span!");
-  // A random number will be generated that when reached, will
-  // reveal a redacted part of text
+  // A random number will be generated that when reached, will reveal redacted text
   let randomNumber = Math.random();
   if (randomNumber < randomProbability) {
     $(this).removeClass('redacted');
@@ -63,7 +62,7 @@ function updateSpan() {
 
 // spanClicked
 //
-// Makes it so that revealed texts becomes redacted when clicked
+// Makes it so that revealed texts become censored when clicked
 function spanClicked() {
   $(this).addClass('redacted');
   $(this).removeClass('revealed');
