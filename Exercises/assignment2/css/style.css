@@ -1,6 +1,6 @@
 body {
   /* The text font will be sans-serif */
-font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 /* Adding a "redacted" class that hides a certain sentence*/
