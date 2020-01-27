@@ -9,14 +9,30 @@
 
     <!-- Library script(s) -->
     <!-- Add your required libraries here either as local files or CDN-hosted files -->
-
+    <!-- Adding the JQuery library -->
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
     <!-- My script(s) -->
     <script src="js/script.js"></script>
   </head>
 
   <body>
-
-
+    <!-- Inserting text onto the page -->
+<div id="text">
+<p>
+<!-- Adding a number count for the current and total number of slain enemies using a span class -->
+<span id="slainEnemies"> 0 </span> out of <span id="toatlEnemies"> 10 </span> enemies slain!
+</p>
+</div>
+    <!-- Inserting images onto the page -->
+<div id="images">
+  <!-- The enemies -->
+  <img class="enemy"src="/assets/images/EnemyPlaceholder.png" alt="Enemy">
+  <!-- The background -->
+  <img class="background"src="/assets/images/FieldPlaceholder.png" alt="Background">
+</div>
   </body>
 
 </html>
