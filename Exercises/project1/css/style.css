@@ -11,3 +11,18 @@ body {
   font-family: "PressStart2P";
   src: url("/assets/fonts/PressStart2P.ttf");
 }
+
+/* Changing the enemy size */
+.enemy {
+  width: 100px;
+  height: 100px;
+}
+
+/* Managing the "enemy total" text */
+#text {
+  /* Changing text color */
+  color: white;
+  /* Adding a textbox */
+  border: solid white;
+  background-color: black;
+}
