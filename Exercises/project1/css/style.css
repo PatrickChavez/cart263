@@ -1,13 +1,3 @@
-/* Setting various aesthetics */
 body {
-  /* The font */
-  font-family: "PressStart2P";
-  /* The background */
-  background-image: url("/assets/images/FieldPlaceholder.png");
-}
 
-/* Enabling a custom font */
-@font-face {
-  font-family: "PressStart2P";
-  src: url("/assets/fonts/PressStart2P.ttf");
 }
