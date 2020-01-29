@@ -15,7 +15,7 @@ $(document).ready(setup);
 
 // Adding audio
 let bgMusic = new Audio("assets/sounds/bgm_maoudamashii_8bit18.mp3");
-let slashSFX = new Audio("se_maoudamashii_retro11.mp3");
+let slashSFX = new Audio("assets/sounds/se_maoudamashii_retro11.mp3");
 
 // Adding a variable to the enemies
 let $enemy;
@@ -33,17 +33,11 @@ let intervalTime = 1000;
 //
 // Activates event handlers that correspond to their respective elements
 function setup() {
-  // Adding a dialog window
-  $("#dialog").dialog();
-
-// Spawns another enemy
-let enemy = $('<div></div>');
-enemy.addClass('enemy');
-$('body').append(enemy);
-
   // Storing the enemy class in a variable
   $enemy = $(".enemy");
   console.log($enemy);
+  // Adding a dialog window
+  $("#dialog").dialog();
   // An enemy appears after a certain amount of time
   setInterval(addEnemy, intervalTime);
 }
@@ -54,5 +48,8 @@ $('body').append(enemy);
 // Spawns another enemy after a certain amount of time has passed
 function addEnemy() {
   console.log("Adding enemy");
-  $(this).addClass($enemy);
+  // Spawns another enemy
+  let enemy = $('<div><img class="enemy"src="/assets/images/EnemyPlaceholder.png" alt="Enemy"></div>');
+  enemy.addClass('enemy');
+  $('body').append(enemy);
 }

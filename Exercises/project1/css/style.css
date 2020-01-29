@@ -18,11 +18,17 @@ body {
   height: 100px;
 }
 
-/* Managing the "enemy total" text */
+/* Managing the aesthetics of the "enemy total" text */
 #text {
   /* Changing text color */
   color: white;
   /* Adding a textbox */
   border: solid white;
+  background-color: black;
+}
+/* Managing the aesthetics of the dialog box */
+#dialog {
+  font-family: "PressStart2P";
+  color: white;
   background-color: black;
 }
