@@ -40,16 +40,12 @@ function setup() {
   // Adding a dialog window containing the game's instructions
   $("#dialog").dialog();
 
+  // The background music starts when the mouse is clicked
+  $(document).one("mousedown", startMusic);
+
   // An enemy appears after a certain amount of time
   setInterval(addEnemy, intervalTime);
 }
-
-// updateEnemy
-//
-// Calls all enemy classes in order to refresh the total number count
-// function updateEnemy() {
-//   $enemy.each($enemy.length);
-// }
 
 // addEnemy()
 //
@@ -59,8 +55,17 @@ function addEnemy() {
   // Spawns another enemy
   let enemy = $('<div><img class="enemy"src="/assets/images/EnemyPlaceholder.png" alt="Enemy"></div>');
   // enemy.addClass('enemy');
-  $('body').append(enemy);
+  $("body").append(enemy);
   // The total enemy text reflects the number of actual enemies present
   enemyTotal = $(".enemy").length; // Variable doesn't work?
   $("#totalEnemies").text(enemyTotal);
+}
+
+// startMusic
+//
+// Activates the background music when this function is called
+function startMusic() {
+  // Making it so the music loops
+  bgMusic.loop = true;
+  bgMusic.play();
 }
