@@ -33,15 +33,23 @@ let intervalTime = 1000;
 //
 // Activates event handlers that correspond to their respective elements
 function setup() {
-  // Storing the enemy class in a variable
+  // Storing the enemy class in a variable so that it may be used
+  // universally in the script
   $enemy = $(".enemy");
-  console.log($enemy);
-  // Adding a dialog window
+
+  // Adding a dialog window containing the game's instructions
   $("#dialog").dialog();
+
   // An enemy appears after a certain amount of time
   setInterval(addEnemy, intervalTime);
 }
 
+// updateEnemy
+//
+// Calls all enemy classes in order to refresh the total number count
+// function updateEnemy() {
+//   $enemy.each($enemy.length);
+// }
 
 // addEnemy()
 //
@@ -50,6 +58,9 @@ function addEnemy() {
   console.log("Adding enemy");
   // Spawns another enemy
   let enemy = $('<div><img class="enemy"src="/assets/images/EnemyPlaceholder.png" alt="Enemy"></div>');
-  enemy.addClass('enemy');
+  // enemy.addClass('enemy');
   $('body').append(enemy);
+  // The total enemy text reflects the number of actual enemies present
+  enemyTotal = $(".enemy").length; // Variable doesn't work?
+  $("#totalEnemies").text(enemyTotal);
 }
