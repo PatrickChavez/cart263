@@ -45,6 +45,9 @@ function setup() {
 
   // An enemy appears after a certain amount of time
   setInterval(addEnemy, intervalTime);
+
+  // Clicking on an enemy will make it disappear
+  $enemy.on("click", defeatEnemy);
 }
 
 // addEnemy()
@@ -68,4 +71,18 @@ function startMusic() {
   // Making it so the music loops
   bgMusic.loop = true;
   bgMusic.play();
+}
+
+// defeatEnemy
+//
+// Makes an enemy class disappear and repositions it somewhere on the webpage
+function defeatEnemy() {
+  // The enemy gets removed
+  $(".enemy").remove();
+  // A sound effect is played
+  slashSFX.play();
+  // The number of enemies slain increases
+  enemiesSlain += 1;
+  // Presenting the text of the slain enemies
+  $("#slainEnemies").text(enemiesSlain);
 }
