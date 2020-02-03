@@ -42,8 +42,8 @@ let enemiesSlain = 0;
 // Adding a variable for the total number of enemies
 let enemyTotal;
 
-// Adding a variable for the interval time
-let intervalTime = 1000;
+// Adding a variable for the time it takes to spawn a set of enemies or remove them
+let intervalTime = 2000;
 
 // setup()
 //
@@ -62,6 +62,9 @@ function setup() {
   // An enemy appears after a certain amount of time
   setInterval(addEnemy, intervalTime);
 
+  // A defeated enemy will disappear after a certain amount of time
+  setInterval(removeEnemy, intervalTime);
+
   // Clicking on an enemy will make it disappear
   $enemy.on("click", defeatEnemy);
 }
@@ -76,17 +79,16 @@ function addEnemy() {
   let enemy2 = $('<div><img class="enemy"src="/assets/images/Slime2.png" alt="Enemy"></div>');
   let enemy3 = $('<div><img class="enemy"src="/assets/images/Slime3.png" alt="Enemy"></div>');
   let enemy4 = $('<div><img class="enemy"src="/assets/images/Slime4.png" alt="Enemy"></div>');
-  // enemy.addClass('enemy'); TO REMOVE
-  //  Adding the enemies to the HTML boby
+  //  Adding the enemies to the HTML body
   $("body").append(enemy, enemy2, enemy3, enemy4);
   // The total enemy text reflects the number of actual enemies present
-  enemyTotal = $(".enemy").length; // Variable doesn't work?
+  enemyTotal = $(".enemy").length;
+  $("#totalEnemies").text(enemyTotal);
   // Make them spawn in a random location on the window
   $enemy.offset({
     top: Math.random() * $(window).height(),
     left: Math.random() * $(window).width()
   });
-  $("#totalEnemies").text(enemyTotal);
 }
 
 // startMusic
@@ -110,6 +112,16 @@ function defeatEnemy() {
   enemiesSlain += 1;
   // Presenting the text of the slain enemies
   $("#slainEnemies").text(enemiesSlain);
-  // The enemy is removed
-  $enemy.remove();
+
+}
+
+// removeEnemy()
+//
+// Removes any enemy with the defeated status
+function removeEnemy() {
+  // If an enemy's attribute is that of "EnemyDefeat", then...
+  if ($enemy.attr("src") === "assets/images/EnemyDefeat.png") {
+    // The enemy is removed
+    $enemy.remove();
+  }
 }
