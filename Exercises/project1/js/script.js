@@ -2,11 +2,27 @@
 
 /********************************************************************
 
-Project 1
+Project 1 - Slime Champion
 Patrick Chavez-Nadarajah
 
-This is a template. Fill in the title, author, and this description
-to match your project! Write JavaScript to do amazing things below!
+Defeat all the enemies by clicking on them! Can you do it before being
+overwhelmed?
+
+8bit 18/しゅくめいのたたかい/Fighting from Maoudamashii
+https://maoudamashii.jokersounds.com/list/bgm11.html
+
+Retro 11 from Maoudamashii
+https://maoudamashii.jokersounds.com/list/se13.html
+
+Press Start 2P Font by codeman38
+https://www.fontspace.com/codeman38/press-start-2p
+
+04b_30 Font by 04
+https://www.dafont.com/04b-30.font
+http://www.04.jp.org/
+
+Random position function based on Pippin Barr's Endless Dialogs code
+https://github.com/pippinbarr/cart263-2020/blob/master/course-information/course-schedule.md#week-4
 
 *********************************************************************/
 
@@ -52,13 +68,17 @@ function setup() {
 
 // addEnemy()
 //
-// Spawns another enemy after a certain amount of time has passed
+// Spawns a set of enemies after a certain amount of time has passed
 function addEnemy() {
   console.log("Adding enemy");
-  // Spawns another enemy
-  let enemy = $('<div><img class="enemy"src="/assets/images/EnemyPlaceholder.png" alt="Enemy"></div>');
-  // enemy.addClass('enemy');
-  $("body").append(enemy);
+  // Spawns another set of enemies
+  let enemy = $('<div><img class="enemy"src="/assets/images/Slime1.png" alt="Enemy"></div>');
+  let enemy2 = $('<div><img class="enemy"src="/assets/images/Slime2.png" alt="Enemy"></div>');
+  let enemy3 = $('<div><img class="enemy"src="/assets/images/Slime3.png" alt="Enemy"></div>');
+  let enemy4 = $('<div><img class="enemy"src="/assets/images/Slime4.png" alt="Enemy"></div>');
+  // enemy.addClass('enemy'); TO REMOVE
+  //  Adding the enemies to the HTML boby
+  $("body").append(enemy, enemy2, enemy3, enemy4);
   // The total enemy text reflects the number of actual enemies present
   enemyTotal = $(".enemy").length; // Variable doesn't work?
   $("#totalEnemies").text(enemyTotal);
@@ -78,7 +98,7 @@ function startMusic() {
 // Makes an enemy class disappear and repositions it somewhere on the webpage
 function defeatEnemy() {
   // The enemy gets removed
-  $(".enemy").remove();
+  $enemy.remove();
   // A sound effect is played
   slashSFX.play();
   // The number of enemies slain increases

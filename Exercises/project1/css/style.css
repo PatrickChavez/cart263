@@ -3,7 +3,7 @@ body {
   /* The font */
   font-family: "PressStart2P";
   /* The background */
-  background-image: url("/assets/images/FieldPlaceholder.png");
+  background-image: url("/assets/images/PixelBG.png");
 }
 
 /* Enabling a custom font */
