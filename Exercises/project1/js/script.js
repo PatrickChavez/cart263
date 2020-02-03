@@ -81,6 +81,11 @@ function addEnemy() {
   $("body").append(enemy, enemy2, enemy3, enemy4);
   // The total enemy text reflects the number of actual enemies present
   enemyTotal = $(".enemy").length; // Variable doesn't work?
+  // Make them spawn in a random location on the window
+  $enemy.offset({
+    top: Math.random() * $(window).height(),
+    left: Math.random() * $(window).width()
+  });
   $("#totalEnemies").text(enemyTotal);
 }
 
@@ -97,12 +102,14 @@ function startMusic() {
 //
 // Makes an enemy class disappear and repositions it somewhere on the webpage
 function defeatEnemy() {
-  // The enemy gets removed
-  $enemy.remove();
+  // A "defeat" image is shown
+  $enemy.attr("src", "assets/images/EnemyDefeat.png"); // TO FIX
   // A sound effect is played
   slashSFX.play();
   // The number of enemies slain increases
   enemiesSlain += 1;
   // Presenting the text of the slain enemies
   $("#slainEnemies").text(enemiesSlain);
+  // The enemy is removed
+  $enemy.remove();
 }

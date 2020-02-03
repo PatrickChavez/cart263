@@ -18,6 +18,13 @@ body {
   height: 100px;
 }
 
+/* Positioning the title image */
+/* .title {
+  position: absolute;
+  top: -30px;
+  right: 500px;
+} */
+
 /* Managing the aesthetics of the "enemy total" text */
 #text {
   /* Changing text color */
