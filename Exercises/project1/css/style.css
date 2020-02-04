@@ -18,15 +18,8 @@ body {
   height: 100px;
 }
 
-/* Positioning the title image */
-/* .title {
-  position: absolute;
-  top: -30px;
-  left: 500px;
-} */
-
 /* Managing the aesthetics of the "enemy total" text */
-#text {
+#goalText {
   /* Changing text color */
   color: white;
   /* Adding a textbox */

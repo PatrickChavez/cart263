@@ -11,17 +11,17 @@ overwhelmed?
 8bit 18/しゅくめいのたたかい/Fighting from Maoudamashii
 https://maoudamashii.jokersounds.com/list/bgm11.html
 
-Retro 11 from Maoudamashii
+Retro 11 sound effect from Maoudamashii
 https://maoudamashii.jokersounds.com/list/se13.html
 
-Press Start 2P Font by codeman38
+Press Start 2P font by codeman38
 https://www.fontspace.com/codeman38/press-start-2p
 
-04b_30 Font by 04
+04b_30 font by 04
 https://www.dafont.com/04b-30.font
 http://www.04.jp.org/
 
-Random position function based on Pippin Barr's Endless Dialogs code
+addEnemy() function based on Pippin Barr's Endless Dialogs code
 https://github.com/pippinbarr/cart263-2020/blob/master/course-information/course-schedule.md#week-4
 
 *********************************************************************/
@@ -43,14 +43,17 @@ let enemiesSlain = 0;
 let enemyTotal;
 
 // Adding a variable for the time it takes to spawn a set of enemies or remove them
-let intervalTime = 2000;
+let spawnInterval = 1500;
+
+// Adding a variable for the time it takes to remove an enemy
+let removeInterval = 1000;
 
 // setup()
 //
 // Activates event handlers that correspond to their respective elements
 function setup() {
   // Storing the enemy class in a variable so that it may be used
-  // universally in the script
+  // once universally in the script
   $enemy = $(".enemy");
 
   // Adding a dialog window containing the game's instructions
@@ -60,12 +63,12 @@ function setup() {
   $(document).one("mousedown", startMusic);
 
   // An enemy appears after a certain amount of time
-  setInterval(addEnemy, intervalTime);
+  setInterval(addEnemy, spawnInterval);
 
   // A defeated enemy will disappear after a certain amount of time
-  setInterval(removeEnemy, intervalTime);
+  setInterval(removeEnemy, removeInterval);
 
-  // Clicking on an enemy will make it disappear
+  // Clicking on an enemy will put it in a "defeat" state
   $enemy.on("click", defeatEnemy);
 }
 
@@ -75,17 +78,28 @@ function setup() {
 function addEnemy() {
   console.log("Adding enemy");
   // Spawns another set of enemies
-  let enemy = $('<div><img class="enemy"src="/assets/images/Slime1.png" alt="Enemy"></div>');
-  let enemy2 = $('<div><img class="enemy"src="/assets/images/Slime2.png" alt="Enemy"></div>');
-  let enemy3 = $('<div><img class="enemy"src="/assets/images/Slime3.png" alt="Enemy"></div>');
-  let enemy4 = $('<div><img class="enemy"src="/assets/images/Slime4.png" alt="Enemy"></div>');
+  let enemy = $('<img class="enemy"src="/assets/images/Slime1.png" alt="Enemy">');
+  let enemy2 = $('<img class="enemy"src="/assets/images/Slime2.png" alt="Enemy">');
+  let enemy3 = $('<img class="enemy"src="/assets/images/Slime3.png" alt="Enemy">');
+  let enemy4 = $('<img class="enemy"src="/assets/images/Slime4.png" alt="Enemy">');
   //  Adding the enemies to the HTML body
   $("body").append(enemy, enemy2, enemy3, enemy4);
   // The total enemy text reflects the number of actual enemies present
   enemyTotal = $(".enemy").length;
   $("#totalEnemies").text(enemyTotal);
   // Make them spawn in a random location on the window
-  $enemy.offset({
+  // A variable is not called due to executing only once in setup()
+  $(".enemy").each(offsetEnemy);
+  // Making it so that the defeatEnemy function applies to all the newly
+  // created slimes
+  $(".enemy").on("click", defeatEnemy);
+}
+
+// offsetEnemy()
+//
+// Makes an individual enemy warp around the room
+function offsetEnemy() {
+  $(this).offset({
     top: Math.random() * $(window).height(),
     left: Math.random() * $(window).width()
   });
@@ -102,26 +116,35 @@ function startMusic() {
 
 // defeatEnemy
 //
-// Makes an enemy class disappear and repositions it somewhere on the webpage
+// Makes an enemy class' attribute into a "defeated" image
 function defeatEnemy() {
   // A "defeat" image is shown
-  $enemy.attr("src", "assets/images/EnemyDefeat.png"); // TO FIX
+  // $(".enemy").each(defeatStatus);
+  $(this).attr("src", "assets/images/EnemyDefeat.png");
   // A sound effect is played
   slashSFX.play();
-  // The number of enemies slain increases
-  enemiesSlain += 1;
-  // Presenting the text of the slain enemies
+  // // The number of enemies slain increases
+  // enemiesSlain += 1;
+  // The text of the slain enemies shows an accurate number
   $("#slainEnemies").text(enemiesSlain);
+}
 
+// defeatStatus
+//
+// Sets the enemy up to be removed by another function
+function defeatStatus() {
+  // If an enemy's attribute is that of "EnemyDefeat", then...
+  if ($(this).attr("src") === "assets/images/EnemyDefeat.png") {
+    // The number of enemies slain increases
+    enemiesSlain += 1;
+    // The enemy is removed
+    $(this).remove();
+  }
 }
 
 // removeEnemy()
 //
 // Removes any enemy with the defeated status
 function removeEnemy() {
-  // If an enemy's attribute is that of "EnemyDefeat", then...
-  if ($enemy.attr("src") === "assets/images/EnemyDefeat.png") {
-    // The enemy is removed
-    $enemy.remove();
-  }
+  $(".enemy").each(defeatStatus);
 }
