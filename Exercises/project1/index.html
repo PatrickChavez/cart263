@@ -1,57 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
 
-    <!-- CSS stylesheet(s) -->
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
 
-    <!-- Library script(s) -->
-    <!-- Add your required libraries here either as local files or CDN-hosted files -->
-    <!-- Adding the JQuery library -->
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+  <!-- CSS stylesheet(s) -->
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+  <!-- Library script(s) -->
+  <!-- Add your required libraries here either as local files or CDN-hosted files -->
+  <!-- Adding the JQuery library -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <!-- Adding jQuery UI -->
-  <link
-  rel="stylesheet"
-  type="text/css"
-  href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-/>
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
-<script
-  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-  crossorigin="anonymous"
-></script>
-    <!-- My script(s) -->
-    <script src="js/script.js"></script>
-  </head>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  <!-- My script(s) -->
+  <script src="js/script.js"></script>
+</head>
 
-  <body>
-    <div id="dialog" title="Message!">
-<p> Click on the slimes to defeat them! Can you destroy them all? </p>
-    </div>
+<body>
+  <div id="dialog" title="Message!">
+    <p> Click on the slimes to defeat them! Can you slay them all? </p>
+  </div>
 
-    <!-- Inserting the "enemy total" text onto the page -->
-<div id="goalText">
-<p>
-<!-- Adding a number count for the current and total number of slain enemies using a span class -->
-<span id="slainEnemies"> 0 </span> out of <span id="totalEnemies"> 10 </span> enemies slain!
-</p>
-</div>
-    <!-- Inserting images onto the page -->
-<div id="images">
-  <!-- The title -->
-  <img class="title"src="/assets/images/SlimeTitle.png" alt="Title">
-  <!-- The enemies -->
-  <img class="enemy"src="/assets/images/Slime1.png" alt="Enemy">
-  <img class="enemy"src="/assets/images/Slime2.png" alt="Enemy">
-  <img class="enemy"src="/assets/images/Slime3.png" alt="Enemy">
-  <img class="enemy"src="/assets/images/Slime4.png" alt="Enemy">
-</div>
-  </body>
+  <!-- Inserting the "enemy total" text onto the page -->
+  <div id="goalText">
+    <p>
+      <!-- Adding a number count for the current and total number of slain enemies using a span class -->
+      <span id="slainEnemies"> 0 </span> out of <span id="totalEnemies"> 10 </span> enemies slain!
+    </p>
+  </div>
+  <!-- Inserting images onto the page -->
+  <div id="images">
+    <!-- The title -->
+    <img class="title" src="/assets/images/SlimeTitle.png" alt="Title">
+    <!-- The enemies -->
+    <img class="enemy" src="/assets/images/Slime1.png" alt="Enemy">
+    <img class="enemy" src="/assets/images/Slime2.png" alt="Enemy">
+    <img class="enemy" src="/assets/images/Slime3.png" alt="Enemy">
+    <img class="enemy" src="/assets/images/Slime4.png" alt="Enemy">
+  </div>
+</body>
 
 </html>

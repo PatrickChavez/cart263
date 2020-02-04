@@ -21,7 +21,7 @@ https://www.fontspace.com/codeman38/press-start-2p
 https://www.dafont.com/04b-30.font
 http://www.04.jp.org/
 
-addEnemy() function based on Pippin Barr's Endless Dialogs code
+offsetEnemy() function based on Pippin Barr's Endless Dialogs code
 https://github.com/pippinbarr/cart263-2020/blob/master/course-information/course-schedule.md#week-4
 
 *********************************************************************/
@@ -42,8 +42,11 @@ let enemiesSlain = 0;
 // Adding a variable for the total number of enemies
 let enemyTotal;
 
-// Adding a variable for the time it takes to spawn a set of enemies or remove them
-let spawnInterval = 1500;
+// Adding a variable for the time it takes to warp an enemy
+let warpInterval = 2000;
+
+// Adding a variable for the time it takes to spawn an enemies
+let spawnInterval = 300;
 
 // Adding a variable for the time it takes to remove an enemy
 let removeInterval = 1000;
@@ -65,11 +68,14 @@ function setup() {
   // An enemy appears after a certain amount of time
   setInterval(addEnemy, spawnInterval);
 
+  // An enemy warps after a certain amount of time
+  setInterval(warpEnemy, warpInterval);
+
   // A defeated enemy will disappear after a certain amount of time
   setInterval(removeEnemy, removeInterval);
 
-  // Clicking on an enemy will put it in a "defeat" state
-  $enemy.on("click", defeatEnemy);
+  // // Clicking on an enemy will put it in a "defeat" state
+  // $enemy.on("click", defeatEnemy);
 }
 
 // addEnemy()
@@ -77,22 +83,27 @@ function setup() {
 // Spawns a set of enemies after a certain amount of time has passed
 function addEnemy() {
   console.log("Adding enemy");
-  // Spawns another set of enemies
-  let enemy = $('<img class="enemy"src="/assets/images/Slime1.png" alt="Enemy">');
-  let enemy2 = $('<img class="enemy"src="/assets/images/Slime2.png" alt="Enemy">');
-  let enemy3 = $('<img class="enemy"src="/assets/images/Slime3.png" alt="Enemy">');
-  let enemy4 = $('<img class="enemy"src="/assets/images/Slime4.png" alt="Enemy">');
-  //  Adding the enemies to the HTML body
-  $("body").append(enemy, enemy2, enemy3, enemy4);
+  // Generating a non-decimal number between 1 and 4 in order to spawn
+  // one random slime
+  let slimeNumber = 1 + Math.floor(Math.random() * 4);
+  // Spawns a certain enemy using a template literal
+  let enemy = $(`<img class="enemy"src="/assets/images/Slime${slimeNumber}.png" alt="Enemy">`);
+  // Adding the enemies to the HTML body
+  $("body").append(enemy);
   // The total enemy text reflects the number of actual enemies present
   enemyTotal = $(".enemy").length;
   $("#totalEnemies").text(enemyTotal);
-  // Make them spawn in a random location on the window
-  // A variable is not called due to executing only once in setup()
-  $(".enemy").each(offsetEnemy);
   // Making it so that the defeatEnemy function applies to all the newly
   // created slimes
   $(".enemy").on("click", defeatEnemy);
+}
+
+// warpEnemy
+//
+// Changes the position of an enemy after an interval
+function warpEnemy() {
+  // Make the enemy spawn in a random location on the window
+  $(".enemy").each(offsetEnemy);
 }
 
 // offsetEnemy()
@@ -119,14 +130,9 @@ function startMusic() {
 // Makes an enemy class' attribute into a "defeated" image
 function defeatEnemy() {
   // A "defeat" image is shown
-  // $(".enemy").each(defeatStatus);
   $(this).attr("src", "assets/images/EnemyDefeat.png");
   // A sound effect is played
   slashSFX.play();
-  // // The number of enemies slain increases
-  // enemiesSlain += 1;
-  // The text of the slain enemies shows an accurate number
-  $("#slainEnemies").text(enemiesSlain);
 }
 
 // defeatStatus
@@ -137,6 +143,8 @@ function defeatStatus() {
   if ($(this).attr("src") === "assets/images/EnemyDefeat.png") {
     // The number of enemies slain increases
     enemiesSlain += 1;
+    // The text of the slain enemies shows an accurate number
+    $("#slainEnemies").text(enemiesSlain);
     // The enemy is removed
     $(this).remove();
   }
