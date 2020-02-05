@@ -46,10 +46,10 @@ let enemyTotal;
 let warpInterval = 2000;
 
 // Adding a variable for the time it takes to spawn an enemies
-let spawnInterval = 300;
+let spawnInterval = 250;
 
 // Adding a variable for the time it takes to remove an enemy
-let removeInterval = 1000;
+let removeInterval = 1500;
 
 // setup()
 //
@@ -74,8 +74,8 @@ function setup() {
   // A defeated enemy will disappear after a certain amount of time
   setInterval(removeEnemy, removeInterval);
 
-  // // Clicking on an enemy will put it in a "defeat" state
-  // $enemy.on("click", defeatEnemy);
+  // Clicking on an enemy will put it in a "defeat" state
+  $enemy.on("click", defeatEnemy);
 }
 
 // addEnemy()
@@ -87,15 +87,15 @@ function addEnemy() {
   // one random slime
   let slimeNumber = 1 + Math.floor(Math.random() * 4);
   // Spawns a certain enemy using a template literal
-  let enemy = $(`<img class="enemy"src="/assets/images/Slime${slimeNumber}.png" alt="Enemy">`);
-  // Adding the enemies to the HTML body
-  $("body").append(enemy);
+  let $enemy = $(`<img class="enemy"src="/assets/images/Slime${slimeNumber}.png" alt="Enemy">`);
+  // Adding the new enemies to the HTML body
+  $("body").append($enemy);
   // The total enemy text reflects the number of actual enemies present
   enemyTotal = $(".enemy").length;
   $("#totalEnemies").text(enemyTotal);
   // Making it so that the defeatEnemy function applies to all the newly
   // created slimes
-  $(".enemy").on("click", defeatEnemy);
+  $enemy.on("click", defeatEnemy);
 }
 
 // warpEnemy
