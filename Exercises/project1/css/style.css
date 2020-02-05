@@ -3,12 +3,14 @@ body {
   /* The font */
   font-family: "PressStart2P";
   /* The background */
+  /* A full url is used in order to display the image online */
   background-image: url("https://patrickchavez.github.io/cart263/Exercises/project1/assets/images/PixelBG.png");
 }
 
 /* Enabling a custom font */
 @font-face {
   font-family: "PressStart2P";
+  /* A full url is used in order to display the font online */
   src: url("https://patrickchavez.github.io/cart263/Exercises/project1/assets/fonts/PressStart2P.ttf");
 }
 
