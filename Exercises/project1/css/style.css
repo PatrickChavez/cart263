@@ -3,13 +3,13 @@ body {
   /* The font */
   font-family: "PressStart2P";
   /* The background */
-  background-image: url(/assets/images/PixelBG.png);
+  background-image: url("https://patrickchavez.github.io/cart263/Exercises/project1/assets/images/PixelBG.png");
 }
 
 /* Enabling a custom font */
 @font-face {
   font-family: "PressStart2P";
-  src: url(/assets/fonts/PressStart2P.ttf);
+  src: url("https://patrickchavez.github.io/cart263/Exercises/project1/assets/fonts/PressStart2P.ttf");
 }
 
 /* Changing the enemy size */
