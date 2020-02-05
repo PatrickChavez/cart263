@@ -87,7 +87,7 @@ function addEnemy() {
   // one random slime
   let slimeNumber = 1 + Math.floor(Math.random() * 4);
   // Spawns a certain enemy using a template literal
-  let $enemy = $(`<img class="enemy"src="/assets/images/Slime${slimeNumber}.png" alt="Enemy">`);
+  let $enemy = $(`<img class="enemy"src="assets/images/Slime${slimeNumber}.png" alt="Enemy">`);
   // Adding the new enemies to the HTML body
   $("body").append($enemy);
   // The total enemy text reflects the number of actual enemies present
