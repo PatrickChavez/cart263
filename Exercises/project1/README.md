@@ -1,8 +1,11 @@
 CART 263 Project 1 Artist Statement
 
 Patrick Chavez-Nadarajah
+
 ID#: 40104094
+
 CART 263, Prof: Pippin Barr
+
 February 4th, 2020
 
 When conceptualizing a Sisyphean experience for the project, I wanted to create a situation where the user would have to move their mouse constantly, to the point of irritation. Eventually, I decided to have a system where the player tries to achieve the goal of slaying all enemies, but can’t due to said goal constantly increasing. Over time, the objective would reach an astronomical number and the user would grow more and more frustrated. This aspect, combined with the fact that foes can appear in any area of the window and only a single song plays on loop, can create an overall exhausting experience. 
