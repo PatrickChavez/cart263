@@ -2,11 +2,8 @@
 
 /********************************************************************
 
-Title of Project
-Author Name
-
-This is a template. Fill in the title, author, and this description
-to match your project! Write JavaScript to do amazing things below!
+Assignment 3
+Patrick Chavez-Nadarajah
 
 *********************************************************************/
 
@@ -15,6 +12,9 @@ $(document).ready(setup);
 let correctAnimal;
 
 let answers = [];
+
+// Adding annyang commands
+let sayGiveUp = {'I give up': giveUp};
 
 const NUM_OPTIONS = 4;
 
@@ -158,6 +158,16 @@ let animals = [
 function setup() {
 newRound();
 
+if (annyang) {
+  // Let's define our first command. First the text we expect, and then the function it should call
+
+
+  // Add our commands to annyang
+  annyang.addCommands(sayGiveUp);
+
+  // Start listening. You can call this here, or attach this call to an event, button, etc.
+  annyang.start();
+}
 }
 
 function addButton(label) {
@@ -199,4 +209,38 @@ function sayBackwards(text) {
     pitch: Math.random()
   }
   responsiveVoice.speak(backwardsText, "US English Male", options);
+}
+
+// giveUp()
+//
+// Calls the giveAnswer() function when the user asks for it
+function giveUp() {
+  // Adding a console.log to make sure the voice command works
+  console.log("Don't give up!")
+  // Making the correct answer reveal itself by checking the <div>
+  let $div = $('div');
+  $div.each(giveAnswer);
+}
+
+// giveAnswer()
+//
+// Highlights the correct answer and starts the game anew
+function giveAnswer() {
+  // console.log($(this).effect('shake'));
+  if ($(this).text() === correctAnimal) {
+    // The answer will shake
+    $(this).effect('shake');
+    // The guess class is removed after half a second
+    setTimeout(removeGuess, 500);
+    // A new round starts after a second
+    setTimeout(newRound, 1000);
+  }
+
+  // removeGuess()
+  //
+  // Removes the guess class when called for a round reset
+  function removeGuess() {
+    // The guess class will be removed
+    $('.guess').remove();
+  }
 }
