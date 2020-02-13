@@ -16,6 +16,8 @@ let answers = [];
 // Adding annyang commands
 let sayGiveUp = {'I give up': giveUp};
 
+let sayItAgain = {'Say it again': repeatName};
+
 const NUM_OPTIONS = 4;
 
 let animals = [
@@ -155,15 +157,20 @@ let animals = [
       "zebra"
     ];
 
+// setup()
+//
+// Fires off a new round and activates voice commands
 function setup() {
 newRound();
 
+// Activating annyang
 if (annyang) {
   // Let's define our first command. First the text we expect, and then the function it should call
 
 
   // Add our commands to annyang
   annyang.addCommands(sayGiveUp);
+  annyang.addCommands(sayItAgain);
 
   // Start listening. You can call this here, or attach this call to an event, button, etc.
   annyang.start();
@@ -235,12 +242,21 @@ function giveAnswer() {
     // A new round starts after a second
     setTimeout(newRound, 1000);
   }
+}
 
-  // removeGuess()
-  //
-  // Removes the guess class when called for a round reset
-  function removeGuess() {
-    // The guess class will be removed
-    $('.guess').remove();
-  }
+// removeGuess()
+//
+// Removes the guess class when called for a round reset
+function removeGuess() {
+  // The guess class will be removed
+  $('.guess').remove();
+}
+
+// repeatName()
+//
+// Makes the responsiveVoice say the correct answer again
+// in a different rate and pitch
+function repeatName() {
+  console.log("Repeated!");
+  sayBackwards(correctAnimal);
 }
