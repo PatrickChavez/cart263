@@ -15,17 +15,11 @@ let correctAnimal;
 // Making an array for the answers
 let answers = [];
 
-// Adding annyang commands
-let sayGiveUp = {
-  'I give up': giveUp
-};
-
-let sayItAgain = {
-  'Say it again': repeatName
-};
-
 // Creating a constant for the number of choices available
 const NUM_OPTIONS = 4;
+
+// Adding a variable for the score
+let score = 0;
 
 // Creating an array with various animals within
 let animals = [
@@ -165,6 +159,21 @@ let animals = [
   "zebra"
 ];
 
+// Adding annyang commands
+let sayGiveUp = {
+  'I give up': giveUp
+};
+
+let sayItAgain = {
+  'Say it again': repeatName
+};
+
+// Putting the 'animals' variable into the command
+// Saying "I think it is" is also optional
+let iThinkX = {
+  '(I think it is) :animals': handleGuess
+};
+
 // setup()
 //
 // Fires off a new round and activates voice commands
@@ -179,6 +188,7 @@ function setup() {
     // Add our commands to annyang
     annyang.addCommands(sayGiveUp);
     annyang.addCommands(sayItAgain);
+    annyang.addCommands(iThinkX);
 
     // Start listening. You can call this here, or attach this call to an event, button, etc.
     annyang.start();
@@ -203,20 +213,49 @@ function addButton(label) {
 //
 // The button reacts depending on whether it was the answer or not
 function handleGuess() {
+  console.log(iThinkX);
+  console.log("Working?");
   console.log($(this).text(), correctAnimal);
   // If the answer is correct, then a new round starts
   if ($(this).text() === correctAnimal) {
     $('.guess').remove();
     setTimeout(newRound, 1000);
+    // The score is also updated
+    setTimeout(updateScore, 1000);
   }
   // If the answer is wrong, then the button shakes and
   // the correct animal is said again
   else {
     $(this).effect('shake');
     sayBackwards(correctAnimal);
+    // The score also resets to 0
+    setTimeout(resetScore, 500);
   }
 }
 
+// updateScore()
+//
+// Increases the score if the player gets a correct answer
+function updateScore() {
+  // The score is updated
+  score += 1;
+  showScore();
+}
+
+// resetScore()
+//
+// The score returns to 0 if the player guesses wrong
+function resetScore() {
+  score = 0;
+  showScore();
+}
+
+// showScore()
+//
+// The score is accurately depicted
+function showScore() {
+  $('#totalScore').text(score);
+}
 // newRound()
 //
 // Generates a set of buttons with a random animal for each
@@ -272,6 +311,8 @@ function giveAnswer() {
     setTimeout(removeGuess, 500);
     // A new round starts after a second
     setTimeout(newRound, 1000);
+    // The score also resets to 0
+    setTimeout(resetScore, 500);
   }
 }
 
