@@ -171,7 +171,7 @@ let sayItAgain = {
 // Putting the 'animals' variable into the command
 // Saying "I think it is" is also optional
 let iThinkX = {
-  '(I think it is) :animals': handleGuess
+  '(I think it is) *animals': voiceGuess
 };
 
 // setup()
@@ -213,8 +213,6 @@ function addButton(label) {
 //
 // The button reacts depending on whether it was the answer or not
 function handleGuess() {
-  console.log(iThinkX);
-  console.log("Working?");
   console.log($(this).text(), correctAnimal);
   // If the answer is correct, then a new round starts
   if ($(this).text() === correctAnimal) {
@@ -331,4 +329,27 @@ function removeGuess() {
 function repeatName() {
   console.log("Repeated!");
   sayBackwards(correctAnimal);
+}
+
+// voiceGuess
+//
+// Allows the user to speak an animal name and checks to see if it is correct
+function voiceGuess(animalGuess) {
+  console.log(animalGuess);
+  // An argument is used in order for annyang to output a specific word
+  // for the conditional to recognize
+  if (animalGuess === correctAnimal) {
+    $('.guess').remove();
+    setTimeout(newRound, 1000);
+    // The score is also updated
+    setTimeout(updateScore, 1000);
+  }
+
+  // If the answer is wrong, then the button shakes and the correct animal is said again
+  else {
+    $('.guess').effect('shake');
+    sayBackwards(correctAnimal);
+    // The score also resets to 0
+    setTimeout(resetScore, 500);
+  }
 }
