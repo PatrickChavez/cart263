@@ -6,7 +6,7 @@ Assignment 3
 Patrick Chavez-Nadarajah
 
 *********************************************************************/
-
+// The code will run when the webpage has loaded
 $(document).ready(setup);
 
 // Making a variable for the correct answer
@@ -21,7 +21,7 @@ const NUM_OPTIONS = 4;
 // Adding a variable for the score
 let score = 0;
 
-// Creating an array with various animals within
+// Creating an array with various animals inside
 let animals = [
   "aardvark",
   "alligator",
@@ -182,15 +182,13 @@ function setup() {
 
   // Activating annyang
   if (annyang) {
-    // Let's define our first command. First the text we expect, and then the function it should call
-
 
     // Add our commands to annyang
     annyang.addCommands(sayGiveUp);
     annyang.addCommands(sayItAgain);
     annyang.addCommands(iThinkX);
 
-    // Start listening. You can call this here, or attach this call to an event, button, etc.
+    // Start listening.
     annyang.start();
   }
 }
@@ -211,7 +209,7 @@ function addButton(label) {
 
 // handleGuess()
 //
-// The button reacts depending on whether it was the answer or not
+// The button reacts depending on whether or not it was the answer
 function handleGuess() {
   console.log($(this).text(), correctAnimal);
   // If the answer is correct, then a new round starts
@@ -235,8 +233,8 @@ function handleGuess() {
 //
 // Increases the score if the player gets a correct answer
 function updateScore() {
-  // The score is updated
   score += 1;
+  // The score is updated
   showScore();
 }
 
@@ -245,6 +243,7 @@ function updateScore() {
 // The score returns to 0 if the player guesses wrong
 function resetScore() {
   score = 0;
+  // The score is updated
   showScore();
 }
 
@@ -254,6 +253,7 @@ function resetScore() {
 function showScore() {
   $('#totalScore').text(score);
 }
+
 // newRound()
 //
 // Generates a set of buttons with a random animal for each
@@ -301,7 +301,6 @@ function giveUp() {
 //
 // Highlights the correct answer and starts the game anew
 function giveAnswer() {
-  // console.log($(this).effect('shake'));
   if ($(this).text() === correctAnimal) {
     // The answer will shake
     $(this).effect('shake');
@@ -318,14 +317,12 @@ function giveAnswer() {
 //
 // Removes the guess class when called for a round reset
 function removeGuess() {
-  // The guess class will be removed
   $('.guess').remove();
 }
 
 // repeatName()
 //
-// Makes the responsiveVoice say the correct answer again
-// in a different rate and pitch
+// Makes the responsiveVoice say the correct answer again in a different rate and pitch
 function repeatName() {
   console.log("Repeated!");
   sayBackwards(correctAnimal);
