@@ -5,6 +5,16 @@ body {
  background-image: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/BGPlaceholder.png");
 }
 
+/* Managing the position and size of the title image */
+.title {
+  /* Size */
+  width: 300px;
+  height: 250px;
+  /* Position */
+  position: absolute;
+  left: 1000px;
+  top: 10px;
+}
 
 /* Managing the aesthetics of the morality score */
 #morality {
@@ -18,6 +28,7 @@ body {
   height: 20px;
   /* Positioning the the text */
   padding: 0.5em;
+
 }
 
 /* Managing the aesthetics of the popularity score */
