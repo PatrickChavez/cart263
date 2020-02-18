@@ -169,9 +169,8 @@ let sayItAgain = {
 };
 
 // Putting the 'animals' variable into the command
-// Saying "I think it is" is also optional
 let iThinkX = {
-  '(I think it is) *animals': voiceGuess
+  'I think it is *animals': voiceGuess
 };
 
 // setup()
@@ -344,7 +343,14 @@ function voiceGuess(animalGuess) {
 
   // If the answer is wrong, then the button shakes and the correct animal is said again
   else {
-    $('.guess').effect('shake');
+    // Making an anonymous function to handle the button shaking for a specific animal
+    $('div').each(function() {
+      // All animal guesses will be converted to lowercase in order for the animal
+      // array to activate
+      if ($(this).text() === animalGuess.toLowerCase()) {
+        $(this).effect('shake');
+      };
+    });
     sayBackwards(correctAnimal);
     // The score also resets to 0
     setTimeout(resetScore, 500);
