@@ -10,9 +10,16 @@ to match your project! Write JavaScript to do amazing things below!
 
 *********************************************************************/
 
-$(document).ready(setup);
+$(document).ready(setupDocument);
 
+function setupDocument() {
+
+}
 
 function setup() {
+createCanvas(900, 500);
+}
 
+function draw() {
+  background(0);
 }

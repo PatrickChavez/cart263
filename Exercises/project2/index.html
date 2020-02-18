@@ -20,9 +20,15 @@
       integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
       crossorigin="anonymous"></script>
 
+    <!-- Adding ResponsiveVoice -->
+<script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 
     <!-- Library script(s) -->
     <!-- Add your required libraries here either as local files or CDN-hosted files -->
+    <!-- Adding p5 -->
+    <script src="js/libraries/p5.min.js"></script>
+    <script src="js/libraries/p5.sound.min.js"></script>
+    <script src="js/libraries/p5.dom.min.js"></script>
 
 
     <!-- My script(s) -->
@@ -30,6 +36,21 @@
   </head>
 
   <body>
+<!-- Inserting a morality, popularity and month score -->
+<div id ='gameScore'>
+  <p id ='morality'>
+MORALITY: <span id ='moralityScore'> 0 </span>
+</p>
+
+<p id = 'popularity'>
+POPULARITY: <span id ='popularityScore'> 0 </span>
+</p>
+
+<p id = 'month'>
+MONTH: <span id ='monthScore'> 0 </span>
+  </p>
+
+</div>
 
 
   </body>

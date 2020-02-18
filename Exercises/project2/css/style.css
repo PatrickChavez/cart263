@@ -1,3 +1,7 @@
+/* Setting webpage aesthetics */
 body {
-
+/* The background */
+/* A full url is used in order to display the image online */
+ /* background-image: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/BGPlaceholder.png"); */
+ background-image: url('/assets/images/BGPlaceholder.png');
 }
