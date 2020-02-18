@@ -1,19 +1,29 @@
 /* Setting webpage aesthetics */
 body {
-/* The background */
-/* A full url is used in order to display the image online */
- background-image: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/BGPlaceholder.png");
+  /* The background */
+  /* A full url is used in order to display the image online */
+  background-image: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/BGPlaceholder.png");
 }
 
 /* Managing the position and size of the title image */
 .title {
   /* Size */
-  width: 300px;
-  height: 250px;
+  /* width: 300px;
+  height: 250px; */
   /* Position */
-  position: absolute;
-  left: 1000px;
-  top: 10px;
+  /* position: absolute;
+  left: 70%;
+  top: 10px; */
+  /* Putting the title in the center of the window */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Making the scores fixed on the window */
+#gameScore {
+  top: 0;
+  position: fixed;
 }
 
 /* Managing the aesthetics of the morality score */
@@ -28,7 +38,6 @@ body {
   height: 20px;
   /* Positioning the the text */
   padding: 0.5em;
-
 }
 
 /* Managing the aesthetics of the popularity score */
