@@ -2,6 +2,48 @@
 body {
 /* The background */
 /* A full url is used in order to display the image online */
- /* background-image: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/BGPlaceholder.png"); */
- background-image: url('/assets/images/BGPlaceholder.png');
+ background-image: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/BGPlaceholder.png");
+}
+
+
+/* Managing the aesthetics of the morality score */
+#morality {
+  /* Changing text color */
+  color: white;
+  /* Adding a textbox */
+  border: thick double white;
+  background-color: midnightblue;
+  /* Changing the textbox size */
+  width: 150px;
+  height: 20px;
+  /* Positioning the the text */
+  padding: 0.5em;
+}
+
+/* Managing the aesthetics of the popularity score */
+#popularity {
+  /* Changing text color */
+  color: white;
+  /* Adding a textbox */
+  border: thick double white;
+  background-color: midnightblue;
+  /* Changing the textbox size */
+  width: 150px;
+  height: 20px;
+  /* Positioning the the text */
+  padding: 0.5em;
+}
+
+/* Managing the aesthetics of the month */
+#month {
+  /* Changing text color */
+  color: white;
+  /* Adding a textbox */
+  border: thick double white;
+  background-color: midnightblue;
+  /* Changing the textbox size */
+  width: 150px;
+  height: 20px;
+  /* Positioning the the text */
+  padding: 0.5em;
 }
