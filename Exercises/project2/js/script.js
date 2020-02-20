@@ -13,19 +13,68 @@ to match your project! Write JavaScript to do amazing things below!
 $(document).ready(setupDocument);
 
 // Making an array of questions
-let questions = [
+let decisions = [
   "Yes for +1P",
   "No for -1M"
 ];
 
+// Adding variables for the different scores
+let popularityNumber = 0;
+let moralityNumber = 5;
+
 // Activating various functions once the page loads
 function setupDocument() {
 
+  // Score updates every half second
+  setInterval(updateScore, 500);
+
+  setInterval(addDialog, 5000);
 }
 
-// Spawning a random dialog box overtime
+// updateScore
+//
+// Correctly represents the various in-game scores
+function updateScore() {
+  $('#moralityScore').text(moralityNumber);
+  $('#popularityScore').text(popularityNumber);
+}
+
+// addDialog()
+//
+// Spawns a random dialog box
 function addDialog() {
-  
+  // Making a variable for a dialog that appears in a div
+  let $dialog = $('<div></div>').attr('title', 'Important!');
+  // A random question is chosen from an array
+  let decision = decisions[Math.floor(Math.random() * decisions.length)];
+  // Appending a dialog that contains a decision in a p tag in the div
+  $dialog.append(`<p>${decision}</p>`);
+  // The div is added to the body
+  $('body').append($dialog);
+
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    // Adding Yes/No options with anonymous functions
+    buttons: {
+      "Yes": function() {
+        popularityNumber += 1;
+        updateScore();
+        $(this).dialog('close');
+      },
+      "No": function() {
+        moralityNumber -= 1;
+        updateScore();
+        $(this).dialog('close');
+      }
+    }
+  });
+
+  // Positioning the dialog box using offset()
+  // The parent method is used in order to prevent the text from within the dialog box to move
+  $dialog.parent().offset({
+    top: 250,
+    left: 250
+  });
 }
 
 
