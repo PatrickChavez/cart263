@@ -28,9 +28,11 @@ function setupDocument() {
   // Score updates every half second
   setInterval(updateScore, 500);
 
-  setInterval(addDialog, 2000);
+  // setInterval(addDialog, 2000);
 
-setInterval(backgroundChange, 500);
+  addDialog();
+
+  setInterval(backgroundChange, 500);
 }
 
 // updateScore
@@ -65,6 +67,7 @@ function addDialog() {
         popularityNumber += 1;
         updateScore();
         $(this).dialog('close');
+        dialogTree();
       },
       "No": function() {
         moralityNumber -= 1;
@@ -84,6 +87,26 @@ function addDialog() {
   // Adding narration for every created dialog
   narrateDialog(decision);
 }
+
+// dialogTree
+//
+// Testing followup questions
+function dialogTree() {
+  let $dialog = $('<div></div>').attr('title', 'Follow up!');
+  $dialog.append('<p>Whoa!</p>');
+  $dialog.dialog({
+    buttons: {
+      "Whoa?": function() {
+         $(this).dialog('close');
+      }
+    }
+  });
+
+  // Removing the "close" corner box
+  $('ui-dialog-titlebar-close').remove();
+  // Adding narration for every created dialog
+  narrateDialog("Whoa!");
+  }
 
 // backgroundChange
 //
