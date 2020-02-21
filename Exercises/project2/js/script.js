@@ -28,7 +28,9 @@ function setupDocument() {
   // Score updates every half second
   setInterval(updateScore, 500);
 
-  setInterval(addDialog, 5000);
+  setInterval(addDialog, 2000);
+
+setInterval(backgroundChange, 500);
 }
 
 // updateScore
@@ -52,6 +54,9 @@ function addDialog() {
   // The div is added to the body
   $('body').append($dialog);
 
+  // Removing the "close" corner box
+  $('ui-dialog-titlebar-close').remove();
+
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
     // Adding Yes/No options with anonymous functions
@@ -73,8 +78,17 @@ function addDialog() {
   // The parent method is used in order to prevent the text from within the dialog box to move
   $dialog.parent().offset({
     top: 250,
-    left: 250
+    left: 950
   });
+}
+
+// backgroundChange
+//
+// The background image changes once morality drops to a certain number
+function backgroundChange() {
+  if (moralityNumber <= 4) {
+    $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/clown.png")');
+  }
 }
 
 
@@ -86,4 +100,5 @@ createCanvas(900, 450);
 
 function draw() {
   background(0);
+
 }
