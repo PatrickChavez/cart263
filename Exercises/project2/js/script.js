@@ -80,6 +80,9 @@ function addDialog() {
     top: 250,
     left: 950
   });
+
+  // Adding narration for every created dialog
+  narrateDialog(decision);
 }
 
 // backgroundChange
@@ -91,6 +94,14 @@ function backgroundChange() {
   }
 }
 
+// narrateDialog
+//
+// A voice says whatever is in the dialog box
+// An argument is used in order for the voice to recognize the presented text
+function narrateDialog(text) {
+// Adding ResponsiveVoice
+responsiveVoice.speak(text);
+}
 
 
 
