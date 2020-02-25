@@ -1,8 +1,17 @@
 /* Setting webpage aesthetics */
 body {
+  /* The font */
+  font-family: "Oswald-Light";
   /* The background */
   /* A full url is used in order to display the image online */
-  background-image: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/BGPlaceholder.png");
+  background-image: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundPurple.png");
+}
+
+/* Enabling a custom font */
+@font-face {
+  font-family: "Oswald-Light";
+  /* A full url is used in order to display the font online */
+  src: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/fonts/Oswald-Light.ttf");
 }
 
 /* Managing the position and size of the title image */
@@ -26,22 +35,9 @@ body {
   position: fixed;
 }
 
-/* Managing the aesthetics of the morality score */
-#morality {
-  /* Changing text color */
-  color: white;
-  /* Adding a textbox */
-  border: thick double white;
-  background-color: midnightblue;
-  /* Changing the textbox size */
-  width: 150px;
-  height: 20px;
-  /* Positioning the the text */
-  padding: 0.5em;
-}
 
-/* Managing the aesthetics of the popularity score */
-#popularity {
+/* Managing the aesthetics of the subscriber score */
+#subscribers {
   /* Changing text color */
   color: white;
   /* Adding a textbox */

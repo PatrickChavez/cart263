@@ -18,9 +18,19 @@ let decisions = [
   "No for -1M"
 ];
 
+// Making an array of webpage backgrounds
+let webpageBackgrounds = [
+  // Blue background
+  $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundBlue.png")'),
+  // Purple background
+  $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundPurple.png")'),
+  // Red background
+  $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")'),
+];
+
 // Adding variables for the different scores
-let popularityNumber = 0;
-let moralityNumber = 5;
+let subscriberNumber = 0;
+let monthNumber = 1;
 
 // Activating various functions once the page loads
 function setupDocument() {
@@ -39,8 +49,8 @@ function setupDocument() {
 //
 // Correctly represents the various in-game scores
 function updateScore() {
-  $('#moralityScore').text(moralityNumber);
-  $('#popularityScore').text(popularityNumber);
+  $('#monthScore').text(monthNumber);
+  $('#subscriberScore').text(subscriberNumber);
 }
 
 // addDialog()
@@ -56,26 +66,29 @@ function addDialog() {
   // The div is added to the body
   $('body').append($dialog);
 
-  // Removing the "close" corner box
-  $('ui-dialog-titlebar-close').remove();
 
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
     // Adding Yes/No options with anonymous functions
     buttons: {
       "Yes": function() {
-        popularityNumber += 1;
+        subscriberNumber += 1;
         updateScore();
         $(this).dialog('close');
         dialogTree();
+
+        backgroundChange()
       },
       "No": function() {
-        moralityNumber -= 1;
+        monthNumber -= 1;
         updateScore();
         $(this).dialog('close');
       }
     }
   });
+
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
 
   // Positioning the dialog box using offset()
   // The parent method is used in order to prevent the text from within the dialog box to move
@@ -103,19 +116,10 @@ function dialogTree() {
   });
 
   // Removing the "close" corner box
-  $('ui-dialog-titlebar-close').remove();
+  $('.ui-dialog-titlebar-close').remove();
   // Adding narration for every created dialog
-  narrateDialog("Whoa!");
+  narrateDialog(decisions[1]);
   }
-
-// backgroundChange
-//
-// The background image changes once morality drops to a certain number
-function backgroundChange() {
-  if (moralityNumber <= 4) {
-    $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/clown.png")');
-  }
-}
 
 // narrateDialog
 //
@@ -123,13 +127,17 @@ function backgroundChange() {
 // An argument is used in order for the voice to recognize the presented text
 function narrateDialog(text) {
 // Adding ResponsiveVoice
-responsiveVoice.speak(text);
+responsiveVoice.speak(text, "UK English Male");
+}
+
+// A p5 function that changes the current image in the canvas to another one
+function storyChange() {
+
 }
 
 
-
 function setup() {
-createCanvas(900, 450);
+createCanvas(900, 500);
 }
 
 function draw() {
