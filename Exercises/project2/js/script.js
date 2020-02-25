@@ -14,19 +14,23 @@ $(document).ready(setupDocument);
 
 // Making an array of questions
 let decisions = [
-  "Yes for +1P",
-  "No for -1M"
+  "Want to do the bad thing?"
 ];
 
-// Making an array of webpage backgrounds
-let webpageBackgrounds = [
-  // Blue background
-  $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundBlue.png")'),
-  // Purple background
-  $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundPurple.png")'),
-  // Red background
-  $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")'),
+// Making an array of narration descriptions
+let narration = [
+  "Your goal.",
+  "The first stunt.",
+  "The second stunt.",
+  "The third stunt.",
+  "Epilogue."
 ];
+
+// Background change template
+$('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
+
+// Making an array of webpage backgrounds
+let webpageBackgrounds;
 
 // Adding variables for the different scores
 let subscriberNumber = 0;
@@ -38,11 +42,8 @@ function setupDocument() {
   // Score updates every half second
   setInterval(updateScore, 500);
 
-  // setInterval(addDialog, 2000);
-
   addDialog();
 
-  setInterval(backgroundChange, 500);
 }
 
 // updateScore
@@ -53,9 +54,10 @@ function updateScore() {
   $('#subscriberScore').text(subscriberNumber);
 }
 
+
 // addDialog()
 //
-// Spawns a random dialog box
+// Generates a dialog box
 function addDialog() {
   // Making a variable for a dialog that appears in a div
   let $dialog = $('<div></div>').attr('title', 'Important!');
@@ -66,7 +68,6 @@ function addDialog() {
   // The div is added to the body
   $('body').append($dialog);
 
-
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
     // Adding Yes/No options with anonymous functions
@@ -76,8 +77,6 @@ function addDialog() {
         updateScore();
         $(this).dialog('close');
         dialogTree();
-
-        backgroundChange()
       },
       "No": function() {
         monthNumber -= 1;
@@ -90,12 +89,12 @@ function addDialog() {
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
 
-  // Positioning the dialog box using offset()
-  // The parent method is used in order to prevent the text from within the dialog box to move
-  $dialog.parent().offset({
-    top: 250,
-    left: 950
-  });
+  // // Positioning the dialog box using offset()
+  // // The parent method is used in order to prevent the text from within the dialog box to move
+  // $dialog.parent().offset({
+  //   top: 250,
+  //   left: 950
+  // });
 
   // Adding narration for every created dialog
   narrateDialog(decision);
@@ -119,7 +118,7 @@ function dialogTree() {
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for every created dialog
   narrateDialog(decisions[1]);
-  }
+}
 
 // narrateDialog
 //
@@ -130,11 +129,19 @@ function narrateDialog(text) {
 responsiveVoice.speak(text, "UK English Male");
 }
 
-// A p5 function that changes the current image in the canvas to another one
-function storyChange() {
-
+// darkerNarration
+//
+// A harsher voice says whatever is in the dialog box
+// An argument is used in order for the voice to recognize the presented text
+function darkerNarration(text) {
+  // Changing the pitch and rate of the voice using a variable
+  let options = {
+    rate: 0.4,
+    pitch: 0.1
+  }
+  // Adding ResponsiveVoice
+  responsiveVoice.speak(text, "UK English Male", options);
 }
-
 
 function setup() {
 createCanvas(900, 500);
@@ -142,5 +149,14 @@ createCanvas(900, 500);
 
 function draw() {
   background(0);
+
+  storyChange();
+}
+
+// A p5 function that changes the current image in the canvas to another one
+function storyChange() {
+  if (subscriberNumber === 1) {
+    background(0, 0, 255);
+  }
 
 }
