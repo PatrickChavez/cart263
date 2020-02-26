@@ -12,22 +12,31 @@ to match your project! Write JavaScript to do amazing things below!
 // Preparing a function that will start once the page has loaded
 $(document).ready(setupDocument);
 
+// Making an array for the story images and their number
+let storyImages = [];
+let storyNumber = 4;
+
+// Making an array for the bad endings and their number
+let badEndImages = [];
+let badEndNumber = 3;
+
 // Making an array of questions
 let decisions = [
   "Want to do the bad thing?"
 ];
 
 // Making an array of narration descriptions
-let narration = [
+let narrations = [
   "Your goal.",
   "The first stunt.",
   "The second stunt.",
   "The third stunt.",
-  "Epilogue."
+  "Epilogue.",
+  "You did a bad thing."
 ];
 
 // Background change template
-$('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
+// $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
 
 // Making an array of webpage backgrounds
 let webpageBackgrounds;
@@ -42,7 +51,7 @@ function setupDocument() {
   // Score updates every half second
   setInterval(updateScore, 500);
 
-  addDialog();
+  firstDialog();
 
 }
 
@@ -55,32 +64,27 @@ function updateScore() {
 }
 
 
-// addDialog()
+// firstDialog()
 //
-// Generates a dialog box
-function addDialog() {
+// Generates a dialog box that will start a chain of dialogs
+function firstDialog() {
   // Making a variable for a dialog that appears in a div
   let $dialog = $('<div></div>').attr('title', 'Important!');
-  // A random question is chosen from an array
-  let decision = decisions[Math.floor(Math.random() * decisions.length)];
-  // Appending a dialog that contains a decision in a p tag in the div
-  $dialog.append(`<p>${decision}</p>`);
+  // Appending dialog that contains a narration index in a p tag in the div
+  $dialog.append(`<p>${narrations[0]}</p>`);
   // The div is added to the body
   $('body').append($dialog);
-
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
-    // Adding Yes/No options with anonymous functions
+    // Adding an option using an anonymous function
     buttons: {
-      "Yes": function() {
-        subscriberNumber += 1;
-        updateScore();
-        $(this).dialog('close');
-        dialogTree();
-      },
-      "No": function() {
-        monthNumber -= 1;
-        updateScore();
+      "Ok": function() {
+        // The subscriber and month number increases
+        subscriberNumber += 10000;
+        monthNumber += 1;
+        // Another dialog function gets called
+        fingerDialog();
+        // The current dialog closes
         $(this).dialog('close');
       }
     }
@@ -88,37 +92,76 @@ function addDialog() {
 
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
-
-  // // Positioning the dialog box using offset()
-  // // The parent method is used in order to prevent the text from within the dialog box to move
-  // $dialog.parent().offset({
-  //   top: 250,
-  //   left: 950
-  // });
-
   // Adding narration for every created dialog
-  narrateDialog(decision);
+  narrateDialog(narrations[0]);
 }
 
-// dialogTree
+// fingerDialog
 //
-// Testing followup questions
-function dialogTree() {
-  let $dialog = $('<div></div>').attr('title', 'Follow up!');
-  $dialog.append('<p>Whoa!</p>');
+// Dialog related to the "Finger Family" subject
+function fingerDialog() {
+  // Making a variable for a dialog that appears in a div
+  let $dialog = $('<div></div>').attr('title', 'Important!');
+  // Appending dialog that contains a narration index in a p tag in the div
+  $dialog.append(`<p>${narrations[1]}</p>`);
+  // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
+    // Adding an option using an anonymous function
     buttons: {
-      "Whoa?": function() {
+      "What can I do?": function() {
+        // Another dialog function gets called
+        fingerChoice();
+        // The current dialog closes
          $(this).dialog('close');
       }
     }
   });
-
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
-  // Adding narration for every created dialog
-  narrateDialog(decisions[1]);
+  // Adding narration for the dialog
+  narrateDialog(narrations[1]);
 }
+
+// fingerChoice
+//
+// Dialog related to the "Finger Family" subject
+function fingerChoice() {
+  // Making a variable for a dialog that appears in a div
+  let $dialog = $('<div></div>').attr('title', 'Important!');
+  // Appending dialog that contains a narration index in a p tag in the div
+  $dialog.append(`<p>${decisions[0]}</p>`);
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    // Adding Yes/No options using anonymous functions
+    buttons: {
+      "Yes": function() {
+        // Another dialog function gets called
+        fingerChoice();
+        // The webpage background changes
+        $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
+        // The subscriber number decreases
+        subscriberNumber -= 8000;
+        // The current dialog closes
+         $(this).dialog('close');
+      },
+      "No": function() {
+        // Another dialog function gets called
+        // fingerChoice();
+        // The subscriber and month number increases
+        subscriberNumber += 20000;
+        monthNumber += 1;
+        // The current dialog closes
+         $(this).dialog('close');
+      }
+    }
+  });
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
+  // Adding narration for the dialog
+  darkerNarration(decisions[0]);
+}
+
+
 
 // narrateDialog
 //
@@ -143,20 +186,54 @@ function darkerNarration(text) {
   responsiveVoice.speak(text, "UK English Male", options);
 }
 
+// preload()
+//
+// Loads the images for the canvas
+function preload() {
+  // Making a for loop to generate the story images
+  for (let i = 1; i <= storyNumber; i++) {
+    // Setting the file path
+    let filePath = "assets/images/story" + i + ".png";
+    // Loading the images into the array
+    storyImages.push(loadImage(filePath));
+  }
+
+  // Making a for loop to generate the bad ending images
+  for (let i = 1; i <= badEndNumber; i++) {
+    // Setting the file path
+    let filePath = "assets/images/badend" + i + ".png";
+    // Loading the images into the array
+    badEndImages.push(loadImage(filePath));
+  }
+}
+
+// setup()
+//
+// Sets up the canvas at the start of the program
 function setup() {
 createCanvas(900, 500);
 }
 
+// draw()
+//
+// Calls images for every frame
 function draw() {
-  background(0);
+  // Setting the first image
+  image(storyImages[0], 0, 0, width, height);
 
   storyChange();
 }
 
-// A p5 function that changes the current image in the canvas to another one
+// storyChange()
+//
+// A p5 function that changes the current image in the canvas to another
+// depending on the current subscriber number
 function storyChange() {
-  if (subscriberNumber === 1) {
-    background(0, 0, 255);
+  if (subscriberNumber === 10000) {
+    image(storyImages[1], 0, 0, width, height);
+  }
+  else if (subscriberNumber === 2000) {
+    image(badEndImages[0], 0, 0, width, height);
   }
 
 }
