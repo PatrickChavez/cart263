@@ -63,17 +63,26 @@ function updateScore() {
   $('#subscriberScore').text(subscriberNumber);
 }
 
+// createDialog()
+//
+// Stores the creation of dialog into a function for ease of access
+function createDialog(dialogText) {
+  // Making a variable for a dialog that appears in a div
+  let $dialog = $('<div></div>').attr('title', 'Notice!');
+  // Appending dialog that the argument uses in a p tag in the div
+  $dialog.append(`<p>${dialogText}</p>`);
+  // The div is added to the body
+  $('body').append($dialog);
+  // The value of the dialog variable is returned
+  return $dialog;
+}
 
 // firstDialog()
 //
 // Generates a dialog box that will start a chain of dialogs
 function firstDialog() {
-  // Making a variable for a dialog that appears in a div
-  let $dialog = $('<div></div>').attr('title', 'Important!');
-  // Appending dialog that contains a narration index in a p tag in the div
-  $dialog.append(`<p>${narrations[0]}</p>`);
-  // The div is added to the body
-  $('body').append($dialog);
+  // Making a variable for a dialog that appears in the div
+  let $dialog = createDialog(narrations[0]);
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
     // Adding an option using an anonymous function
