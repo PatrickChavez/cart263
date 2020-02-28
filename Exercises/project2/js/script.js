@@ -48,19 +48,28 @@ let monthNumber = 1;
 // Activating various functions once the page loads
 function setupDocument() {
 
-  // Score updates every half second
+  // The score updates every half second
   setInterval(updateScore, 500);
 
+  // The first dialog kickstarts the dialog tree
   firstDialog();
-
 }
 
-// updateScore
+// updateScore()
 //
 // Correctly represents the various in-game scores
 function updateScore() {
   $('#monthScore').text(monthNumber);
   $('#subscriberScore').text(subscriberNumber);
+}
+
+// changeScore()
+//
+// Changes the value of the subscriber and month score using arguments
+function changeScore(subIncrease, subDecrease, monthIncrease) {
+  subscriberNumber += subIncrease;
+  subscriberNumber -= subDecrease;
+  monthNumber += monthIncrease;
 }
 
 // createDialog()
@@ -77,6 +86,19 @@ function createDialog(dialogText) {
   return $dialog;
 }
 
+// narrateDialog()
+//
+// A voice says whatever is in the dialog box
+// An argument is used in order for the voice to recognize the presented text
+// and change its rate and pitch
+function narrateDialog(text, voiceRate, voicePitch) {
+  // Changing the pitch and rate of the voice using arguments
+  responsiveVoice.speak(text, "UK English Male", {
+    rate: voiceRate,
+    pitch: voicePitch
+  });
+}
+
 // firstDialog()
 //
 // Generates a dialog box that will start a chain of dialogs
@@ -89,8 +111,7 @@ function firstDialog() {
     buttons: {
       "Ok": function() {
         // The subscriber and month number increases
-        subscriberNumber += 10000;
-        monthNumber += 1;
+        changeScore(10000, 0, 1);
         // Another dialog function gets called
         fingerDialog();
         // The current dialog closes
@@ -98,7 +119,6 @@ function firstDialog() {
       }
     }
   });
-
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for every created dialog
@@ -168,21 +188,6 @@ function fingerChoice() {
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
   darkerNarration(decisions[0]);
-}
-
-
-
-// narrateDialog
-//
-// A voice says whatever is in the dialog box
-// An argument is used in order for the voice to recognize the presented text
-// and change its rate and pitch
-function narrateDialog(text, voiceRate, voicePitch) {
-// Changing the pitch and rate of the voice using arguments
-responsiveVoice.speak(text, "UK English Male", {
-  rate: voiceRate,
-  pitch: voicePitch
-});
 }
 
 // // darkerNarration
