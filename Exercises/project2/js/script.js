@@ -66,9 +66,8 @@ function updateScore() {
 // changeScore()
 //
 // Changes the value of the subscriber and month score using arguments
-function changeScore(subIncrease, subDecrease, monthIncrease) {
+function changeScore(subIncrease, monthIncrease) {
   subscriberNumber += subIncrease;
-  subscriberNumber -= subDecrease;
   monthNumber += monthIncrease;
 }
 
@@ -112,6 +111,30 @@ function narrateDialog(text, voiceRate, voicePitch) {
   });
 }
 
+// badEnding
+//
+// A bad ending scenario that resets the game and can change with arguments
+function badEnding(narration) {
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(narration);
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    // Adding an option using an anonymous function
+    buttons: {
+      "Retry": function() {
+        // The game resets
+        resetGame();
+        // The current dialog closes
+        $(this).dialog('close');
+      }
+    }
+  });
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
+  // Adding narration for the dialog
+  narrateDialog(narration, 1, 1);
+}
+
 // firstDialog()
 //
 // Generates a dialog box that will start a chain of dialogs
@@ -124,7 +147,7 @@ function firstDialog() {
     buttons: {
       "Ok": function() {
         // The subscriber and month number increases
-        changeScore(10000, 0, 1);
+        changeScore(10000, 1);
         // Another dialog function is called
         fingerDialog();
         // The current dialog closes
@@ -164,7 +187,7 @@ function fingerDialog() {
 
 // fingerChoice
 //
-// Dialog related to the "Finger Family" subject
+// An important decision related to the "Finger Family" subject
 function fingerChoice() {
   // Making a variable for the dialog that appears in the div
   let $dialog = createDialog(decisions[0]);
@@ -174,11 +197,11 @@ function fingerChoice() {
     buttons: {
       "Yes": function() {
         // Another dialog function is called
-        fingerBadEnd();
+        badEnding(narrations[5]);
         // The webpage background changes
         $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
-        // The subscriber number decreases
-        changeScore(0, 8000, 0);
+        // The subscriber number is halved
+        subscriberNumber /= 2;
         // The current dialog closes
          $(this).dialog('close');
       },
@@ -186,7 +209,7 @@ function fingerChoice() {
         // Another dialog function is called
         ghostDialog();
         // The subscriber and month number increases
-        changeScore(10000, 0, 1);
+        changeScore(10000, 1);
         // The current dialog closes
          $(this).dialog('close');
       }
@@ -198,29 +221,6 @@ function fingerChoice() {
   narrateDialog(decisions[0], 0.4, 0.1);
 }
 
-// fingerBadEnd
-//
-// A bad ending scenario for the "Finger Family" subject
-function fingerBadEnd() {
-  // Making a variable for the dialog that appears in the div
-  let $dialog = createDialog(narrations[5]);
-  // Turning the $dialog variable into an actual dialog window
-  $dialog.dialog({
-    // Adding an option using an anonymous function
-    buttons: {
-      "Retry": function() {
-        // The game resets
-        resetGame();
-        // The current dialog closes
-        $(this).dialog('close');
-      }
-    }
-  });
-  // Removing the "close" corner box
-  $('.ui-dialog-titlebar-close').remove();
-  // Adding narration for the dialog
-  narrateDialog(narrations[5], 1, 1);
-}
 
 // ghostDialog()
 //
@@ -246,6 +246,41 @@ function ghostDialog() {
   narrateDialog(narrations[2], 1, 1);
 }
 
+// ghostChoice()
+//
+// An important decision related to the "3am Videos" subject
+function ghostChoice() {
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(decisions[0]);
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    // Adding Yes/No options using anonymous functions
+    buttons: {
+      "Yes": function() {
+        // Another dialog function is called
+        badEnding();
+        // The webpage background changes
+        $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
+        // The subscriber number decreases
+        changeScore(0, 16000, 0);
+        // The current dialog closes
+         $(this).dialog('close');
+      },
+      "No": function() {
+        // Another dialog function is called
+        elsaGateDialog();
+        // The subscriber and month number increases
+        changeScore(10000, 0, 1);
+        // The current dialog closes
+         $(this).dialog('close');
+      }
+    }
+  });
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
+  // Adding narration for the dialog
+  narrateDialog(decisions[0], 0.4, 0.1);
+}
 
 // preload()
 //
@@ -295,7 +330,7 @@ function storyChange() {
     image(storyImages[1], 0, 0, width, height);
   }
   // The "Skull Family" is shown
-  else if (subscriberNumber === 2000) {
+  else if (subscriberNumber === 5000) {
     image(badEndImages[0], 0, 0, width, height);
   }
   // The player's room is shown otherwise
