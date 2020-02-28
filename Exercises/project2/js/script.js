@@ -102,7 +102,7 @@ function firstDialog() {
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for every created dialog
-  narrateDialog(narrations[0]);
+  narrateDialog(narrations[0], 1, 1);
 }
 
 // fingerDialog
@@ -176,24 +176,28 @@ function fingerChoice() {
 //
 // A voice says whatever is in the dialog box
 // An argument is used in order for the voice to recognize the presented text
-function narrateDialog(text) {
-// Adding ResponsiveVoice
-responsiveVoice.speak(text, "UK English Male");
+// and change its rate and pitch
+function narrateDialog(text, voiceRate, voicePitch) {
+// Changing the pitch and rate of the voice using arguments
+responsiveVoice.speak(text, "UK English Male", {
+  rate: voiceRate,
+  pitch: voicePitch
+});
 }
 
-// darkerNarration
-//
-// A harsher voice says whatever is in the dialog box
-// An argument is used in order for the voice to recognize the presented text
-function darkerNarration(text) {
-  // Changing the pitch and rate of the voice using a variable
-  let options = {
-    rate: 0.4,
-    pitch: 0.1
-  }
-  // Adding ResponsiveVoice
-  responsiveVoice.speak(text, "UK English Male", options);
-}
+// // darkerNarration
+// //
+// // A harsher voice says whatever is in the dialog box
+// // An argument is used in order for the voice to recognize the presented text
+// function darkerNarration(text) {
+//   // Changing the pitch and rate of the voice using a variable
+//   let options = {
+//     rate: 0.4,
+//     pitch: 0.1
+//   }
+//   // Adding ResponsiveVoice
+//   responsiveVoice.speak(text, "UK English Male", options);
+// }
 
 // preload()
 //
