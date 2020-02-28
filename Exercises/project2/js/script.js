@@ -42,12 +42,13 @@ let narrations = [
 // Background change template
 // $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
 
-// Making an array of webpage backgrounds
-let webpageBackgrounds;
-
 // Adding variables for the different scores
 let subscriberNumber = 0;
 let monthNumber = 1;
+
+// Adding variables for music and sound effects
+let mainTheme = new Audio("assets/sounds/Breakfast_is_ready.mp3");
+let badEndTheme = new Audio("assets/sounds/nukiashisashiashi.mp3");
 
 // Activating various functions once the page loads
 function setupDocument() {
@@ -82,6 +83,8 @@ function resetGame() {
   // The subscriber and month numbers are reset
   subscriberNumber = 0;
   monthNumber = 1;
+  // The bad ending music stops
+  badEndTheme.pause();
   // The webpage background returns to normal
   $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundPurple.png")');
   // The firstDialog() function is called
@@ -137,11 +140,16 @@ function badEnding(narration) {
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
   narrateDialog(narration, 1, 1);
+  // The bad ending music plays
+  // The volume is lowered in order to prevent ResponsiveVoice from being drowned out
+  badEndTheme.volume = 0.5;
+  badEndTheme.currentTime = 0;
+  badEndTheme.play();
 }
 
 // firstDialog()
 //
-// Generates a dialog box that will start a chain of dialogs
+// Generates a dialog box that will start the music and a chain of dialogs
 function firstDialog() {
   // Making a variable for the dialog that appears in the div
   let $dialog = createDialog(narrations[0]);
@@ -163,6 +171,12 @@ function firstDialog() {
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
   narrateDialog(narrations[0], 1, 1);
+  // The main theme plays at the time when it becomes dynamic
+  // The volume is lowered in order to prevent ResponsiveVoice from being drowned out
+  mainTheme.volume = 0.2;
+  mainTheme.currentTime = 39;
+  mainTheme.loop = true;
+  mainTheme.play();
 }
 
 // fingerDialog
@@ -214,6 +228,8 @@ function fingerChoice() {
         ghostDialog();
         // The subscriber and month number increases
         changeScore(14000, 1);
+        // The music resumes
+        mainTheme.play();
         // The current dialog closes
          $(this).dialog('close');
       }
@@ -223,6 +239,8 @@ function fingerChoice() {
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
   narrateDialog(decisions[0], 0.4, 0.1);
+  // The music stops
+  mainTheme.pause();
 }
 
 
@@ -275,6 +293,8 @@ function ghostChoice() {
         elsaGateDialog();
         // The subscriber and month number increases
         changeScore(16000, 1);
+        // The music resumes
+        mainTheme.play();
         // The current dialog closes
          $(this).dialog('close');
       }
@@ -284,6 +304,8 @@ function ghostChoice() {
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
   narrateDialog(decisions[0], 0.4, 0.1);
+  // The music stops
+  mainTheme.pause();
 }
 
 // elsaGateDialog()
@@ -337,6 +359,8 @@ function elsaChoice() {
         $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundBlue.png")');
         // The subscriber and month number increases
         changeScore(10000, 1);
+        // The music resumes
+        mainTheme.play();
         // The current dialog closes
          $(this).dialog('close');
       }
@@ -346,6 +370,8 @@ function elsaChoice() {
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
   narrateDialog(decisions[0], 0.4, 0.1);
+  // The music stops
+  mainTheme.pause();
 }
 
 // endingDialog()
