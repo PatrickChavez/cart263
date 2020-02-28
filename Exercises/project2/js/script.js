@@ -20,6 +20,10 @@ let storyNumber = 4;
 let badEndImages = [];
 let badEndNumber = 3;
 
+// Making an array for the good endings and their number
+let goodEndImages = [];
+let goodEndNumber = 2;
+
 // Making an array of questions
 let decisions = [
   "Want to do the bad thing?"
@@ -344,7 +348,29 @@ function elsaChoice() {
   narrateDialog(decisions[0], 0.4, 0.1);
 }
 
-
+// endingDialog()
+//
+// Dialog related to the "ElsaGate" subject
+function endingDialog() {
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(narrations[4]);
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    // Adding an option using an anonymous function
+    buttons: {
+      "I'm going to push forward": function() {
+        // The subscriber number increases
+        changeScore(5000, 0);
+        // The current dialog closes
+         $(this).dialog('close');
+      }
+    }
+  });
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
+  // Adding narration for the dialog
+  narrateDialog(narrations[4], 1, 1);
+}
 
 // preload()
 //
@@ -364,6 +390,14 @@ function preload() {
     let filePath = "assets/images/badend" + i + ".png";
     // Loading the images into the array
     badEndImages.push(loadImage(filePath));
+  }
+
+  // Making a for loop to generate the good ending images
+  for (let i = 1; i <= goodEndNumber; i++) {
+    // Setting the file path
+    let filePath = "assets/images/goodend" + i + ".png";
+    // Loading the images into the array
+    goodEndImages.push(loadImage(filePath));
   }
 }
 
@@ -412,6 +446,14 @@ function storyChange() {
   // The "Apology Video" is shown
   else if (subscriberNumber === 20000) {
     image(badEndImages[2], 0, 0, width, height);
+  }
+  // The first ending image is shown
+  else if (subscriberNumber === 50000) {
+    image(goodEndImages[0], 0, 0, width, height);
+  }
+  // The second ending image is shown
+  else if (subscriberNumber === 55000) {
+    image(goodEndImages[1], 0, 0, width, height);
   }
   // The player's room is shown otherwise
   else {
