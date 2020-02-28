@@ -209,7 +209,7 @@ function fingerChoice() {
         // Another dialog function is called
         ghostDialog();
         // The subscriber and month number increases
-        changeScore(10000, 1);
+        changeScore(14000, 1);
         // The current dialog closes
          $(this).dialog('close');
       }
@@ -258,11 +258,11 @@ function ghostChoice() {
     buttons: {
       "Yes": function() {
         // Another dialog function is called
-        badEnding();
+        badEnding(narrations[5]);
         // The webpage background changes
         $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
-        // The subscriber number decreases
-        changeScore(0, 16000, 0);
+        // The subscriber number is halved
+        subscriberNumber /= 2;
         // The current dialog closes
          $(this).dialog('close');
       },
@@ -270,7 +270,7 @@ function ghostChoice() {
         // Another dialog function is called
         elsaGateDialog();
         // The subscriber and month number increases
-        changeScore(10000, 0, 1);
+        changeScore(16000, 1);
         // The current dialog closes
          $(this).dialog('close');
       }
@@ -281,6 +281,70 @@ function ghostChoice() {
   // Adding narration for the dialog
   narrateDialog(decisions[0], 0.4, 0.1);
 }
+
+// elsaGateDialog()
+//
+// Dialog related to the "ElsaGate" subject
+function elsaGateDialog() {
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(narrations[3]);
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    // Adding an option using an anonymous function
+    buttons: {
+      "We have to try harder": function() {
+        // Another dialog function is called
+        elsaChoice();
+        // The current dialog closes
+         $(this).dialog('close');
+      }
+    }
+  });
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
+  // Adding narration for the dialog
+  narrateDialog(narrations[3], 1, 1);
+}
+
+// elsaChoice()
+//
+// An important decision related to the "ElsaGate" subject
+function elsaChoice() {
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(decisions[0]);
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    // Adding Yes/No options using anonymous functions
+    buttons: {
+      "Yes": function() {
+        // Another dialog function is called
+        badEnding(narrations[5]);
+        // The webpage background changes
+        $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
+        // The subscriber number is halved
+        subscriberNumber /= 2;
+        // The current dialog closes
+         $(this).dialog('close');
+      },
+      "No": function() {
+        // Another dialog function is called
+        endingDialog();
+        // The webpage background changes
+        $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundBlue.png")');
+        // The subscriber and month number increases
+        changeScore(10000, 1);
+        // The current dialog closes
+         $(this).dialog('close');
+      }
+    }
+  });
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
+  // Adding narration for the dialog
+  narrateDialog(decisions[0], 0.4, 0.1);
+}
+
+
 
 // preload()
 //
@@ -332,6 +396,22 @@ function storyChange() {
   // The "Skull Family" is shown
   else if (subscriberNumber === 5000) {
     image(badEndImages[0], 0, 0, width, height);
+  }
+  // The "3am Scene" is shown
+  else if (subscriberNumber === 24000) {
+    image(storyImages[2], 0, 0, width, height);
+  }
+  // The "Dark 3am Scene" is shown
+  else if (subscriberNumber === 12000) {
+    image(badEndImages[1], 0, 0, width, height);
+  }
+  // The "Wholesome ElsaGate Scenario" is shown
+  else if (subscriberNumber === 40000) {
+    image(storyImages[3], 0, 0, width, height);
+  }
+  // The "Apology Video" is shown
+  else if (subscriberNumber === 20000) {
+    image(badEndImages[2], 0, 0, width, height);
   }
   // The player's room is shown otherwise
   else {
