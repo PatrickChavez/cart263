@@ -72,6 +72,19 @@ function changeScore(subIncrease, subDecrease, monthIncrease) {
   monthNumber += monthIncrease;
 }
 
+// resetGame
+//
+// Sends the player back to the beginning of the game
+function resetGame() {
+  // The subscriber and month numbers are reset
+  subscriberNumber = 0;
+  monthNumber = 1;
+  // The webpage background returns to normal
+  $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundPurple.png")');
+  // The firstDialog() function is called
+  firstDialog();
+}
+
 // createDialog()
 //
 // Stores the creation of dialog into a function for ease of access
@@ -103,7 +116,7 @@ function narrateDialog(text, voiceRate, voicePitch) {
 //
 // Generates a dialog box that will start a chain of dialogs
 function firstDialog() {
-  // Making a variable for a dialog that appears in the div
+  // Making a variable for the dialog that appears in the div
   let $dialog = createDialog(narrations[0]);
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
@@ -112,7 +125,7 @@ function firstDialog() {
       "Ok": function() {
         // The subscriber and month number increases
         changeScore(10000, 0, 1);
-        // Another dialog function gets called
+        // Another dialog function is called
         fingerDialog();
         // The current dialog closes
         $(this).dialog('close');
@@ -121,7 +134,7 @@ function firstDialog() {
   });
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
-  // Adding narration for every created dialog
+  // Adding narration for the dialog
   narrateDialog(narrations[0], 1, 1);
 }
 
@@ -129,16 +142,14 @@ function firstDialog() {
 //
 // Dialog related to the "Finger Family" subject
 function fingerDialog() {
-  // Making a variable for a dialog that appears in a div
-  let $dialog = $('<div></div>').attr('title', 'Important!');
-  // Appending dialog that contains a narration index in a p tag in the div
-  $dialog.append(`<p>${narrations[1]}</p>`);
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(narrations[1]);
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
     // Adding an option using an anonymous function
     buttons: {
       "What can I do?": function() {
-        // Another dialog function gets called
+        // Another dialog function is called
         fingerChoice();
         // The current dialog closes
          $(this).dialog('close');
@@ -148,37 +159,34 @@ function fingerDialog() {
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
-  narrateDialog(narrations[1]);
+  narrateDialog(narrations[1], 1, 1);
 }
 
 // fingerChoice
 //
 // Dialog related to the "Finger Family" subject
 function fingerChoice() {
-  // Making a variable for a dialog that appears in a div
-  let $dialog = $('<div></div>').attr('title', 'Important!');
-  // Appending dialog that contains a narration index in a p tag in the div
-  $dialog.append(`<p>${decisions[0]}</p>`);
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(decisions[0]);
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
     // Adding Yes/No options using anonymous functions
     buttons: {
       "Yes": function() {
-        // Another dialog function gets called
-        fingerChoice();
+        // Another dialog function is called
+        fingerBadEnd();
         // The webpage background changes
         $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
         // The subscriber number decreases
-        subscriberNumber -= 8000;
+        changeScore(0, 8000, 0);
         // The current dialog closes
          $(this).dialog('close');
       },
       "No": function() {
-        // Another dialog function gets called
-        // fingerChoice();
+        // Another dialog function is called
+        ghostDialog();
         // The subscriber and month number increases
-        subscriberNumber += 20000;
-        monthNumber += 1;
+        changeScore(10000, 0, 1);
         // The current dialog closes
          $(this).dialog('close');
       }
@@ -187,22 +195,57 @@ function fingerChoice() {
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
-  darkerNarration(decisions[0]);
+  narrateDialog(decisions[0], 0.4, 0.1);
 }
 
-// // darkerNarration
-// //
-// // A harsher voice says whatever is in the dialog box
-// // An argument is used in order for the voice to recognize the presented text
-// function darkerNarration(text) {
-//   // Changing the pitch and rate of the voice using a variable
-//   let options = {
-//     rate: 0.4,
-//     pitch: 0.1
-//   }
-//   // Adding ResponsiveVoice
-//   responsiveVoice.speak(text, "UK English Male", options);
-// }
+// fingerBadEnd
+//
+// A bad ending scenario for the "Finger Family" subject
+function fingerBadEnd() {
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(narrations[5]);
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    // Adding an option using an anonymous function
+    buttons: {
+      "Retry": function() {
+        // The game resets
+        resetGame();
+        // The current dialog closes
+        $(this).dialog('close');
+      }
+    }
+  });
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
+  // Adding narration for the dialog
+  narrateDialog(narrations[5], 1, 1);
+}
+
+// ghostDialog()
+//
+// Dialog related to the "3am Videos" subject
+function ghostDialog() {
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(narrations[2]);
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    // Adding an option using an anonymous function
+    buttons: {
+      "Is there more to it?": function() {
+        // Another dialog function is called
+        ghostChoice();
+        // The current dialog closes
+         $(this).dialog('close');
+      }
+    }
+  });
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
+  // Adding narration for the dialog
+  narrateDialog(narrations[2], 1, 1);
+}
+
 
 // preload()
 //
@@ -247,11 +290,17 @@ function draw() {
 // A p5 function that changes the current image in the canvas to another
 // depending on the current subscriber number
 function storyChange() {
+  // The "Finger Family" is shown
   if (subscriberNumber === 10000) {
     image(storyImages[1], 0, 0, width, height);
   }
+  // The "Skull Family" is shown
   else if (subscriberNumber === 2000) {
     image(badEndImages[0], 0, 0, width, height);
+  }
+  // The player's room is shown otherwise
+  else {
+    image(storyImages[0], 0, 0, width, height);
   }
 
 }
