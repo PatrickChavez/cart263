@@ -2,11 +2,25 @@
 
 /********************************************************************
 
-Title of Project
-Author Name
+Glory Seeker
+Patrick Chavez-Nadarajah
 
-This is a template. Fill in the title, author, and this description
-to match your project! Write JavaScript to do amazing things below!
+Earn 100000 subscribers on YouTube in 5 months! Can you do it without
+succumbing to stress?
+
+Breakfast is ready by Yusuke Shimizu via DOVA-SYNDROME
+https://dova-s.jp/bgm/play9398.html
+https://oto-jam.com/
+
+Nukiashisashiashi/抜き足差し足/Pull out Foot by Amacha Music Studio
+https://amachamusic.chagasi.com/image_ayashii.html
+
+Oswald font by Vernon Adams
+https://www.fontsquirrel.com/fonts/oswald
+https://fonts.google.com/specimen/Oswald
+
+Dialog functions based on Pippin Barr's Endless Dialogs code
+https://github.com/pippinbarr/cart263-2020/blob/master/course-information/course-schedule.md#week-4
 
 *********************************************************************/
 // Preparing a function that will start once the page has loaded
@@ -43,13 +57,10 @@ let narrations = [
 
 // Making an array of bad ending narrations
 let badEndArray = [
-  "Your horror-themed Finger Family video did little to appease the crowd and no doubt traumatized a lot of children. You did become relevant through the controversy though: popular Youtubers are all talking about how callous you are for putting this kind of content in a kid’s channel. Unfortunately, this exposure only made you unpopular and your subscriber count dropped as a result.",
+  "Your horror-themed Finger Family video did little to appease the crowd and no doubt traumatized a lot of children. You did become relevant through the controversy though: popular YouTubers are all talking about how callous you are for putting this kind of content in a kid’s channel. Unfortunately, this exposure only made you unpopular and your subscriber count dropped as a result.",
   "Your little stunt was deemed to be in poor taste by the majority of the community. There is a chance that children will be influenced by your video and make content about calling their deceased relatives. What’s more, YouTube has stepped in and demonetized your channel following the controversy. With little means to make a comeback, you decide to quit making videos.",
   "Numerous actors that you worked with have decided to speak out and denounce you for your unpleasant working conditions. Many were appalled with how you would make your performers work for up to 10 hours with little breaks. Not even the child actors were exempt from this harsh regiment. In order to quell the furious masses, you decided to make an apology video explaining your side of the story. Needless to say, no one took your side."
 ];
-
-// Background change template
-// $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
 
 // Adding variables for the different scores
 let subscriberNumber = 0;
@@ -127,6 +138,31 @@ function narrateDialog(text, voiceRate, voicePitch) {
   });
 }
 
+// // scenarioDialog
+// //
+// // Dialog related to the various YouTube subjects the game tackles
+// // Arguments are used in order to call narrations and functions
+// function scenarioDialog(narration, buttonText, callFunction) {
+//   // Making a variable for the dialog that appears in the div
+//   let $dialog = createDialog(narration);
+//   // Turning the $dialog variable into an actual dialog window
+//   $dialog.dialog({
+//     // Adding an option using an anonymous function
+//     buttons: {
+//       buttonText: function() {
+//         // Another dialog function is called
+//         callFunction;
+//         // The current dialog closes
+//          $(this).dialog('close');
+//       }
+//     }
+//   });
+//   // Removing the "close" corner box
+//   $('.ui-dialog-titlebar-close').remove();
+//   // Adding narration for the dialog
+//   narrateDialog(narrations[1], 1, 1);
+// }
+
 // badEnding
 //
 // A bad ending scenario that resets the game and can change with arguments
@@ -145,13 +181,19 @@ function badEnding(narration) {
       }
     }
   });
+  // Positioning the dialog box using offset()
+  // The parent method is used in order to prevent the text from within the dialog box to move
+  $dialog.parent().offset({
+    top: 150,
+    left: 950
+  });
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
   narrateDialog(narration, 1, 1);
   // The bad ending music plays
   // The volume is lowered in order to prevent ResponsiveVoice from being drowned out
-  badEndTheme.volume = 0.5;
+  badEndTheme.volume = 0.4;
   badEndTheme.currentTime = 0;
   badEndTheme.play();
 }
@@ -166,7 +208,7 @@ function firstDialog() {
   $dialog.dialog({
     // Adding an option using an anonymous function
     buttons: {
-      "Ok": function() {
+      "Let’s get to it!": function() {
         // The subscriber and month number increases
         changeScore(10000, 1);
         // Another dialog function is called
@@ -198,7 +240,7 @@ function fingerDialog() {
   $dialog.dialog({
     // Adding an option using an anonymous function
     buttons: {
-      "What can I do?": function() {
+      "I have to stay fresh…": function() {
         // Another dialog function is called
         fingerChoice();
         // The current dialog closes
@@ -224,7 +266,7 @@ function fingerChoice() {
     buttons: {
       "Yes": function() {
         // Another dialog function is called
-        badEnding(narrations[5]);
+        badEnding(badEndArray[0]);
         // The webpage background changes
         $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
         // The subscriber number is halved
@@ -247,7 +289,7 @@ function fingerChoice() {
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
-  narrateDialog(decisions[0], 0.4, 0.1);
+  narrateDialog(decisions[0], 0.6, 0.1);
   // The music stops
   mainTheme.pause();
 }
@@ -263,7 +305,7 @@ function ghostDialog() {
   $dialog.dialog({
     // Adding an option using an anonymous function
     buttons: {
-      "Is there more to it?": function() {
+      "There has to be a better approach to this…": function() {
         // Another dialog function is called
         ghostChoice();
         // The current dialog closes
@@ -282,14 +324,14 @@ function ghostDialog() {
 // An important decision related to the "3am Videos" subject
 function ghostChoice() {
   // Making a variable for the dialog that appears in the div
-  let $dialog = createDialog(decisions[0]);
+  let $dialog = createDialog(decisions[1]);
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
     // Adding Yes/No options using anonymous functions
     buttons: {
       "Yes": function() {
         // Another dialog function is called
-        badEnding(narrations[5]);
+        badEnding(badEndArray[1]);
         // The webpage background changes
         $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
         // The subscriber number is halved
@@ -312,7 +354,7 @@ function ghostChoice() {
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
-  narrateDialog(decisions[0], 0.4, 0.1);
+  narrateDialog(decisions[1], 0.6, 0.1);
   // The music stops
   mainTheme.pause();
 }
@@ -327,7 +369,7 @@ function elsaGateDialog() {
   $dialog.dialog({
     // Adding an option using an anonymous function
     buttons: {
-      "We have to try harder": function() {
+      "Maybe I should give them a break…": function() {
         // Another dialog function is called
         elsaChoice();
         // The current dialog closes
@@ -346,14 +388,14 @@ function elsaGateDialog() {
 // An important decision related to the "ElsaGate" subject
 function elsaChoice() {
   // Making a variable for the dialog that appears in the div
-  let $dialog = createDialog(decisions[0]);
+  let $dialog = createDialog(decisions[2]);
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
     // Adding Yes/No options using anonymous functions
     buttons: {
       "Yes": function() {
         // Another dialog function is called
-        badEnding(narrations[5]);
+        badEnding(badEndArray[2]);
         // The webpage background changes
         $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
         // The subscriber number is halved
@@ -378,7 +420,7 @@ function elsaChoice() {
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
-  narrateDialog(decisions[0], 0.4, 0.1);
+  narrateDialog(decisions[2], 0.6, 0.1);
   // The music stops
   mainTheme.pause();
 }
@@ -393,7 +435,7 @@ function endingDialog() {
   $dialog.dialog({
     // Adding an option using an anonymous function
     buttons: {
-      "I'm going to push forward": function() {
+      "I will reach my goal someday!": function() {
         // The subscriber number increases
         changeScore(5000, 0);
         // The current dialog closes
