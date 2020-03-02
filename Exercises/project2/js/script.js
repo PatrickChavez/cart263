@@ -24,19 +24,28 @@ let badEndNumber = 3;
 let goodEndImages = [];
 let goodEndNumber = 2;
 
-// Making an array of questions
+// Making an array of decisions
 let decisions = [
-  "Want to do the bad thing?"
+  "Do you want to create a stranger video in the hopes of gaining relevance through controversy? You could gain a new audience…",
+  "How about making your content closer to reality? Perhaps you should make the subject about the deceased. The person in question doesn’t have to be dead at the moment…",
+  "Why not push them to work harder? The ends justify the means after all. If anyone starts complaining, you could always pay them more or blackmail them to continue working for you…"
 ];
 
 // Making an array of narration descriptions
 let narrations = [
-  "Your goal.",
-  "The first stunt.",
-  "The second stunt.",
-  "The third stunt.",
-  "Epilogue.",
+  "You want to reach 100000 subscribers on YouTube and earn a silver play button to show off to your loved ones how awesome and hardworking you are. The sweet ad revenue is also a nice bonus. A 5-month deadline to reach your goal is set. You figure making content geared towards kids would be the best place to start.",
+  "You decide to start with the ever-popular Finger Family set of videos. Despite their crude and simple look, your content managed to get you 10000 subscribers in a month! However, your videos have been getting less and less views as time goes on…",
+  "You settle for tackling the spooky 3AM challenges that have taken the platform by storm. Fortunately, this different approach allowed you to obtain more subscribers than ever before! Despite this rousing success, your subscriber count hasn’t seen much improvement in the last couple of days.",
+  "You decide to do-away with the 3AM challenge and focus on the bizarre world of Spiderman and Elsa videos. Your subscriber count has reached a whopping 40000 units, but your deadline of reaching 100000 subscribers in five months is fast approaching! What’s more, the actors you hired to make the videos, both young and old, are becoming weary of performing near-constantly…",
+  "In the end, you could not reach your goal. Despite this, you’ve learned that success doesn’t come quickly and that you still enjoy making videos. You decide to continue making the content you’re used to while also changing it up every now and then. A day will come when you will be able to show everybody that silver play button…",
   "You did a bad thing."
+];
+
+// Making an array of bad ending narrations
+let badEndArray = [
+  "Your horror-themed Finger Family video did little to appease the crowd and no doubt traumatized a lot of children. You did become relevant through the controversy though: popular Youtubers are all talking about how callous you are for putting this kind of content in a kid’s channel. Unfortunately, this exposure only made you unpopular and your subscriber count dropped as a result.",
+  "Your little stunt was deemed to be in poor taste by the majority of the community. There is a chance that children will be influenced by your video and make content about calling their deceased relatives. What’s more, YouTube has stepped in and demonetized your channel following the controversy. With little means to make a comeback, you decide to quit making videos.",
+  "Numerous actors that you worked with have decided to speak out and denounce you for your unpleasant working conditions. Many were appalled with how you would make your performers work for up to 10 hours with little breaks. Not even the child actors were exempt from this harsh regiment. In order to quell the furious masses, you decided to make an apology video explaining your side of the story. Needless to say, no one took your side."
 ];
 
 // Background change template
