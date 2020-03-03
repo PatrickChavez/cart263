@@ -169,6 +169,55 @@ function scenarioDialog(narrationIndex, buttonText, buttonFunction) {
   narrateDialog(narrations[narrationIndex], 1, 1);
 }
 
+// choiceDialog
+//
+// Dialog related to the various choices the player has to make during gameplay
+// Arguments are used in order to call narrations and functions
+function choiceDialog(decisionIndex, badEndIndex, buttonFunctionNo, scoreIncrease) {
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(decisions[decisionIndex]);
+  // Creating a variable containing an empty dialog object that consists of its buttons
+  let dialogButtons = {};
+  // Creating the buttons containing anonymous functions
+  dialogButtons["Yes"] = function() {
+    // A bad ending function is called
+    badEnding(badEndArray[badEndIndex]);
+    // The webpage background changes
+    $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
+    // The subscriber number is halved
+    subscriberNumber /= 2;
+    // The current dialog box closes
+    $(this).dialog('close');
+  }
+  // Creating the buttons containing anonymous functions
+  dialogButtons["No"] = function() {
+    // Another dialog function is called
+    buttonFunctionNo();
+    // The subscriber and month number increases
+    changeScore(scoreIncrease, 1);
+    // The music resumes
+    mainTheme.play();
+    // The current dialog box closes
+    $(this).dialog('close');
+  }
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    buttons: dialogButtons
+  });
+  // Positioning the dialog box using offset()
+  // The parent method is used in order to prevent the text from within the dialog box to move
+  $dialog.parent().offset({
+    top: 150,
+    left: 950
+  });
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
+  // Adding narration for the dialog
+  narrateDialog(decisions[decisionIndex], 0.6, 0.1);
+  // The music stops
+  mainTheme.pause();
+}
+
 // badEnding
 //
 // A bad ending scenario that resets the game and can change with arguments
@@ -217,12 +266,18 @@ function firstDialog() {
       "Let’s get to it!": function() {
         // The subscriber and month number increases
         changeScore(10000, 1);
-        // Another dialog function is called
+        // The "Finger Family" scenario is called
         scenarioDialog(1, "I have to stay fresh…", fingerChoice);
         // The current dialog closes
         $(this).dialog('close');
       }
     }
+  });
+  // Positioning the dialog box using offset()
+  // The parent method is used in order to prevent the text from within the dialog box to move
+  $dialog.parent().offset({
+    top: 150,
+    left: 950
   });
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
@@ -239,128 +294,46 @@ function firstDialog() {
 // fingerChoice
 //
 // An important decision related to the "Finger Family" subject
+// The choiceDialog() function is called for arguments
 function fingerChoice() {
-  // Making a variable for the dialog that appears in the div
-  let $dialog = createDialog(decisions[0]);
-  // Turning the $dialog variable into an actual dialog window
-  $dialog.dialog({
-    // Adding Yes/No options using anonymous functions
-    buttons: {
-      "Yes": function() {
-        // Another dialog function is called
-        badEnding(badEndArray[0]);
-        // The webpage background changes
-        $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
-        // The subscriber number is halved
-        subscriberNumber /= 2;
-        // The current dialog closes
-         $(this).dialog('close');
-      },
-      "No": function() {
-        // Another dialog function is called
-        scenarioDialog(2, "There has to be a better approach to this…", ghostChoice);
-        // The subscriber and month number increases
-        changeScore(14000, 1);
-        // The music resumes
-        mainTheme.play();
-        // The current dialog closes
-         $(this).dialog('close');
-      }
-    }
-  });
-  // Removing the "close" corner box
-  $('.ui-dialog-titlebar-close').remove();
-  // Adding narration for the dialog
-  narrateDialog(decisions[0], 0.6, 0.1);
-  // The music stops
-  mainTheme.pause();
+  choiceDialog(0, 0, ghostDialog, 14000);
+}
+
+// ghostDialog()
+//
+// Function that contains the parameters for the "3 AM" scenario
+// The scenarioDialog() function is called for arguments
+function ghostDialog() {
+  scenarioDialog(2, "There has to be a better approach to this…", ghostChoice);
 }
 
 // ghostChoice()
 //
 // An important decision related to the "3am Videos" subject
+// The choiceDialog() function is called for arguments
 function ghostChoice() {
-  // Making a variable for the dialog that appears in the div
-  let $dialog = createDialog(decisions[1]);
-  // Turning the $dialog variable into an actual dialog window
-  $dialog.dialog({
-    // Adding Yes/No options using anonymous functions
-    buttons: {
-      "Yes": function() {
-        // Another dialog function is called
-        badEnding(badEndArray[1]);
-        // The webpage background changes
-        $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
-        // The subscriber number is halved
-        subscriberNumber /= 2;
-        // The current dialog closes
-         $(this).dialog('close');
-      },
-      "No": function() {
-        // Another dialog function is called
-        scenarioDialog(3, "Maybe I should give them a break…", elsaChoice);
-        // The subscriber and month number increases
-        changeScore(16000, 1);
-        // The music resumes
-        mainTheme.play();
-        // The current dialog closes
-         $(this).dialog('close');
-      }
-    }
-  });
-  // Removing the "close" corner box
-  $('.ui-dialog-titlebar-close').remove();
-  // Adding narration for the dialog
-  narrateDialog(decisions[1], 0.6, 0.1);
-  // The music stops
-  mainTheme.pause();
+  choiceDialog(1, 1, elsaDialog, 16000);
+}
+
+// elsaDialog()
+//
+// Function that contains the parameters for the "3 AM" scenario
+// The scenarioDialog() function is called for arguments
+function elsaDialog() {
+  scenarioDialog(3, "Maybe I should give them a break…", elsaChoice);
 }
 
 // elsaChoice()
 //
 // An important decision related to the "ElsaGate" subject
+// The choiceDialog() function is called for arguments
 function elsaChoice() {
-  // Making a variable for the dialog that appears in the div
-  let $dialog = createDialog(decisions[2]);
-  // Turning the $dialog variable into an actual dialog window
-  $dialog.dialog({
-    // Adding Yes/No options using anonymous functions
-    buttons: {
-      "Yes": function() {
-        // Another dialog function is called
-        badEnding(badEndArray[2]);
-        // The webpage background changes
-        $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
-        // The subscriber number is halved
-        subscriberNumber /= 2;
-        // The current dialog closes
-         $(this).dialog('close');
-      },
-      "No": function() {
-        // Another dialog function is called
-        endingDialog();
-        // The webpage background changes
-        $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundBlue.png")');
-        // The subscriber and month number increases
-        changeScore(10000, 1);
-        // The music resumes
-        mainTheme.play();
-        // The current dialog closes
-         $(this).dialog('close');
-      }
-    }
-  });
-  // Removing the "close" corner box
-  $('.ui-dialog-titlebar-close').remove();
-  // Adding narration for the dialog
-  narrateDialog(decisions[2], 0.6, 0.1);
-  // The music stops
-  mainTheme.pause();
+  choiceDialog(2, 2, endingDialog, 10000);
 }
 
 // endingDialog()
 //
-// Dialog related to the "ElsaGate" subject
+// Dialog related to the game's epilogue
 function endingDialog() {
   // Making a variable for the dialog that appears in the div
   let $dialog = createDialog(narrations[4]);
@@ -375,6 +348,12 @@ function endingDialog() {
          $(this).dialog('close');
       }
     }
+  });
+  // Positioning the dialog box using offset()
+  // The parent method is used in order to prevent the text from within the dialog box to move
+  $dialog.parent().offset({
+    top: 150,
+    left: 950
   });
   // Removing the "close" corner box
   $('.ui-dialog-titlebar-close').remove();
@@ -424,7 +403,7 @@ createCanvas(900, 500);
 function draw() {
   // Setting the first image
   image(storyImages[0], 0, 0, width, height);
-
+  // Making the image change based on the subscriber number
   storyChange();
 }
 
