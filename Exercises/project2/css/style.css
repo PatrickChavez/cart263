@@ -1,4 +1,4 @@
-/* Setting webpage aesthetics */
+/* Setting the webpage aesthetics */
 body {
   /* The font */
   font-family: "Oswald-Medium";
@@ -28,7 +28,6 @@ body {
   position: fixed;
 }
 
-
 /* Managing the aesthetics of the subscriber score */
 #subscribers {
   /* Changing text color */
@@ -43,7 +42,7 @@ body {
   padding: 0.5em;
 }
 
-/* Managing the aesthetics of the month */
+/* Managing the aesthetics of the month score */
 #month {
   /* Changing text color */
   color: white;

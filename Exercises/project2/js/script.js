@@ -45,14 +45,13 @@ let decisions = [
   "Why not push them to work harder? The ends justify the means after all. If anyone starts complaining, you could always pay them more or blackmail them to continue working for you…"
 ];
 
-// Making an array of narration descriptions
+// Making an array of plot descriptions
 let narrations = [
   "You want to reach 100000 subscribers on YouTube and earn a silver play button to show off to your loved ones how awesome and hardworking you are. The sweet ad revenue is also a nice bonus. A 5-month deadline to reach your goal is set. You figure making content geared towards kids would be the best place to start.",
   "You decide to start with the ever-popular Finger Family set of videos. Despite their crude and simple look, your content managed to get you 10000 subscribers in a month! However, your videos have been getting less and less views as time goes on…",
   "You settle for tackling the spooky 3AM challenges that have taken the platform by storm. Fortunately, this different approach allowed you to obtain more subscribers than ever before! Despite this rousing success, your subscriber count hasn’t seen much improvement in the last couple of days.",
   "You decide to do-away with the 3AM challenge and focus on the bizarre world of Spiderman and Elsa videos. Your subscriber count has reached a whopping 40000 units, but your deadline of reaching 100000 subscribers in five months is fast approaching! What’s more, the actors you hired to make the videos, both young and old, are becoming weary of performing near-constantly…",
-  "In the end, you could not reach your goal. Despite this, you’ve learned that success doesn’t come quickly and that you still enjoy making videos. You decide to continue making the content you’re used to while also changing it up every now and then. A day will come when you will be able to show everybody that silver play button…",
-  "You did a bad thing."
+  "In the end, you could not reach your goal. Despite this, you’ve learned that success doesn’t come quickly and that you still enjoy making videos. You decide to continue making the content you’re used to while also changing it up every now and then. A day will come when you will be able to show everybody that silver play button…"
 ];
 
 // Making an array of bad ending narrations
@@ -138,30 +137,37 @@ function narrateDialog(text, voiceRate, voicePitch) {
   });
 }
 
-// // scenarioDialog
-// //
-// // Dialog related to the various YouTube subjects the game tackles
-// // Arguments are used in order to call narrations and functions
-// function scenarioDialog(narration, buttonText, callFunction) {
-//   // Making a variable for the dialog that appears in the div
-//   let $dialog = createDialog(narration);
-//   // Turning the $dialog variable into an actual dialog window
-//   $dialog.dialog({
-//     // Adding an option using an anonymous function
-//     buttons: {
-//       buttonText: function() {
-//         // Another dialog function is called
-//         callFunction;
-//         // The current dialog closes
-//          $(this).dialog('close');
-//       }
-//     }
-//   });
-//   // Removing the "close" corner box
-//   $('.ui-dialog-titlebar-close').remove();
-//   // Adding narration for the dialog
-//   narrateDialog(narrations[1], 1, 1);
-// }
+// scenarioDialog
+//
+// Dialog related to the various YouTube subjects the game tackles
+// Arguments are used in order to call narrations and functions
+function scenarioDialog(narrationIndex, buttonText, buttonFunction) {
+  // Making a variable for the dialog that appears in the div
+  let $dialog = createDialog(narrations[narrationIndex]);
+  // Creating a variable containing an empty dialog object that consists of its buttons
+  let dialogButtons = {};
+  // Creating the buttons containing anonymous functions
+  dialogButtons[buttonText] = function() {
+    // Another dialog function is called
+    buttonFunction();
+    // The current dialog box closes
+    $(this).dialog('close');
+  }
+  // Turning the $dialog variable into an actual dialog window
+  $dialog.dialog({
+    buttons: dialogButtons
+  });
+  // Positioning the dialog box using offset()
+  // The parent method is used in order to prevent the text from within the dialog box to move
+  $dialog.parent().offset({
+    top: 150,
+    left: 950
+  });
+  // Removing the "close" corner box
+  $('.ui-dialog-titlebar-close').remove();
+  // Adding narration for the dialog
+  narrateDialog(narrations[narrationIndex], 1, 1);
+}
 
 // badEnding
 //
@@ -212,7 +218,7 @@ function firstDialog() {
         // The subscriber and month number increases
         changeScore(10000, 1);
         // Another dialog function is called
-        fingerDialog();
+        scenarioDialog(1, "I have to stay fresh…", fingerChoice);
         // The current dialog closes
         $(this).dialog('close');
       }
@@ -228,30 +234,6 @@ function firstDialog() {
   mainTheme.currentTime = 39;
   mainTheme.loop = true;
   mainTheme.play();
-}
-
-// fingerDialog
-//
-// Dialog related to the "Finger Family" subject
-function fingerDialog() {
-  // Making a variable for the dialog that appears in the div
-  let $dialog = createDialog(narrations[1]);
-  // Turning the $dialog variable into an actual dialog window
-  $dialog.dialog({
-    // Adding an option using an anonymous function
-    buttons: {
-      "I have to stay fresh…": function() {
-        // Another dialog function is called
-        fingerChoice();
-        // The current dialog closes
-         $(this).dialog('close');
-      }
-    }
-  });
-  // Removing the "close" corner box
-  $('.ui-dialog-titlebar-close').remove();
-  // Adding narration for the dialog
-  narrateDialog(narrations[1], 1, 1);
 }
 
 // fingerChoice
@@ -276,7 +258,7 @@ function fingerChoice() {
       },
       "No": function() {
         // Another dialog function is called
-        ghostDialog();
+        scenarioDialog(2, "There has to be a better approach to this…", ghostChoice);
         // The subscriber and month number increases
         changeScore(14000, 1);
         // The music resumes
@@ -292,31 +274,6 @@ function fingerChoice() {
   narrateDialog(decisions[0], 0.6, 0.1);
   // The music stops
   mainTheme.pause();
-}
-
-
-// ghostDialog()
-//
-// Dialog related to the "3am Videos" subject
-function ghostDialog() {
-  // Making a variable for the dialog that appears in the div
-  let $dialog = createDialog(narrations[2]);
-  // Turning the $dialog variable into an actual dialog window
-  $dialog.dialog({
-    // Adding an option using an anonymous function
-    buttons: {
-      "There has to be a better approach to this…": function() {
-        // Another dialog function is called
-        ghostChoice();
-        // The current dialog closes
-         $(this).dialog('close');
-      }
-    }
-  });
-  // Removing the "close" corner box
-  $('.ui-dialog-titlebar-close').remove();
-  // Adding narration for the dialog
-  narrateDialog(narrations[2], 1, 1);
 }
 
 // ghostChoice()
@@ -341,7 +298,7 @@ function ghostChoice() {
       },
       "No": function() {
         // Another dialog function is called
-        elsaGateDialog();
+        scenarioDialog(3, "Maybe I should give them a break…", elsaChoice);
         // The subscriber and month number increases
         changeScore(16000, 1);
         // The music resumes
@@ -357,30 +314,6 @@ function ghostChoice() {
   narrateDialog(decisions[1], 0.6, 0.1);
   // The music stops
   mainTheme.pause();
-}
-
-// elsaGateDialog()
-//
-// Dialog related to the "ElsaGate" subject
-function elsaGateDialog() {
-  // Making a variable for the dialog that appears in the div
-  let $dialog = createDialog(narrations[3]);
-  // Turning the $dialog variable into an actual dialog window
-  $dialog.dialog({
-    // Adding an option using an anonymous function
-    buttons: {
-      "Maybe I should give them a break…": function() {
-        // Another dialog function is called
-        elsaChoice();
-        // The current dialog closes
-         $(this).dialog('close');
-      }
-    }
-  });
-  // Removing the "close" corner box
-  $('.ui-dialog-titlebar-close').remove();
-  // Adding narration for the dialog
-  narrateDialog(narrations[3], 1, 1);
 }
 
 // elsaChoice()
