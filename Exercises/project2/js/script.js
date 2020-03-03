@@ -15,6 +15,9 @@ https://oto-jam.com/
 Nukiashisashiashi/抜き足差し足/Pull out Foot by Amacha Music Studio
 https://amachamusic.chagasi.com/image_ayashii.html
 
+One Point/ワンポイント 06 sound effect by Maoudamashii
+https://maoudamashii.jokersounds.com/list/se2.html
+
 Oswald font by Vernon Adams
 https://www.fontsquirrel.com/fonts/oswald
 https://fonts.google.com/specimen/Oswald
@@ -56,7 +59,7 @@ let narrations = [
 
 // Making an array of bad ending narrations
 let badEndArray = [
-  "Your horror-themed Finger Family video did little to appease the crowd and no doubt traumatized a lot of children. You did become relevant through the controversy though: popular YouTubers are all talking about how callous you are for putting this kind of content in a kid’s channel. Unfortunately, this exposure only made you unpopular and your subscriber count dropped as a result.",
+  "Your horror-themed Finger Family video did little to appease the crowd and no doubt traumatized a lot of children. You did become relevant through the controversy though: popular YouTubers are all talking about how callous you are for putting this kind of content in a kids channel. Unfortunately, this exposure only made you unpopular and your subscriber count dropped as a result.",
   "Your little stunt was deemed to be in poor taste by the majority of the community. There is a chance that children will be influenced by your video and make content about calling their deceased relatives. What’s more, YouTube has stepped in and demonetized your channel following the controversy. With little means to make a comeback, you decide to quit making videos.",
   "Numerous actors that you worked with have decided to speak out and denounce you for your unpleasant working conditions. Many were appalled with how you would make your performers work for up to 10 hours with little breaks. Not even the child actors were exempt from this harsh regiment. In order to quell the furious masses, you decided to make an apology video explaining your side of the story. Needless to say, no one took your side."
 ];
@@ -68,6 +71,7 @@ let monthNumber = 1;
 // Adding variables for music and sound effects
 let mainTheme = new Audio("assets/sounds/Breakfast_is_ready.mp3");
 let badEndTheme = new Audio("assets/sounds/nukiashisashiashi.mp3");
+let badEndSFX = new Audio("assets/sounds/se_maoudamashii_onepoint06.wav");
 
 // Activating various functions once the page loads
 function setupDocument() {
@@ -81,7 +85,8 @@ function setupDocument() {
 
 // updateScore()
 //
-// Correctly represents the various in-game scores
+// Correctly represents the various in-game scores by selecting
+// their ids and displaying them via the text method
 function updateScore() {
   $('#monthScore').text(monthNumber);
   $('#subscriberScore').text(subscriberNumber);
@@ -89,7 +94,7 @@ function updateScore() {
 
 // changeScore()
 //
-// Changes the value of the subscriber and month score using arguments
+// Changes the value of the subscriber and month scores using arguments
 function changeScore(subIncrease, monthIncrease) {
   subscriberNumber += subIncrease;
   monthNumber += monthIncrease;
@@ -112,7 +117,7 @@ function resetGame() {
 
 // createDialog()
 //
-// Stores the creation of dialog into a function for ease of access
+// Stores the creation of dialogs into a function for ease of access
 function createDialog(dialogText) {
   // Making a variable for a dialog that appears in a div
   let $dialog = $('<div></div>').attr('title', 'Notice!');
@@ -127,8 +132,7 @@ function createDialog(dialogText) {
 // narrateDialog()
 //
 // A voice says whatever is in the dialog box
-// An argument is used in order for the voice to recognize the presented text
-// and change its rate and pitch
+// An argument is used in order for the voice to recognize the presented text and change its rate and pitch
 function narrateDialog(text, voiceRate, voicePitch) {
   // Changing the pitch and rate of the voice using arguments
   responsiveVoice.speak(text, "UK English Male", {
@@ -137,7 +141,7 @@ function narrateDialog(text, voiceRate, voicePitch) {
   });
 }
 
-// scenarioDialog
+// scenarioDialog()
 //
 // Dialog related to the various YouTube subjects the game tackles
 // Arguments are used in order to call narrations and functions
@@ -146,7 +150,7 @@ function scenarioDialog(narrationIndex, buttonText, buttonFunction) {
   let $dialog = createDialog(narrations[narrationIndex]);
   // Creating a variable containing an empty dialog object that consists of its buttons
   let dialogButtons = {};
-  // Creating the buttons containing anonymous functions
+  // Creating the button containing an anonymous function
   dialogButtons[buttonText] = function() {
     // Another dialog function is called
     buttonFunction();
@@ -155,6 +159,7 @@ function scenarioDialog(narrationIndex, buttonText, buttonFunction) {
   }
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
+    // Every dialog button is called here
     buttons: dialogButtons
   });
   // Positioning the dialog box using offset()
@@ -169,7 +174,7 @@ function scenarioDialog(narrationIndex, buttonText, buttonFunction) {
   narrateDialog(narrations[narrationIndex], 1, 1);
 }
 
-// choiceDialog
+// choiceDialog()
 //
 // Dialog related to the various choices the player has to make during gameplay
 // Arguments are used in order to call narrations and functions
@@ -180,7 +185,7 @@ function choiceDialog(decisionIndex, badEndIndex, buttonFunctionNo, scoreIncreas
   let dialogButtons = {};
   // Creating the buttons containing anonymous functions
   dialogButtons["Yes"] = function() {
-    // A bad ending function is called
+    // The bad ending function is called
     badEnding(badEndArray[badEndIndex]);
     // The webpage background changes
     $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundRed.png")');
@@ -202,6 +207,7 @@ function choiceDialog(decisionIndex, badEndIndex, buttonFunctionNo, scoreIncreas
   }
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
+    // Every dialog button is called here
     buttons: dialogButtons
   });
   // Positioning the dialog box using offset()
@@ -226,7 +232,7 @@ function badEnding(narration) {
   let $dialog = createDialog(narration);
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
-    // Adding an option using an anonymous function
+    // Adding an option with an anonymous function
     buttons: {
       "Retry": function() {
         // The game resets
@@ -246,6 +252,9 @@ function badEnding(narration) {
   $('.ui-dialog-titlebar-close').remove();
   // Adding narration for the dialog
   narrateDialog(narration, 1, 1);
+  // A dire sound effect plays
+  badEndSFX.volume = 0.7;
+  badEndSFX.play();
   // The bad ending music plays
   // The volume is lowered in order to prevent ResponsiveVoice from being drowned out
   badEndTheme.volume = 0.4;
@@ -261,7 +270,7 @@ function firstDialog() {
   let $dialog = createDialog(narrations[0]);
   // Turning the $dialog variable into an actual dialog window
   $dialog.dialog({
-    // Adding an option using an anonymous function
+    // Adding an option with an anonymous function
     buttons: {
       "Let’s get to it!": function() {
         // The subscriber and month number increases
@@ -294,7 +303,7 @@ function firstDialog() {
 // fingerChoice
 //
 // An important decision related to the "Finger Family" subject
-// The choiceDialog() function is called for arguments
+// The choiceDialog() function is called to generate the arguments
 function fingerChoice() {
   choiceDialog(0, 0, ghostDialog, 14000);
 }
@@ -302,23 +311,23 @@ function fingerChoice() {
 // ghostDialog()
 //
 // Function that contains the parameters for the "3 AM" scenario
-// The scenarioDialog() function is called for arguments
+// The scenarioDialog() function is called to generate the arguments
 function ghostDialog() {
   scenarioDialog(2, "There has to be a better approach to this…", ghostChoice);
 }
 
 // ghostChoice()
 //
-// An important decision related to the "3am Videos" subject
-// The choiceDialog() function is called for arguments
+// An important decision related to the "3AM Videos" subject
+// The choiceDialog() function is called to generate the arguments
 function ghostChoice() {
   choiceDialog(1, 1, elsaDialog, 16000);
 }
 
 // elsaDialog()
 //
-// Function that contains the parameters for the "3 AM" scenario
-// The scenarioDialog() function is called for arguments
+// Function that contains the parameters for the "3AM Videos" scenario
+// The scenarioDialog() function is called to generate the arguments
 function elsaDialog() {
   scenarioDialog(3, "Maybe I should give them a break…", elsaChoice);
 }
@@ -326,7 +335,7 @@ function elsaDialog() {
 // elsaChoice()
 //
 // An important decision related to the "ElsaGate" subject
-// The choiceDialog() function is called for arguments
+// The choiceDialog() function is called to generate the arguments
 function elsaChoice() {
   choiceDialog(2, 2, endingDialog, 10000);
 }
@@ -335,6 +344,8 @@ function elsaChoice() {
 //
 // Dialog related to the game's epilogue
 function endingDialog() {
+  // The webpage background changes
+  $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/ComputerBackgroundBlue.png")');
   // Making a variable for the dialog that appears in the div
   let $dialog = createDialog(narrations[4]);
   // Turning the $dialog variable into an actual dialog window
@@ -345,7 +356,7 @@ function endingDialog() {
         // The subscriber number increases
         changeScore(5000, 0);
         // The current dialog closes
-         $(this).dialog('close');
+        $(this).dialog('close');
       }
     }
   });
@@ -394,7 +405,7 @@ function preload() {
 //
 // Sets up the canvas at the start of the program
 function setup() {
-createCanvas(900, 500);
+  createCanvas(900, 500);
 }
 
 // draw()
@@ -403,7 +414,7 @@ createCanvas(900, 500);
 function draw() {
   // Setting the first image
   image(storyImages[0], 0, 0, width, height);
-  // Making the image change based on the subscriber number
+  // Making the canvas image change based on the subscriber number
   storyChange();
 }
 
@@ -420,11 +431,11 @@ function storyChange() {
   else if (subscriberNumber === 5000) {
     image(badEndImages[0], 0, 0, width, height);
   }
-  // The "3am Scene" is shown
+  // The "3AM Scene" is shown
   else if (subscriberNumber === 24000) {
     image(storyImages[2], 0, 0, width, height);
   }
-  // The "Dark 3am Scene" is shown
+  // The "Dark 3AM Scene" is shown
   else if (subscriberNumber === 12000) {
     image(badEndImages[1], 0, 0, width, height);
   }
