@@ -16,3 +16,5 @@ The feeling of desperation was taken into account when presenting the game. The 
 
 Overall, Glory Seeker is a game about keeping a cool head when stressed. The player always has the option to produce harmful content and whether or not they chose to do it depends on their curiosity or morals. Everyone has the choice of producing harmful content and should be prepared to face the consequences should they do so.
 
+548 words
+
