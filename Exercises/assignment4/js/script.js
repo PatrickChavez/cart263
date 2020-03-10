@@ -39,7 +39,15 @@ function dataLoaded(data) {
   let randomRoom = getRandomArrayElement(data.rooms);
   console.log(randomRoom);
 
-  let randomDescription = `${randomCondiment} ${verb} like a ${randomCat} in a ${randomRoom}.`;
+  // Adding a variable to generate a random art movement
+  let randomArtMovement = getRandomArrayElement(data.isms);
+  console.log(randomArtMovement);
+
+  // Adding a variable to generate a random art movement
+  let randomFlower = getRandomArrayElement(data.flowers);
+  console.log(randomFlower);
+
+  let randomDescription = `${randomCondiment} ${verb} like a ${randomCat} in a ${randomRoom} making a ${randomArtMovement} piece resembling a ${randomFlower}.`;
   $('body').append(randomDescription);
 
 }
