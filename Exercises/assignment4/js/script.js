@@ -55,23 +55,30 @@ function dataLoaded(data) {
   let randomFlower = getRandomArrayElement(data.flowers);
   console.log(randomFlower);
 
-  // Adding a variable for the determiner ("a" or "an")
-  let determiner = "a";
-  console.log(determiner);
-
+  // Adding a variable for the determiners of the JSON data ("a" or "an")
+  let catDeterminer = "a";
+  let roomDeterminer = "a";
+  let artDeterminer = "a";
   // Generating a for loop to cycle through the vowels
   for (let i = 0; i < vowels.length; i++) {
     // Adding a console.log to check if the for loop is working
     console.log(vowels[i]);
     // Adding an if statement that changes "a" to "an" depending on the following noun
-    if (randomCat.charAt(0) === vowels[i]) {
-      determiner = "an";
+    // .toLowerCase() is used for cat names in order for them to match the lowercase vowels
+    if (randomCat.toLowerCase().charAt(0) === vowels[i]) {
+      catDeterminer = "an";
     }
-    console.log(randomCat.length);
+    // Making if statements for the rest of the necessary JSON data
+    if (randomRoom.charAt(0) === vowels[i]) {
+      roomDeterminer = "an";
+    }
+    if (randomArtMovement.charAt(0) === vowels[i]) {
+      artDeterminer = "an";
+    }
   }
 
-  // Generating a description using the above variables
-  let randomDescription = `${randomCondiment} ${verb} like ${determiner} ${randomCat} in a ${randomRoom} making a ${randomArtMovement} piece resembling a ${randomFlower}.`;
+  // Generating a description using the above variables and template literals
+  let randomDescription = `${randomCondiment} ${verb} like ${catDeterminer} ${randomCat} in ${roomDeterminer} ${randomRoom} making ${artDeterminer} ${randomArtMovement} piece resembling a group of ${randomFlower}.`;
   $('body').append(randomDescription);
 
 }
