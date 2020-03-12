@@ -22,6 +22,9 @@ function setup() {
   $.getJSON("data/data.json")
     .done(dataLoaded)
     .fail(dataNotLoaded);
+
+  // The page reloads if the user clicks on it
+  $('html').on('click', reloadPage);
 }
 
 // dataLoaded()
@@ -96,4 +99,11 @@ function dataNotLoaded(request, text, error) {
 function getRandomArrayElement(array) {
   let element = array[Math.floor(Math.random() * array.length)];
   return element;
+}
+
+// reloadPage()
+//
+// Reloads the page when the user clicks on it
+function reloadPage() {
+  location.reload();
 }
