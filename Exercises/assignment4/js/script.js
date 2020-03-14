@@ -56,7 +56,7 @@ function dataLoaded(data) {
   // Adding a variable to generate a random art movement
   let randomArtMovement = getRandomArrayElement(data.isms);
   console.log(randomArtMovement);
-  // Adding a variable to generate a random art movement
+  // Adding a variable to generate a random flower
   let randomFlower = getRandomArrayElement(data.flowers);
   console.log(randomFlower);
   // Adding a variable for the determiners of the JSON data ("a" or "an")
