@@ -1,3 +1,39 @@
+/* Setting the webpage aesthetics */
 body {
+/* Setting the background */
+/* A full url is used in order to display the image online */
+  background-image: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/BGPlaceholder.png");
+}
 
+/* Setting the textbox aesthetics */
+#textbox {
+  /* Textbox color */
+  background-color: rgb(40, 38, 64);
+  /* Border */
+  border: double rgb(130, 128, 150);
+  border-width: 10px;
+  /* Size */
+  width: 700px;
+  height: 140px;
+  /* Position */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 360px;
+  /* Font */
+  color: lavender;
+  padding: 0.2em;
+  font-size: 24px;
+
+}
+
+/* Setting the title aesthetics */
+.title {
+  /* Size */
+  width: 500px;
+  height: 100px;
+  /* Position */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
