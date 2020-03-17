@@ -19,12 +19,54 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 360px;
+  margin-top: 240px;
   /* Font */
   color: lavender;
   padding: 0.2em;
   font-size: 24px;
 
+}
+
+/* Setting the main menu aesthetics */
+#menu {
+  /* Size */
+  width: 150px;
+  /* Textbox color */
+  background-color: rgb(40, 38, 64);
+  /* Border */
+  border: double rgb(130, 128, 150);
+  border-width: 10px;
+  /* Font */
+  color: lavender;
+  font-size: 24px;
+}
+
+/* Setting the "look" menu aesthetics */
+#lookMenu {
+  /* Size */
+  width: 150px;
+  /* Textbox color */
+  background-color: rgb(40, 38, 64);
+  /* Border */
+  border: double rgb(130, 128, 150);
+  border-width: 10px;
+  /* Font */
+  color: lavender;
+  font-size: 24px;
+}
+
+/* Setting the "think" menu aesthetics */
+#thinkMenu {
+  /* Size */
+  width: 150px;
+  /* Textbox color */
+  background-color: rgb(40, 38, 64);
+  /* Border */
+  border: double rgb(130, 128, 150);
+  border-width: 10px;
+  /* Font */
+  color: lavender;
+  font-size: 24px;
 }
 
 /* Setting the title aesthetics */

@@ -25,6 +25,8 @@ let itemImage;
 //
 // Calls functions once the webpage has loaded
 function setupDocument() {
+  // Displaying the in-game menu
+  $( "#menu" ).menu();
 
 // $('#textbox').text("Wow!");
 }
