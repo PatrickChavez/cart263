@@ -27,8 +27,37 @@ let itemImage;
 function setupDocument() {
   // Displaying the in-game menu
   $( "#menu" ).menu();
+  // Displaying the dialog
+  showDialog();
 
 // $('#textbox').text("Wow!");
+}
+
+// showDialog
+//
+// Shows a dialog box
+function showDialog() {
+  // Turning the $dialog variable into an actual dialog window
+  $('#dialog').dialog({
+    // Adding options with anonymous functions
+    buttons: {
+      "Yes": function() {
+        // The current dialog closes
+        $(this).dialog('close');
+      },
+      "No": function() {
+        // The current dialog closes
+        $(this).dialog('close');
+      }
+    }
+  });
+}
+
+// test
+//
+// 
+function showPicture() {
+  $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/clown.png")');
 }
 
 // preload()

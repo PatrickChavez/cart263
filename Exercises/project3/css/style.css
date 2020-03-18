@@ -69,6 +69,18 @@ body {
   font-size: 24px;
 }
 
+/* Setting the experiment dialog aesthetics */
+#dialog {
+  /* Textbox color */
+  background-color: rgb(40, 38, 64);
+  /* Border */
+  border: double rgb(130, 128, 150);
+  border-width: 10px;
+  /* Font */
+  color: lavender;
+  font-size: 24px;
+}
+
 /* Setting the title aesthetics */
 .title {
   /* Size */
