@@ -21,9 +21,11 @@ let itemPlaceholder1;
 let itemPlaceholder2;
 let itemPlaceholder3;
 let scrollPlaceholder;
+let wheelPlaceholder;
 
 // Adding variables for the object images
 let itemImage;
+let wheelPlaceholderImage;
 let scrollPlaceholderImage;
 let itemSelectImage;
 
@@ -81,9 +83,10 @@ function showPicture() {
 // p5 function that loads files before the program starts
 function preload() {
   // Adding variables for the item images
-  itemImage = loadImage("assets/images/ItemPlaceholder2.png");
+  itemImage = loadImage("assets/images/ItemPlaceholder.png");
   itemSelectImage = loadImage("assets/images/StatePlaceholder.png");
   scrollPlaceholderImage = loadImage("assets/images/ScrollTemplate.png");
+  wheelPlaceholderImage = loadImage("assets/images/ItemPlaceholder2.png");
 }
 
 // setup()
@@ -94,10 +97,11 @@ function setup() {
   let p5Canvas = createCanvas(650, 340);
   p5Canvas.position(355, 115);
   // Adding the items
-  itemPlaceholder1 = new Item(150, 150, itemImage, 25);
-  itemPlaceholder2 = new Item(350, 50, itemImage, 25);
-  itemPlaceholder3 = new Item(450, 250, itemImage, 25);
-  scrollPlaceholder = new Scroll(150, 150, scrollPlaceholderImage);
+  // itemPlaceholder1 = new Item(150, 150, itemImage, 25);
+  // itemPlaceholder2 = new Item(350, 50, itemImage, 25);
+  // itemPlaceholder3 = new Item(450, 250, itemImage, 25);
+  wheelPlaceholder = new Wheel(-20, -5, wheelPlaceholderImage, 100);
+  // scrollPlaceholder = new Scroll(150, 150, scrollPlaceholderImage);
 
 }
 
@@ -112,8 +116,9 @@ function draw() {
   // itemPlaceholder1.display();
   // itemPlaceholder2.display();
   // itemPlaceholder3.display();
-  scrollPlaceholder.display();
-  scrollPlaceholder.handleInput();
-  scrollPlaceholder.move();
+  wheelPlaceholder.rotation();
+  // scrollPlaceholder.display();
+  // scrollPlaceholder.handleInput();
+  // scrollPlaceholder.move();
 
 }
