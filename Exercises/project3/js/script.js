@@ -13,13 +13,19 @@ to match your project! Write JavaScript to do amazing things below!
 // Preparing a function that will start when the webpage has loaded
 $(document).ready(setupDocument);
 
+// The current game state
+let state = "NORMAL";
+
 // Adding variables for item objects
 let itemPlaceholder1;
 let itemPlaceholder2;
 let itemPlaceholder3;
+let scrollPlaceholder;
 
 // Adding variables for the object images
 let itemImage;
+let scrollPlaceholderImage;
+let itemSelectImage;
 
 // setupDocument()
 //
@@ -27,8 +33,9 @@ let itemImage;
 function setupDocument() {
   // Displaying the in-game menu
   $( "#menu" ).menu();
-  // Displaying the dialog
-  showDialog();
+  // Displaying test
+  $('#experiment').on('click',showDialog);
+  $('#item1').on('click',stateChange);
 
 // $('#textbox').text("Wow!");
 }
@@ -55,9 +62,18 @@ function showDialog() {
 
 // test
 //
-// 
+//
+function stateChange() {
+  state = "ITEM1";
+}
+
+// test
+//
+//
 function showPicture() {
-  $('body').css('background-image', 'url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/clown.png")');
+  if (state === "ITEM1") {
+    image(itemSelectImage, 0, 0, width, height);
+  }
 }
 
 // preload()
@@ -65,7 +81,9 @@ function showPicture() {
 // p5 function that loads files before the program starts
 function preload() {
   // Adding variables for the item images
-  itemImage = loadImage("assets/images/ItemPlaceholder.png");
+  itemImage = loadImage("assets/images/ItemPlaceholder2.png");
+  itemSelectImage = loadImage("assets/images/StatePlaceholder.png");
+  scrollPlaceholderImage = loadImage("assets/images/ScrollTemplate.png");
 }
 
 // setup()
@@ -79,6 +97,7 @@ function setup() {
   itemPlaceholder1 = new Item(150, 150, itemImage, 25);
   itemPlaceholder2 = new Item(350, 50, itemImage, 25);
   itemPlaceholder3 = new Item(450, 250, itemImage, 25);
+  scrollPlaceholder = new Scroll(150, 150, scrollPlaceholderImage);
 
 }
 
@@ -87,9 +106,14 @@ function setup() {
 // p5 function that calls a function for every frame
 function draw() {
   background(0);
+  // STATE CHANGE TEST
+  showPicture();
   // Displaying the objects
-  itemPlaceholder1.display();
-  itemPlaceholder2.display();
-  itemPlaceholder3.display();
+  // itemPlaceholder1.display();
+  // itemPlaceholder2.display();
+  // itemPlaceholder3.display();
+  scrollPlaceholder.display();
+  scrollPlaceholder.handleInput();
+  scrollPlaceholder.move();
 
 }
