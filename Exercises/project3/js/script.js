@@ -13,8 +13,10 @@ to match your project! Write JavaScript to do amazing things below!
 // Preparing a function that will start when the webpage has loaded
 $(document).ready(setupDocument);
 
-// The current game state
-let state = "NORMAL";
+// Creating variables for the many game states
+let currentState;
+let titleState;
+let hubState;
 
 // Adding variables for item objects
 let itemPlaceholder1;
@@ -22,6 +24,9 @@ let itemPlaceholder2;
 let itemPlaceholder3;
 let scrollPlaceholder;
 let wheelPlaceholder;
+
+// Adding variables for the state images
+let titleImage;
 
 // Adding variables for the object images
 let itemImage;
@@ -37,7 +42,6 @@ function setupDocument() {
   $( "#menu" ).menu();
   // Displaying test
   $('#experiment').on('click',showDialog);
-  $('#item1').on('click',stateChange);
 
 // $('#textbox').text("Wow!");
 }
@@ -62,27 +66,13 @@ function showDialog() {
   });
 }
 
-// test
-//
-//
-function stateChange() {
-  state = "ITEM1";
-}
-
-// test
-//
-//
-function showPicture() {
-  if (state === "ITEM1") {
-    image(itemSelectImage, 0, 0, width, height);
-  }
-}
-
 // preload()
 //
 // p5 function that loads files before the program starts
 function preload() {
-  // Adding variables for the item images
+  // Loading variables for the scene images
+  titleImage = loadImage("assets/images/TitlePlaceholder2.png");
+  // Loading variables for the item images
   itemImage = loadImage("assets/images/ItemPlaceholder.png");
   itemSelectImage = loadImage("assets/images/StatePlaceholder.png");
   scrollPlaceholderImage = loadImage("assets/images/ScrollTemplate.png");
@@ -96,11 +86,18 @@ function setup() {
   // Creating the canvas and adjusting its position by pixels
   let p5Canvas = createCanvas(650, 340);
   p5Canvas.position(355, 115);
+  // Creating the states
+  titleState = new TitleState();
+  hubState = new HubState();
+
+  // Setting the current state
+  currentState = titleState;
+
   // Adding the items
-  // itemPlaceholder1 = new Item(150, 150, itemImage, 25);
-  // itemPlaceholder2 = new Item(350, 50, itemImage, 25);
-  // itemPlaceholder3 = new Item(450, 250, itemImage, 25);
-  wheelPlaceholder = new Wheel(-20, -5, wheelPlaceholderImage, 100);
+  itemPlaceholder1 = new Item(150, 150, itemImage, 25);
+  itemPlaceholder2 = new Item(350, 50, itemImage, 25);
+  itemPlaceholder3 = new Item(450, 250, itemImage, 25);
+  // wheelPlaceholder = new Wheel(-20, -5, wheelPlaceholderImage, 100);
   // scrollPlaceholder = new Scroll(150, 150, scrollPlaceholderImage);
 
 }
@@ -108,17 +105,23 @@ function setup() {
 // draw()
 //
 // p5 function that calls a function for every frame
+// It is also used to tell the current state to draw whatever is in its method
 function draw() {
-  background(0);
-  // STATE CHANGE TEST
-  showPicture();
+  currentState.draw();
+  // background(0);
   // Displaying the objects
   // itemPlaceholder1.display();
   // itemPlaceholder2.display();
   // itemPlaceholder3.display();
-  wheelPlaceholder.rotation();
+  // wheelPlaceholder.rotation();
   // scrollPlaceholder.display();
   // scrollPlaceholder.handleInput();
   // scrollPlaceholder.move();
+}
 
+// mousePressed()
+//
+// Makes a state activate its mousePressed function
+function mousePressed() {
+  currentState.mousePressed();
 }
