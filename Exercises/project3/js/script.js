@@ -99,6 +99,8 @@ function clickWheelState() {
 
 function clickPaperState() {
   currentState = paperState;
+  // Calling the function here to prevent it from being overwritten by stateText()
+  textParser();
 }
 
 function clickExperimentState() {
@@ -124,9 +126,6 @@ function stateText() {
   else if (currentState === experimentState) {
     $('#textbox').text("Experiment in progress!");
   }
-  else if (currentState === paperState) {
-    $('#textbox').html();
-  }
 }
 
 // textParser
@@ -134,9 +133,9 @@ function stateText() {
 // Makes it so that the user can type into the textbox
 function textParser() {
   // Making a variable for the parser
-  let parser = $('<p contenteditable="true"></p>');
+  let parser = $('<p contenteditable="true">Hello world!</p>');
   // Adding the text parser to the textbox
-  $('#textbox').append(parser);
+  $('#textbox').html(parser);
 }
 
 // preload()
