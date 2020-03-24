@@ -17,6 +17,7 @@ $(document).ready(setupDocument);
 let currentState;
 let titleState;
 let hubState;
+let scrollState;
 
 // Adding variables for item objects
 let itemPlaceholder1;
@@ -40,8 +41,12 @@ let itemSelectImage;
 function setupDocument() {
   // Displaying the in-game menu
   $( "#menu" ).menu();
-  // Displaying test
-  $('#experiment').on('click',showDialog);
+  // Dialog test
+  $('#experiment').on('click', showDialog);
+  // Textbox test
+  setInterval(stateText, 500); // Updates every half second
+  // Menu state test
+  $('#scroll').on('click', clickScrollState);
 
 // $('#textbox').text("Wow!");
 }
@@ -64,6 +69,28 @@ function showDialog() {
       }
     }
   });
+}
+
+// menuStateChange Test
+//
+//
+function clickScrollState() {
+  currentState = scrollState;
+}
+
+// stateText()
+//
+// Changes the current text of the textbox based on the state
+function stateText() {
+  if (currentState === titleState) {
+    $('#textbox').text("Click to advance!");
+  }
+  else if (currentState === hubState) {
+    $('#textbox').text("Click an action on the menu!");
+  }
+  else if (currentState === scrollState) {
+    $('#textbox').text("Use the left and right arrow keys to move the scroll!");
+  }
 }
 
 // preload()
@@ -89,6 +116,7 @@ function setup() {
   // Creating the states
   titleState = new TitleState();
   hubState = new HubState();
+  scrollState = new ScrollState();
 
   // Setting the current state
   currentState = titleState;
@@ -98,7 +126,7 @@ function setup() {
   itemPlaceholder2 = new Item(350, 50, itemImage, 25);
   itemPlaceholder3 = new Item(450, 250, itemImage, 25);
   // wheelPlaceholder = new Wheel(-20, -5, wheelPlaceholderImage, 100);
-  // scrollPlaceholder = new Scroll(150, 150, scrollPlaceholderImage);
+  scrollPlaceholder = new Scroll(150, 150, scrollPlaceholderImage);
 
 }
 
