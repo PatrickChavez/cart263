@@ -19,12 +19,11 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 240px;
+  margin-top: 200px;
   /* Font */
   color: lavender;
   padding: 0.2em;
   font-size: 24px;
-
 }
 
 /* Setting the main menu aesthetics */
@@ -39,6 +38,8 @@ body {
   /* Font */
   color: lavender;
   font-size: 24px;
+  /* Setting opacity to 0 in order to display it later without messing up the webpage */
+  opacity: 0;
 }
 
 /* Setting the "look" menu aesthetics */
@@ -79,6 +80,8 @@ body {
   /* Font */
   color: lavender;
   font-size: 24px;
+  /* Hiding the dialog so that it can be displayed later */
+  display: none;
 }
 
 /* Setting the title aesthetics */

@@ -18,5 +18,7 @@ class TitleState extends State {
   // The game proceeds to the hub screen
   mousePressed() {
     currentState = hubState;
+    // Displaying the menu
+    $("#menu").css("opacity", 1);
   }
 }

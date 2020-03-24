@@ -18,6 +18,8 @@ let currentState;
 let titleState;
 let hubState;
 let scrollState;
+let wheelState;
+let experimentState;
 
 // Adding variables for item objects
 let itemPlaceholder1;
@@ -28,6 +30,7 @@ let wheelPlaceholder;
 
 // Adding variables for the state images
 let titleImage;
+let experimentImage;
 
 // Adding variables for the object images
 let itemImage;
@@ -46,7 +49,8 @@ function setupDocument() {
   // Textbox test
   setInterval(stateText, 500); // Updates every half second
   // Menu state test
-  $('#scroll').on('click', clickScrollState);
+  $('#scroll-look').on('click', clickScrollState);
+  $('#wheel-look').on('click', clickWheelState);
 
 // $('#textbox').text("Wow!");
 }
@@ -60,6 +64,8 @@ function showDialog() {
     // Adding options with anonymous functions
     buttons: {
       "Yes": function() {
+        // The experiment state is called
+        clickExperimentState();
         // The current dialog closes
         $(this).dialog('close');
       },
@@ -78,6 +84,14 @@ function clickScrollState() {
   currentState = scrollState;
 }
 
+function clickWheelState() {
+  currentState = wheelState;
+}
+
+function clickExperimentState() {
+  currentState = experimentState;
+}
+
 // stateText()
 //
 // Changes the current text of the textbox based on the state
@@ -91,6 +105,12 @@ function stateText() {
   else if (currentState === scrollState) {
     $('#textbox').text("Use the left and right arrow keys to move the scroll!");
   }
+  else if (currentState === wheelState) {
+    $('#textbox').text("Use the mouse to rotate the wheel!");
+  }
+  else if (currentState === experimentState) {
+    $('#textbox').text("Experiment in progress!");
+  }
 }
 
 // preload()
@@ -99,6 +119,7 @@ function stateText() {
 function preload() {
   // Loading variables for the scene images
   titleImage = loadImage("assets/images/TitlePlaceholder2.png");
+  experimentImage = loadImage("assets/images/ExperimentPlaceholder.png");
   // Loading variables for the item images
   itemImage = loadImage("assets/images/ItemPlaceholder.png");
   itemSelectImage = loadImage("assets/images/StatePlaceholder.png");
@@ -117,6 +138,8 @@ function setup() {
   titleState = new TitleState();
   hubState = new HubState();
   scrollState = new ScrollState();
+  wheelState = new WheelState();
+  experimentState = new ExperimentState();
 
   // Setting the current state
   currentState = titleState;
@@ -125,7 +148,7 @@ function setup() {
   itemPlaceholder1 = new Item(150, 150, itemImage, 25);
   itemPlaceholder2 = new Item(350, 50, itemImage, 25);
   itemPlaceholder3 = new Item(450, 250, itemImage, 25);
-  // wheelPlaceholder = new Wheel(-20, -5, wheelPlaceholderImage, 100);
+  wheelPlaceholder = new Wheel(-20, -5, wheelPlaceholderImage, 100);
   scrollPlaceholder = new Scroll(150, 150, scrollPlaceholderImage);
 
 }
@@ -136,15 +159,6 @@ function setup() {
 // It is also used to tell the current state to draw whatever is in its method
 function draw() {
   currentState.draw();
-  // background(0);
-  // Displaying the objects
-  // itemPlaceholder1.display();
-  // itemPlaceholder2.display();
-  // itemPlaceholder3.display();
-  // wheelPlaceholder.rotation();
-  // scrollPlaceholder.display();
-  // scrollPlaceholder.handleInput();
-  // scrollPlaceholder.move();
 }
 
 // mousePressed()
