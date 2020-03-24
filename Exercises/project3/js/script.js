@@ -19,6 +19,7 @@ let titleState;
 let hubState;
 let scrollState;
 let wheelState;
+let paperState;
 let experimentState;
 
 // Adding variables for item objects
@@ -27,6 +28,8 @@ let itemPlaceholder2;
 let itemPlaceholder3;
 let scrollPlaceholder;
 let wheelPlaceholder;
+let paperPlaceholder;
+let paperPlaceholder2;
 
 // Adding variables for the state images
 let titleImage;
@@ -36,6 +39,8 @@ let experimentImage;
 let itemImage;
 let wheelPlaceholderImage;
 let scrollPlaceholderImage;
+let paperImage;
+let paperImage2;
 let itemSelectImage;
 
 // setupDocument()
@@ -51,8 +56,9 @@ function setupDocument() {
   // Menu state test
   $('#scroll-look').on('click', clickScrollState);
   $('#wheel-look').on('click', clickWheelState);
+  $('#paper-look').on('click', clickPaperState);
+  $('#room').on('click', clickHubState);
 
-// $('#textbox').text("Wow!");
 }
 
 // showDialog
@@ -80,12 +86,19 @@ function showDialog() {
 // menuStateChange Test
 //
 //
+function clickHubState() {
+  currentState = hubState;
+}
 function clickScrollState() {
   currentState = scrollState;
 }
 
 function clickWheelState() {
   currentState = wheelState;
+}
+
+function clickPaperState() {
+  currentState = paperState;
 }
 
 function clickExperimentState() {
@@ -111,6 +124,19 @@ function stateText() {
   else if (currentState === experimentState) {
     $('#textbox').text("Experiment in progress!");
   }
+  else if (currentState === paperState) {
+    $('#textbox').html();
+  }
+}
+
+// textParser
+//
+// Makes it so that the user can type into the textbox
+function textParser() {
+  // Making a variable for the parser
+  let parser = $('<p contenteditable="true"></p>');
+  // Adding the text parser to the textbox
+  $('#textbox').append(parser);
 }
 
 // preload()
@@ -125,6 +151,9 @@ function preload() {
   itemSelectImage = loadImage("assets/images/StatePlaceholder.png");
   scrollPlaceholderImage = loadImage("assets/images/ScrollTemplate.png");
   wheelPlaceholderImage = loadImage("assets/images/ItemPlaceholder2.png");
+  paperImage = loadImage("assets/images/PaperPlaceholder.png");
+  paperImage2 = loadImage("assets/images/PaperPlaceholder2.png");
+
 }
 
 // setup()
@@ -139,6 +168,7 @@ function setup() {
   hubState = new HubState();
   scrollState = new ScrollState();
   wheelState = new WheelState();
+  paperState = new PaperState();
   experimentState = new ExperimentState();
 
   // Setting the current state
