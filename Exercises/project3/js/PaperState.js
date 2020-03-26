@@ -8,7 +8,7 @@ class PaperState extends State {
 
   // draw()
   //
-  // Shows the wheel and it's controls
+  // Shows the paper
   draw() {
     // Displaying the background
     background(0);

@@ -18,8 +18,11 @@ let currentState;
 let titleState;
 let hubState;
 let scrollState;
+let scrollStory;
 let wheelState;
+let wheelStory;
 let paperState;
+let paperStory;
 let experimentState;
 
 // Adding variables for item objects
@@ -34,6 +37,7 @@ let paperPlaceholder2;
 // Adding variables for the state images
 let titleImage;
 let experimentImage;
+let storyImagePlaceholder;
 
 // Adding variables for the object images
 let itemImage;
@@ -55,8 +59,11 @@ function setupDocument() {
   setInterval(stateText, 500); // Updates every half second
   // Menu state test
   $('#scroll-look').on('click', clickScrollState);
+  $('#scroll-think').on('click', clickScrollStory);
   $('#wheel-look').on('click', clickWheelState);
+  $('#wheel-think').on('click', clickWheelStory);
   $('#paper-look').on('click', clickPaperState);
+  $('#paper-think').on('click', clickPaperStory);
   $('#room').on('click', clickHubState);
 
 }
@@ -93,18 +100,32 @@ function clickScrollState() {
   currentState = scrollState;
 }
 
+function clickScrollStory() {
+  currentState = scrollStory;
+}
+
 function clickWheelState() {
   currentState = wheelState;
 }
 
+function clickWheelStory() {
+  currentState = wheelStory;
+}
+
 function clickPaperState() {
   currentState = paperState;
-  // Calling the function here to prevent it from being overwritten by stateText()
+  // Calling textParser() here to prevent it from being overwritten by stateText()
   textParser();
+}
+
+function clickPaperStory() {
+  currentState = paperStory;
 }
 
 function clickExperimentState() {
   currentState = experimentState;
+  // Calling textParser() here to prevent it from being overwritten by stateText()
+  textParser();
 }
 
 // stateText()
@@ -123,8 +144,14 @@ function stateText() {
   else if (currentState === wheelState) {
     $('#textbox').text("Use the mouse to rotate the wheel!");
   }
-  else if (currentState === experimentState) {
-    $('#textbox').text("Experiment in progress!");
+  else if (currentState === scrollStory) {
+    $('#textbox').text("Story!");
+  }
+  else if (currentState === wheelStory) {
+    $('#textbox').text("Story!");
+  }
+  else if (currentState === paperStory) {
+    $('#textbox').text("Story!");
   }
 }
 
@@ -134,7 +161,7 @@ function stateText() {
 function textParser() {
   // Making a variable for the parser
   let parser = $('<p contenteditable="true">Hello world!</p>');
-  // Adding the text parser to the textbox
+  // Adding the text parser into the textbox
   $('#textbox').html(parser);
 }
 
@@ -145,6 +172,7 @@ function preload() {
   // Loading variables for the scene images
   titleImage = loadImage("assets/images/TitlePlaceholder2.png");
   experimentImage = loadImage("assets/images/ExperimentPlaceholder.png");
+  storyImagePlaceholder = loadImage("assets/images/StoryPlaceholder.png");
   // Loading variables for the item images
   itemImage = loadImage("assets/images/ItemPlaceholder.png");
   itemSelectImage = loadImage("assets/images/StatePlaceholder.png");
@@ -166,8 +194,11 @@ function setup() {
   titleState = new TitleState();
   hubState = new HubState();
   scrollState = new ScrollState();
+  scrollStory = new ScrollStory();
   wheelState = new WheelState();
+  wheelStory = new WheelStory();
   paperState = new PaperState();
+  paperStory = new PaperStory();
   experimentState = new ExperimentState();
 
   // Setting the current state
