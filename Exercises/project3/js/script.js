@@ -24,6 +24,8 @@ let wheelStory;
 let paperState;
 let paperStory;
 let experimentState;
+let normalEnding;
+let goodEnding;
 
 // Adding variables for item objects
 let itemPlaceholder1;
@@ -38,6 +40,8 @@ let paperPlaceholder2;
 let titleImage;
 let experimentImage;
 let storyImagePlaceholder;
+let normalEndImagePlaceholder;
+let goodEndImagePlaceholder;
 
 // Adding variables for the object images
 let itemImage;
@@ -46,6 +50,9 @@ let scrollPlaceholderImage;
 let paperImage;
 let paperImage2;
 let itemSelectImage;
+
+// Creating an array for the text parser answers
+let parserAnswers = ["corn, 647"];
 
 // setupDocument()
 //
@@ -155,14 +162,20 @@ function stateText() {
   }
 }
 
-// textParser
+// textParser()
 //
 // Makes it so that the user can type into the textbox
 function textParser() {
   // Making a variable for the parser
-  let parser = $('<p contenteditable="true">Hello world!</p>');
+  let parser = $('<p id="text-parser" contenteditable="true">Type something!</p>');
   // Adding the text parser into the textbox
   $('#textbox').html(parser);
+  // Creating a variable for the div
+  let buttonDiv = $('<div></div>');
+  // Creating a button for the div
+  buttonDiv.append('<button id="submit-button" type="button">Submit</button>');
+  // Adding the button to the textbox
+  $('#textbox').append(buttonDiv);
 }
 
 // preload()
@@ -173,6 +186,8 @@ function preload() {
   titleImage = loadImage("assets/images/TitlePlaceholder2.png");
   experimentImage = loadImage("assets/images/ExperimentPlaceholder.png");
   storyImagePlaceholder = loadImage("assets/images/StoryPlaceholder.png");
+  normalEndImagePlaceholder = loadImage("assets/images/NormalEndPlaceholder.png");
+  goodEndImagePlaceholder = loadImage("assets/images/GoodEndPlaceholder.png");
   // Loading variables for the item images
   itemImage = loadImage("assets/images/ItemPlaceholder.png");
   itemSelectImage = loadImage("assets/images/StatePlaceholder.png");
@@ -200,6 +215,8 @@ function setup() {
   paperState = new PaperState();
   paperStory = new PaperStory();
   experimentState = new ExperimentState();
+  normalEnding = new NormalEnding();
+  goodEnding = new GoodEnding();
 
   // Setting the current state
   currentState = titleState;
