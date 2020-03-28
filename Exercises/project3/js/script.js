@@ -22,6 +22,8 @@ let scrollStory;
 let wheelState;
 let wheelStory;
 let paperState;
+// Variable to determine what image is shown on the canvas
+let paperStateCounter = 0;
 let paperStory;
 let experimentState;
 let normalEnding;
@@ -49,10 +51,11 @@ let wheelPlaceholderImage;
 let scrollPlaceholderImage;
 let paperImage;
 let paperImage2;
+let paperImage3;
 let itemSelectImage;
 
 // Creating an array for the text parser answers
-let parserAnswers = ["corn, 647"];
+let parserAnswers = ["corn", "647"];
 
 // setupDocument()
 //
@@ -123,6 +126,7 @@ function clickPaperState() {
   currentState = paperState;
   // Calling textParser() here to prevent it from being overwritten by stateText()
   textParser();
+  $('#submit-button').on("click", checkAnswerPaper);
 }
 
 function clickPaperStory() {
@@ -133,6 +137,7 @@ function clickExperimentState() {
   currentState = experimentState;
   // Calling textParser() here to prevent it from being overwritten by stateText()
   textParser();
+  $('#submit-button').on("click", checkAnswerExperiment);
 }
 
 // stateText()
@@ -160,6 +165,12 @@ function stateText() {
   else if (currentState === paperStory) {
     $('#textbox').text("Story!");
   }
+  else if (currentState === normalEnding) {
+    $('#textbox').text("Normal!");
+  }
+  else if (currentState === goodEnding) {
+    $('#textbox').text("Good!");
+  }
 }
 
 // textParser()
@@ -167,7 +178,7 @@ function stateText() {
 // Makes it so that the user can type into the textbox
 function textParser() {
   // Making a variable for the parser
-  let parser = $('<p id="text-parser" contenteditable="true">Type something!</p>');
+  let parser = $('<div id="text-parser" contenteditable></div>');
   // Adding the text parser into the textbox
   $('#textbox').html(parser);
   // Creating a variable for the div
@@ -176,6 +187,42 @@ function textParser() {
   buttonDiv.append('<button id="submit-button" type="button">Submit</button>');
   // Adding the button to the textbox
   $('#textbox').append(buttonDiv);
+
+}
+
+// checkAnswer()
+//
+// Compliment to textParser() that makes the submit button process what the user typed
+function checkAnswerPaper() {
+  // Making the parser text into a variable
+  let answer = $('#text-parser').text();
+  // If the answer is correct, then the counter increases and image changes
+  if (answer === parserAnswers[0]) {
+    console.log("Yeah!");
+    paperStateCounter = 2;
+  }
+  // If the answer is wrong, the counter also increases and the image also changes
+  else {
+    console.log("Huh?");
+    paperStateCounter = 1;
+  }
+  console.log($('#text-parser').text());
+}
+
+function checkAnswerExperiment() {
+  // Making the parser text into a variable
+  let answer = $('#text-parser').text();
+  // If the answer is correct, then the good ending happens
+  if (answer === parserAnswers[1]) {
+    console.log("Yeah!");
+    currentState = goodEnding;
+  }
+  // If the answer is wrong, then the normal ending happens
+  else {
+    console.log("Huh?");
+    currentState = normalEnding;
+  }
+  console.log($('#text-parser').text());
 }
 
 // preload()
@@ -195,6 +242,7 @@ function preload() {
   wheelPlaceholderImage = loadImage("assets/images/ItemPlaceholder2.png");
   paperImage = loadImage("assets/images/PaperPlaceholder.png");
   paperImage2 = loadImage("assets/images/PaperPlaceholder2.png");
+  paperImage3 = loadImage("assets/images/PaperPlaceholder3.png");
 
 }
 

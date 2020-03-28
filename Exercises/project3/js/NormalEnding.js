@@ -11,7 +11,7 @@ class NormalEnding extends State {
   // Shows the story sequence
   draw() {
     // Displaying the image
-    image(storyImagePlaceholder, 0, 0, width, height);
+    image(normalEndImagePlaceholder, 0, 0, width, height);
   }
 
   // mousePressed()
