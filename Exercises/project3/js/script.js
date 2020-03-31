@@ -22,8 +22,7 @@ let scrollStory;
 let wheelState;
 let wheelStory;
 let paperState;
-// Variable to determine what image is shown on the canvas
-let paperStateCounter = 0;
+let paperStateCounter = 0; // Variable to determine what image is shown on the canvas
 let paperStory;
 let experimentState;
 let normalEnding;
@@ -54,6 +53,15 @@ let paperImage2;
 let paperImage3;
 let itemSelectImage;
 
+// Adding variables for the music and sound effects
+let currentMusic; // Variable used for pausing the current music and calling another song
+let titleMusic = new Audio("assets/sounds/shinkaigyonoyuuei.mp3");
+let hubMusic = new Audio("assets/sounds/harunoyokan.mp3");
+let storyMusic = new Audio("assets/sounds/hinokageri.mp3");
+let normalEndingMusic = new Audio("assets/sounds/hisame.mp3");
+let goodEndingMusic = new Audio("assets/sounds/torinouta.mp3");
+let positiveSFX = new Audio("assets/sounds/se_maoudamashii_system46.wav");
+
 // Creating an array for the text parser answers
 let parserAnswers = ["corn", "647"];
 
@@ -66,7 +74,7 @@ function setupDocument() {
   // Dialog test
   $('#experiment').on('click', showDialog);
   // Textbox test
-  setInterval(stateText, 500); // Updates every half second
+  setInterval(stateText, 250); // Updates every half second
   // Menu state test
   $('#scroll-look').on('click', clickScrollState);
   $('#scroll-think').on('click', clickScrollStory);
@@ -75,6 +83,8 @@ function setupDocument() {
   $('#paper-look').on('click', clickPaperState);
   $('#paper-think').on('click', clickPaperStory);
   $('#room').on('click', clickHubState);
+  // Music test
+  stateMusic();
 
 }
 
@@ -105,6 +115,7 @@ function showDialog() {
 //
 function clickHubState() {
   currentState = hubState;
+  stateMusic();
 }
 function clickScrollState() {
   currentState = scrollState;
@@ -112,6 +123,7 @@ function clickScrollState() {
 
 function clickScrollStory() {
   currentState = scrollStory;
+  stateMusic();
 }
 
 function clickWheelState() {
@@ -120,6 +132,7 @@ function clickWheelState() {
 
 function clickWheelStory() {
   currentState = wheelStory;
+  stateMusic();
 }
 
 function clickPaperState() {
@@ -131,6 +144,7 @@ function clickPaperState() {
 
 function clickPaperStory() {
   currentState = paperStory;
+  stateMusic();
 }
 
 function clickExperimentState() {
@@ -138,6 +152,93 @@ function clickExperimentState() {
   // Calling textParser() here to prevent it from being overwritten by stateText()
   textParser();
   $('#submit-button').on("click", checkAnswerExperiment);
+}
+
+// stateMusic
+//
+// The music changes depending on the state
+function stateMusic() {
+  if (currentState === titleState) {
+    // currentMusic.loop = true;
+    // currentMusic.currentTime = 0;
+    // currentMusic.play();
+    // Setting up how the music plays
+    titleMusic.loop = true;
+    titleMusic.currentTime = 0;
+    titleMusic.play();
+    // Putting the song as the current music
+    currentMusic = titleMusic;
+  }
+  else if (currentState === hubState) {
+    // Pausing the current music
+    currentMusic.pause();
+    // Setting up how the music plays
+    hubMusic.loop = true;
+    hubMusic.currentTime = 0;
+    hubMusic.play();
+    // Putting the song as the current music
+    currentMusic = hubMusic;
+  }
+  // else if (currentState === scrollStory || wheelStory || paperStory) {
+  //   // Pausing the current music
+  //   currentMusic.pause();
+  //   // Setting up how the music plays
+  //   storyMusic.loop = true;
+  //   storyMusic.currentTime = 0;
+  //   storyMusic.play();
+  //   // Putting the song as the current music
+  //   currentMusic = storyMusic;
+  // }
+  else if (currentState === scrollStory) {
+    // Pausing the current music
+    currentMusic.pause();
+    // Setting up how the music plays
+    storyMusic.loop = true;
+    storyMusic.currentTime = 0;
+    storyMusic.play();
+    // Putting the song as the current music
+    currentMusic = storyMusic;
+  }
+  else if (currentState === wheelStory) {
+    // Pausing the current music
+    currentMusic.pause();
+    // Setting up how the music plays
+    storyMusic.loop = true;
+    storyMusic.currentTime = 0;
+    storyMusic.play();
+    // Putting the song as the current music
+    currentMusic = storyMusic;
+  }
+  else if (currentState === paperStory) {
+    // Pausing the current music
+    currentMusic.pause();
+    // Setting up how the music plays
+    storyMusic.loop = true;
+    storyMusic.currentTime = 0;
+    storyMusic.play();
+    // Putting the song as the current music
+    currentMusic = storyMusic;
+  }
+  else if (currentState === normalEnding) {
+    // Pausing the current music
+    currentMusic.pause();
+    // Setting up how the music plays
+    normalEndingMusic.loop = true;
+    normalEndingMusic.currentTime = 0;
+    normalEndingMusic.play();
+    // Putting the song as the current music
+    currentMusic = normalEndingMusic;
+  }
+  else if (currentState === goodEnding) {
+    // Pausing the current music
+    currentMusic.pause();
+    // Setting up how the music plays
+    goodEndingMusic.loop = true;
+    goodEndingMusic.currentTime = 0;
+    goodEndingMusic.play();
+    // Putting the song as the current music
+    currentMusic = goodEndingMusic;
+  }
 }
 
 // stateText()
@@ -190,7 +291,7 @@ function textParser() {
 
 }
 
-// checkAnswer()
+// checkAnswerPaper()
 //
 // Compliment to textParser() that makes the submit button process what the user typed
 function checkAnswerPaper() {
@@ -200,6 +301,8 @@ function checkAnswerPaper() {
   if (answer === parserAnswers[0]) {
     console.log("Yeah!");
     paperStateCounter = 2;
+    // A sound effect plays
+    positiveSFX.play();
   }
   // If the answer is wrong, the counter also increases and the image also changes
   else {
@@ -209,18 +312,28 @@ function checkAnswerPaper() {
   console.log($('#text-parser').text());
 }
 
+// checkAnswerExperiment()
+//
+// Another compliment to textParser() that makes the submit button process what the user typed
 function checkAnswerExperiment() {
   // Making the parser text into a variable
   let answer = $('#text-parser').text();
   // If the answer is correct, then the good ending happens
   if (answer === parserAnswers[1]) {
     console.log("Yeah!");
+    // The state changes
     currentState = goodEnding;
+    // Music and a sound effect plays
+    positiveSFX.play();
+    stateMusic();
   }
   // If the answer is wrong, then the normal ending happens
   else {
     console.log("Huh?");
+    // The state changes
     currentState = normalEnding;
+    // Music plays
+    stateMusic();
   }
   console.log($('#text-parser').text());
 }

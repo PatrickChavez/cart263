@@ -1,7 +1,7 @@
 /* Setting the webpage aesthetics */
 body {
-/* Setting the background */
-/* A full url is used in order to display the image online */
+  /* Setting the background */
+  /* A full url is used in order to display the image online */
   background-image: url("https://patrickchavez.github.io/cart263/Exercises/project2/assets/images/BGPlaceholder.png");
 }
 
@@ -21,6 +21,7 @@ body {
   margin-right: auto;
   margin-top: 200px;
   /* Font */
+  font-family: sans-serif;
   color: lavender;
   padding: 0.2em;
   font-size: 24px;

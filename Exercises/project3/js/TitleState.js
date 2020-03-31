@@ -20,5 +20,6 @@ class TitleState extends State {
     currentState = hubState;
     // Displaying the menu
     $("#menu").css("opacity", 1);
+    stateMusic();
   }
 }
