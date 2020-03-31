@@ -61,6 +61,7 @@ let storyMusic = new Audio("assets/sounds/hinokageri.mp3");
 let normalEndingMusic = new Audio("assets/sounds/hisame.mp3");
 let goodEndingMusic = new Audio("assets/sounds/torinouta.mp3");
 let positiveSFX = new Audio("assets/sounds/se_maoudamashii_system46.wav");
+let dialogSFX = new Audio("assets/sounds/se_maoudamashii_onepoint23.wav");
 
 // Creating an array for the text parser answers
 let parserAnswers = ["corn", "647"];
@@ -93,7 +94,8 @@ function setupDocument() {
 // Shows a dialog box
 function showDialog() {
   // Turning the $dialog variable into an actual dialog window
-  $('#dialog').dialog({
+  // It also slowly fades in
+  $('#dialog').fadeIn("slow").dialog({
     // Adding options with anonymous functions
     buttons: {
       "Yes": function() {
@@ -108,6 +110,8 @@ function showDialog() {
       }
     }
   });
+  // A sound effect plays
+  dialogSFX.play();
 }
 
 // menuStateChange Test
@@ -179,17 +183,7 @@ function stateMusic() {
     // Putting the song as the current music
     currentMusic = hubMusic;
   }
-  // else if (currentState === scrollStory || wheelStory || paperStory) {
-  //   // Pausing the current music
-  //   currentMusic.pause();
-  //   // Setting up how the music plays
-  //   storyMusic.loop = true;
-  //   storyMusic.currentTime = 0;
-  //   storyMusic.play();
-  //   // Putting the song as the current music
-  //   currentMusic = storyMusic;
-  // }
-  else if (currentState === scrollStory) {
+  else if (currentState === scrollStory || currentState === wheelStory || currentState === paperStory) {
     // Pausing the current music
     currentMusic.pause();
     // Setting up how the music plays
@@ -199,26 +193,7 @@ function stateMusic() {
     // Putting the song as the current music
     currentMusic = storyMusic;
   }
-  else if (currentState === wheelStory) {
-    // Pausing the current music
-    currentMusic.pause();
-    // Setting up how the music plays
-    storyMusic.loop = true;
-    storyMusic.currentTime = 0;
-    storyMusic.play();
-    // Putting the song as the current music
-    currentMusic = storyMusic;
-  }
-  else if (currentState === paperStory) {
-    // Pausing the current music
-    currentMusic.pause();
-    // Setting up how the music plays
-    storyMusic.loop = true;
-    storyMusic.currentTime = 0;
-    storyMusic.play();
-    // Putting the song as the current music
-    currentMusic = storyMusic;
-  }
+
   else if (currentState === normalEnding) {
     // Pausing the current music
     currentMusic.pause();
@@ -295,8 +270,8 @@ function textParser() {
 //
 // Compliment to textParser() that makes the submit button process what the user typed
 function checkAnswerPaper() {
-  // Making the parser text into a variable
-  let answer = $('#text-parser').text();
+  // Making the parser text into a variable that always turns into lowercase
+  let answer = $('#text-parser').text().toLowerCase();
   // If the answer is correct, then the counter increases and image changes
   if (answer === parserAnswers[0]) {
     console.log("Yeah!");
