@@ -10,16 +10,15 @@ class PaperState extends State {
   //
   // Shows the paper
   draw() {
-    // Displaying the background
-    background(0);
-    // Displaying the image
-    image(paperImage, 180, 80, 300, 450);
-    // Variants TO EXPAND
+    // Displaying the normal state of the paper
+    image(paperImageNormal, 0, 0);
+    // The paper shows an ingredient
     if (paperStateCounter === 2) {
-      image(paperImage2, 180, 80, 300, 450);
+      image(paperImageGood, 0, 0);
     }
+    // Else a message says nothing happened
     else if (paperStateCounter === 1) {
-      image(paperImage3, 180, 80, 300, 450);
+      image(paperImageBad, 0, 0);
     }
   }
 

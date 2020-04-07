@@ -44,9 +44,9 @@ class Scroll extends Item {
   // Shows a huge scroll on the canvas
   display() {
     push();
-    // Centering image for precision shoud interaction occur
+    // Centering image for easier image placement
     imageMode(CENTER);
-    image(this.image, this.x, this.y, 1300, 250);
+    image(this.image, this.x, this.y, 1500, 300);
     pop();
   }
 }

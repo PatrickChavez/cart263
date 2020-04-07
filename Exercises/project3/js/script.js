@@ -29,13 +29,11 @@ let normalEnding;
 let goodEnding;
 
 // Adding variables for item objects
-let itemPlaceholder1;
-let itemPlaceholder2;
-let itemPlaceholder3;
-let scrollPlaceholder;
-let wheelPlaceholder;
-let paperPlaceholder;
-let paperPlaceholder2;
+let scrollIcon;
+let wheelIcon;
+let paperIcon;
+let scrollObject;
+let wheelObject;
 
 // Adding variables for the state images
 let titleImage;
@@ -43,15 +41,18 @@ let experimentImage;
 let storyImagePlaceholder;
 let normalEndImagePlaceholder;
 let goodEndImagePlaceholder;
+let scrollBackground;
+let wheelBackground;
 
 // Adding variables for the object images
-let itemImage;
-let wheelPlaceholderImage;
-let scrollPlaceholderImage;
-let paperImage;
-let paperImage2;
-let paperImage3;
-let itemSelectImage;
+let scrollIconImage;
+let wheelIconImage;
+let paperIconImage;
+let wheelImage;
+let scrollImage;
+let paperImageNormal;
+let paperImageBad;
+let paperImageGood;
 
 // Adding variables for the music and sound effects
 let currentMusic; // Variable used for pausing the current music and calling another song
@@ -64,7 +65,7 @@ let positiveSFX = new Audio("assets/sounds/se_maoudamashii_system46.wav");
 let dialogSFX = new Audio("assets/sounds/se_maoudamashii_onepoint23.wav");
 
 // Creating an array for the text parser answers
-let parserAnswers = ["corn", "647"];
+let parserAnswers = ["anemone", "872"];
 
 // setupDocument()
 //
@@ -319,18 +320,24 @@ function checkAnswerExperiment() {
 function preload() {
   // Loading variables for the scene images
   titleImage = loadImage("assets/images/TitlePlaceholder2.png");
-  experimentImage = loadImage("assets/images/ExperimentPlaceholder.png");
+  experimentImage = loadImage("assets/images/ExperimentImage.png");
   storyImagePlaceholder = loadImage("assets/images/StoryPlaceholder.png");
   normalEndImagePlaceholder = loadImage("assets/images/NormalEndPlaceholder.png");
   goodEndImagePlaceholder = loadImage("assets/images/GoodEndPlaceholder.png");
+  scrollBackground = loadImage("assets/images/ScrollBG.png");
+  wheelBackground = loadImage("assets/images/WheelBG.png");
   // Loading variables for the item images
-  itemImage = loadImage("assets/images/ItemPlaceholder.png");
-  itemSelectImage = loadImage("assets/images/StatePlaceholder.png");
-  scrollPlaceholderImage = loadImage("assets/images/ScrollTemplate.png");
-  wheelPlaceholderImage = loadImage("assets/images/ItemPlaceholder2.png");
-  paperImage = loadImage("assets/images/PaperPlaceholder.png");
-  paperImage2 = loadImage("assets/images/PaperPlaceholder2.png");
-  paperImage3 = loadImage("assets/images/PaperPlaceholder3.png");
+  // The hub icons
+  scrollIconImage = loadImage("assets/images/ScrollIcon.png");
+  wheelIconImage = loadImage("assets/images/WheelNoText.png");
+  paperIconImage = loadImage("assets/images/MagicPaperItem.png");
+
+  // The main items in their states
+  scrollImage = loadImage("assets/images/Scroll.png");
+  wheelImage = loadImage("assets/images/Wheel.png");
+  paperImageNormal = loadImage("assets/images/PaperNormal.png");
+  paperImageBad = loadImage("assets/images/PaperNothing.png");
+  paperImageGood = loadImage("assets/images/PaperGood.png");
 
 }
 
@@ -358,11 +365,11 @@ function setup() {
   currentState = titleState;
 
   // Adding the items
-  itemPlaceholder1 = new Item(150, 150, itemImage, 25);
-  itemPlaceholder2 = new Item(350, 50, itemImage, 25);
-  itemPlaceholder3 = new Item(450, 250, itemImage, 25);
-  wheelPlaceholder = new Wheel(-20, -5, wheelPlaceholderImage, 100);
-  scrollPlaceholder = new Scroll(150, 150, scrollPlaceholderImage);
+  scrollIcon = new Item(150, 150, scrollIconImage, 25);
+  wheelIcon = new Item(350, 50, wheelIconImage, 25);
+  paperIcon = new Item(450, 250, paperIconImage, 25);
+  wheelObject = new Wheel(-20, -5, wheelImage, 540, 320);
+  scrollObject = new Scroll(1000, 175, scrollImage);
 
 }
 

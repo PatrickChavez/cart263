@@ -13,9 +13,9 @@ class HubState extends State {
     // Displaying the background
     background(0);
     // Displaying the items
-    itemPlaceholder1.display();
-    itemPlaceholder2.display();
-    itemPlaceholder3.display();
+    scrollIcon.display();
+    wheelIcon.display();
+    paperIcon.display();
   }
 
   // mousePressed()

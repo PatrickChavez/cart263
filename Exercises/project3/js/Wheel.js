@@ -3,9 +3,12 @@
 // A class that inherits from Item. The mouse is used in order to
 // rotate the object.
 class Wheel extends Item {
-  constructor(x, y, image, radius) {
+  constructor(x, y, image, width, height) {
     // Inheriting arguments from the Item class
-    super(x, y, image, radius);
+    super(x, y, image);
+    // Adding width and height to conform with the image file
+    this.width = width;
+    this.height = height;
   }
 
   // rotation()
@@ -28,6 +31,6 @@ class Wheel extends Item {
   // Shows the wheel on the canvas
   display() {
     imageMode(CENTER);
-    image(this.image, this.x, this.y, this.radius * 2, this.radius * 2);
+    image(this.image, this.x, this.y, this.width, this.height);
   }
 }

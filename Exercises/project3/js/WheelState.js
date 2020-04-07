@@ -11,9 +11,9 @@ class WheelState extends State {
   // Shows the wheel and it's controls
   draw() {
     // Displaying the background
-    background(0);
+    image(wheelBackground, 0, 0);
     // Displaying the wheel and its handling
-    wheelPlaceholder.rotation();
+    wheelObject.rotation();
   }
 
   // mousePressed()

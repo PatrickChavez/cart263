@@ -11,11 +11,11 @@ class ScrollState extends State {
   // Shows the scroll and it's controls
   draw() {
     // Displaying the background
-    background(0);
+    image(scrollBackground, 0, 0);
     // Displaying the scroll and its handling
-    scrollPlaceholder.display();
-    scrollPlaceholder.handleInput();
-    scrollPlaceholder.move();
+    scrollObject.display();
+    scrollObject.handleInput();
+    scrollObject.move();
   }
 
   // mousePressed()
