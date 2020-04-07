@@ -10,7 +10,7 @@ class TitleState extends State {
   //
   // Shows the title screen
   draw() {
-    image(titleImage, 0, 0, width, height);
+    image(introImages[0], 0, 0, width, height);
   }
 
   // mousePressed()

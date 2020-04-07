@@ -54,6 +54,11 @@ let paperImageNormal;
 let paperImageBad;
 let paperImageGood;
 
+// Making an array for the intro images and their number
+let introImages = [];
+let introNumber = 8;
+let introIndex = 0;
+
 // Adding variables for the music and sound effects
 let currentMusic; // Variable used for pausing the current music and calling another song
 let titleMusic = new Audio("assets/sounds/shinkaigyonoyuuei.mp3");
@@ -87,7 +92,27 @@ function setupDocument() {
   $('#room').on('click', clickHubState);
   // Music test
   stateMusic();
+  // json test
+  // Loading the .json file
+  $.getJSON("data/mermaid_game_script.json")
+    // Call the dataLoaded() function if the loading succeeds
+    .done(gameScriptLoaded)
+    // Call the dataNotLoaded() function if the loading fails
+    .fail(gameScriptNotLoaded);
+}
 
+// gameScriptdataLoaded()
+//
+//
+function gameScriptLoaded() {
+
+}
+
+// gameScriptdataNotLoaded()
+//
+// Gives a console.error if the data is not loaded
+function gameScriptNotLoaded(request, text, error) {
+  console.error(error);
 }
 
 // showDialog
@@ -339,6 +364,13 @@ function preload() {
   paperImageBad = loadImage("assets/images/PaperNothing.png");
   paperImageGood = loadImage("assets/images/PaperGood.png");
 
+  // Making for loops for the intro images
+  for (let i = 1; i <= introNumber; i++) {
+    // Setting the file path
+    let filePath = "assets/images/intro" + i + ".png";
+    // Loading the images into the array
+    introImages.push(loadImage(filePath));
+  }
 }
 
 // setup()
