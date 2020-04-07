@@ -57,7 +57,6 @@ let paperImageGood;
 // Making an array for the intro images and their number
 let introImages = [];
 let introNumber = 8;
-let introIndex = 0;
 
 // json stuff
 let gameScript;
@@ -107,7 +106,7 @@ function setupDocument() {
 
 // gameScriptdataLoaded()
 //
-//
+// Loads the .json file into a variable
 function gameScriptLoaded(data) {
   // File loaded into variable
   gameScript = data;
@@ -166,6 +165,8 @@ function clickScrollStory() {
   stateMusic();
   // The text changes
   stateText();
+  // The menu disappears
+  $("#menu").css("opacity", 0);
 }
 
 function clickWheelState() {
@@ -276,9 +277,9 @@ function stateText() {
   else if (currentState === wheelState) {
     $('#textbox').text("Use the mouse to rotate the wheel!");
   }
-  else if (currentState === scrollStory) {
-    $('#textbox').text("Story!");
-  }
+  // else if (currentState === scrollStory) {
+  //   $('#textbox').text("Story!");
+  // }
   else if (currentState === wheelStory) {
     $('#textbox').text("Story!");
   }

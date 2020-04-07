@@ -4,14 +4,17 @@
 class TitleState extends State {
   constructor() {
     super();
-    // Keeping track of the index
+    // Keeping track of the array index
     this.scriptPosition = 0;
   }
 
   // draw()
   //
-  // Shows the intro images
+  // Shows the intro images and starts the text
   draw() {
+    // The script appears in the textbox
+    // The text is called here so that the program immediately calls for it and not when the mouse is clicked
+    $('#textbox').text(gameScript.introScript[this.scriptPosition]);
     // The image changes based on the script position
     if (this.scriptPosition === 0) {
       image(introImages[0], 0, 0, width, height);
@@ -43,14 +46,13 @@ class TitleState extends State {
   //
   // Advances through the game text
   mousePressed() {
-    // The intro script appears in the textbox
-    $('#textbox').text(gameScript.introScript[this.scriptPosition]);
+    // // The script appears in the textbox
+    // $('#textbox').text(gameScript.introScript[this.scriptPosition]);
     // The dialog advances with each mouse click
     this.scriptPosition += 1;
 
     // The game proceeds to the hub screen once the script length is reached
-    // "+ 1" is given in order for the final array index to show itself 
-    if (this.scriptPosition === gameScript.introScript.length + 1) {
+    if (this.scriptPosition === gameScript.introScript.length) {
       currentState = hubState;
       // Displaying the menu
       $("#menu").css("opacity", 1);
@@ -58,6 +60,8 @@ class TitleState extends State {
       stateMusic();
       // The text changes
       stateText();
+      // The script position resets
+      this.scriptPosition = 0;
     }
   }
 }
