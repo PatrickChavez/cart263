@@ -1,6 +1,5 @@
 {
   "introScript": [
-    "Click to advance!",
     "One day, while playing in a forest, a young boy slipped and fell into a nearby river.",
     "The boy tried to swim to shore, but his body was swept by the currents. Gasping for air, he feared that these were to be his last moments.",
     "Suddenly, something reached for his arm and pulled him to safety!",
@@ -19,7 +18,7 @@
     "Oscar: Eh, I’m sure the various items I have around the house can give me the answers I need."
   ],
   "scrollScript": [
-    "Oscar: A scroll huh… That reminds me of a conversation I had with Emily."
+    "Oscar: A scroll huh… That reminds me of a conversation I had with Emily.",
     "Oscar: Hey Emily!",
     "Emily: Oh, hi Oscar!",
     "Emily: I’ve been reading the books and scrolls you’ve given me about alchemy.",

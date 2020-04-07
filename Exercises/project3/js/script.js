@@ -59,6 +59,9 @@ let introImages = [];
 let introNumber = 8;
 let introIndex = 0;
 
+// json stuff
+let gameScript;
+
 // Adding variables for the music and sound effects
 let currentMusic; // Variable used for pausing the current music and calling another song
 let titleMusic = new Audio("assets/sounds/shinkaigyonoyuuei.mp3");
@@ -81,7 +84,8 @@ function setupDocument() {
   // Dialog test
   $('#experiment').on('click', showDialog);
   // Textbox test
-  setInterval(stateText, 250); // Updates every half second
+  // setInterval(stateText, 250); // Updates every half second
+  // stateText();
   // Menu state test
   $('#scroll-look').on('click', clickScrollState);
   $('#scroll-think').on('click', clickScrollStory);
@@ -104,8 +108,9 @@ function setupDocument() {
 // gameScriptdataLoaded()
 //
 //
-function gameScriptLoaded() {
-
+function gameScriptLoaded(data) {
+  // File loaded into variable
+  gameScript = data;
 }
 
 // gameScriptdataNotLoaded()
@@ -145,24 +150,35 @@ function showDialog() {
 //
 function clickHubState() {
   currentState = hubState;
+  // The music changes
   stateMusic();
+  // The text changes
+  stateText();
 }
 function clickScrollState() {
   currentState = scrollState;
+  // The text changes
+  stateText();
 }
 
 function clickScrollStory() {
   currentState = scrollStory;
   stateMusic();
+  // The text changes
+  stateText();
 }
 
 function clickWheelState() {
   currentState = wheelState;
+  // The text changes
+  stateText();
 }
 
 function clickWheelStory() {
   currentState = wheelStory;
   stateMusic();
+  // The text changes
+  stateText();
 }
 
 function clickPaperState() {
@@ -175,6 +191,8 @@ function clickPaperState() {
 function clickPaperStory() {
   currentState = paperStory;
   stateMusic();
+  // The text changes
+  stateText();
 }
 
 function clickExperimentState() {
@@ -246,10 +264,10 @@ function stateMusic() {
 //
 // Changes the current text of the textbox based on the state
 function stateText() {
-  if (currentState === titleState) {
-    $('#textbox').text("Click to advance!");
-  }
-  else if (currentState === hubState) {
+  // if (currentState === titleState) {
+  //   $('#textbox').text("Click to advance!");
+  // }
+  if (currentState === hubState) {
     $('#textbox').text("Click an action on the menu!");
   }
   else if (currentState === scrollState) {
