@@ -163,8 +163,6 @@ function clickScrollState() {
 function clickScrollStory() {
   currentState = scrollStory;
   stateMusic();
-  // The text changes
-  stateText();
   // The menu disappears
   $("#menu").css("opacity", 0);
 }
@@ -178,8 +176,8 @@ function clickWheelState() {
 function clickWheelStory() {
   currentState = wheelStory;
   stateMusic();
-  // The text changes
-  stateText();
+  // The menu disappears
+  $("#menu").css("opacity", 0);
 }
 
 function clickPaperState() {
@@ -192,8 +190,8 @@ function clickPaperState() {
 function clickPaperStory() {
   currentState = paperStory;
   stateMusic();
-  // The text changes
-  stateText();
+  // The menu disappears
+  $("#menu").css("opacity", 0);
 }
 
 function clickExperimentState() {
@@ -280,18 +278,18 @@ function stateText() {
   // else if (currentState === scrollStory) {
   //   $('#textbox').text("Story!");
   // }
-  else if (currentState === wheelStory) {
-    $('#textbox').text("Story!");
-  }
-  else if (currentState === paperStory) {
-    $('#textbox').text("Story!");
-  }
-  else if (currentState === normalEnding) {
-    $('#textbox').text("Normal!");
-  }
-  else if (currentState === goodEnding) {
-    $('#textbox').text("Good!");
-  }
+  // else if (currentState === wheelStory) {
+  //   $('#textbox').text("Story!");
+  // }
+  // else if (currentState === paperStory) {
+  //   $('#textbox').text("Story!");
+  // }
+  // else if (currentState === normalEnding) {
+  //   $('#textbox').text("Normal!");
+  // }
+  // else if (currentState === goodEnding) {
+  //   $('#textbox').text("Good!");
+  // }
 }
 
 // textParser()
@@ -346,6 +344,8 @@ function checkAnswerExperiment() {
     // Music and a sound effect plays
     positiveSFX.play();
     stateMusic();
+    // The menu disappears
+    $("#menu").css("opacity", 0);
   }
   // If the answer is wrong, then the normal ending happens
   else {
@@ -354,6 +354,8 @@ function checkAnswerExperiment() {
     currentState = normalEnding;
     // Music plays
     stateMusic();
+    // The menu disappears
+    $("#menu").css("opacity", 0);
   }
   console.log($('#text-parser').text());
 }

@@ -128,7 +128,8 @@
     "Emily: Hee hee, look at us being all sentimental…",
     "Oscar: Yeah, but now I’m motivated to gather up some ingredients and try this again! Just you wait Emily, I will succeed in turning you human!",
     "Emily: I look forward to it. Good luck Oscar and don’t hesitate to ask for help!",
-    "NORMAL END: Re-attempt"
+    "NORMAL END: Re-attempt.",
+    "Click once more to reset the game and try again!"
   ],
   "goodEndingScript": [
     "Oscar: Alright, the potion’s ready, I have a good feeling about this!",
@@ -158,7 +159,8 @@
     "Oscar: You can stay at my place for the time being. As for a job, I can pull a few strings in order to get you something.",
     "Emily: Thanks again, Oscar!",
     "Oscar: Anytime, Emily. I’ll always be by your side.",
-    "GOOD END: A New Start"
+    "GOOD END: A New Start.",
+    "Thanks for playing!"
   ]
 
 }
