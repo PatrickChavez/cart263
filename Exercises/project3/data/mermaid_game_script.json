@@ -108,7 +108,7 @@
   "normalEndingScript": [
     "Oscar: Alright, the potion’s ready. I hope this works.",
     "Oscar: Emily!",
-    "Emily: Oscar, why all the running?!",
+    "Emily: Oscar, what's the rush?!",
     "Oscar: I’ve finished the elixir! With this, you should be able to turn human.",
     "Emily: It’s finally done?! Thank you, Oscar!",
     "Emily: Say, if I try this, will there be any side effects?",
@@ -134,7 +134,7 @@
   "goodEndingScript": [
     "Oscar: Alright, the potion’s ready, I have a good feeling about this!",
     "Oscar: Emily!",
-    "Emily: Oscar, why all the running?!",
+    "Emily: Oscar, what's the rush?!",
     "Oscar: I’ve finished the elixir! With this, you should be able to turn human.",
     "Emily: It’s finally done?! Thank you, Oscar!",
     "Emily: Say, if I try this, will there be any side effects?",
