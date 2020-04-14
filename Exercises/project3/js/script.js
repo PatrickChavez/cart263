@@ -40,8 +40,8 @@ let wheelObject;
 let hubImage;
 let experimentImage;
 let storyImagePlaceholder;
-let normalEndImagePlaceholder;
-let goodEndImagePlaceholder;
+// let normalEndImagePlaceholder;
+// let goodEndImagePlaceholder;
 let scrollBackground;
 let wheelBackground;
 
@@ -385,8 +385,8 @@ function preload() {
   hubImage = loadImage("assets/images/HubRoom.png");
   experimentImage = loadImage("assets/images/ExperimentImage.png");
   storyImagePlaceholder = loadImage("assets/images/StoryPlaceholder.png");
-  normalEndImagePlaceholder = loadImage("assets/images/NormalEndPlaceholder.png");
-  goodEndImagePlaceholder = loadImage("assets/images/GoodEndPlaceholder.png");
+  // normalEndImagePlaceholder = loadImage("assets/images/NormalEndPlaceholder.png");
+  // goodEndImagePlaceholder = loadImage("assets/images/GoodEndPlaceholder.png");
   scrollBackground = loadImage("assets/images/ScrollBG.png");
   wheelBackground = loadImage("assets/images/WheelBG.png");
   // Loading variables for the item images
