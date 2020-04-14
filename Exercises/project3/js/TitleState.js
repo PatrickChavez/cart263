@@ -40,6 +40,12 @@ class TitleState extends State {
     else if (this.scriptPosition === 10) {
       image(introImages[7], 0, 0, width, height);
     }
+    else if (this.scriptPosition === 13) {
+      image(introImages[8], 0, 0, width, height);
+    }
+    else if (this.scriptPosition === 15) {
+      image(introImages[9], 0, 0, width, height);
+    }
   }
 
   // mousePressed()

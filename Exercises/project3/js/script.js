@@ -37,6 +37,7 @@ let wheelObject;
 
 // Adding variables for the state images
 let titleImage;
+let hubImage;
 let experimentImage;
 let storyImagePlaceholder;
 let normalEndImagePlaceholder;
@@ -45,9 +46,9 @@ let scrollBackground;
 let wheelBackground;
 
 // Adding variables for the object images
-let scrollIconImage;
-let wheelIconImage;
-let paperIconImage;
+// let scrollIconImage;
+// let wheelIconImage;
+// let paperIconImage;
 let wheelImage;
 let scrollImage;
 let paperImageNormal;
@@ -56,7 +57,7 @@ let paperImageGood;
 
 // Making an array for the intro images and their number
 let introImages = [];
-let introNumber = 8;
+let introNumber = 10;
 
 // json stuff
 let gameScript;
@@ -366,6 +367,7 @@ function checkAnswerExperiment() {
 function preload() {
   // Loading variables for the scene images
   titleImage = loadImage("assets/images/TitlePlaceholder2.png");
+  hubImage = loadImage("assets/images/HubRoom.png");
   experimentImage = loadImage("assets/images/ExperimentImage.png");
   storyImagePlaceholder = loadImage("assets/images/StoryPlaceholder.png");
   normalEndImagePlaceholder = loadImage("assets/images/NormalEndPlaceholder.png");
@@ -374,9 +376,9 @@ function preload() {
   wheelBackground = loadImage("assets/images/WheelBG.png");
   // Loading variables for the item images
   // The hub icons
-  scrollIconImage = loadImage("assets/images/ScrollIcon.png");
-  wheelIconImage = loadImage("assets/images/WheelNoText.png");
-  paperIconImage = loadImage("assets/images/MagicPaperItem.png");
+  // scrollIconImage = loadImage("assets/images/ScrollIcon.png");
+  // wheelIconImage = loadImage("assets/images/WheelNoText.png");
+  // paperIconImage = loadImage("assets/images/MagicPaperItem.png");
 
   // The main items in their states
   scrollImage = loadImage("assets/images/Scroll.png");
@@ -417,10 +419,10 @@ function setup() {
   // Setting the current state
   currentState = titleState;
 
-  // Adding the items
-  scrollIcon = new Item(150, 150, scrollIconImage, 25);
-  wheelIcon = new Item(350, 50, wheelIconImage, 25);
-  paperIcon = new Item(450, 250, paperIconImage, 25);
+  // // Adding the items
+  // scrollIcon = new Item(150, 150, scrollIconImage, 25);
+  // wheelIcon = new Item(350, 50, wheelIconImage, 25);
+  // paperIcon = new Item(450, 250, paperIconImage, 25);
   wheelObject = new Wheel(-20, -5, wheelImage, 540, 320);
   scrollObject = new Scroll(1000, 175, scrollImage);
 

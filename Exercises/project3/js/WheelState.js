@@ -11,7 +11,7 @@ class WheelState extends State {
   // Shows the wheel and it's controls
   draw() {
     // Displaying the background
-    image(wheelBackground, 0, 0);
+    image(wheelBackground, 0, 0, width, height);
     // Displaying the wheel and its handling
     wheelObject.rotation();
   }
