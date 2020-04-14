@@ -1,60 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
 
-    <!-- CSS stylesheet(s) -->
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
 
-    <!-- jQuery and jQuery UI -->
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"></script>
+  <!-- CSS stylesheet(s) -->
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
 
-    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <!-- jQuery and jQuery UI -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-    <script
-      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-      crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
 
-    <!-- Library script(s) -->
-    <!-- Add your required libraries here either as local files or CDN-hosted files -->
-    <!-- Adding the p5 library-->
-      <script src="js/libraries/p5.min.js"></script>
-      <script src="js/libraries/p5.sound.min.js"></script>
-      <script src="js/libraries/p5.dom.min.js"></script>
+  <!-- Library script(s) -->
+  <!-- Add your required libraries here either as local files or CDN-hosted files -->
+  <!-- Adding the p5 library-->
+  <script src="js/libraries/p5.min.js"></script>
+  <script src="js/libraries/p5.sound.min.js"></script>
+  <script src="js/libraries/p5.dom.min.js"></script>
 
-    <!-- My script(s) -->
-    <script src="js/Item.js"></script>
-    <script src="js/Scroll.js"></script>
-    <script src="js/Wheel.js"></script>
-    <script src="js/State.js"></script>
-    <script src="js/TitleState.js"></script>
-    <script src="js/HubState.js"></script>
-    <script src="js/ScrollState.js"></script>
-    <script src="js/ScrollStory.js"></script>
-    <script src="js/WheelState.js"></script>
-    <script src="js/WheelStory.js"></script>
-    <script src="js/ExperimentState.js"></script>
-    <script src="js/PaperState.js"></script>
-    <script src="js/PaperStory.js"></script>
-    <script src="js/NormalEnding.js"></script>
-    <script src="js/GoodEnding.js"></script>
-    <script src="js/script.js"></script>
-  </head>
+  <!-- My script(s) -->
+  <script src="js/Item.js"></script>
+  <script src="js/Scroll.js"></script>
+  <script src="js/Wheel.js"></script>
+  <script src="js/State.js"></script>
+  <script src="js/TitleState.js"></script>
+  <script src="js/HubState.js"></script>
+  <script src="js/ScrollState.js"></script>
+  <script src="js/ScrollStory.js"></script>
+  <script src="js/WheelState.js"></script>
+  <script src="js/WheelStory.js"></script>
+  <script src="js/ExperimentState.js"></script>
+  <script src="js/PaperState.js"></script>
+  <script src="js/PaperStory.js"></script>
+  <script src="js/NormalEnding.js"></script>
+  <script src="js/GoodEnding.js"></script>
+  <script src="js/script.js"></script>
+</head>
 
-  <body>
-<!-- Adding a dialog box to be called when appropritate -->
-    <div id="dialog" title="Warning!">
-   <p> Are you ready to begin experimentation? </p>
- </div>
+<body>
+  <!-- Adding a dialog box to be called when appropritate -->
+  <div id="dialog" title="Warning!">
+    <p> Are you ready to begin experimentation? </p>
+  </div>
 
-<!-- Adding a title image -->
-<div id='images'>
+  <!-- Adding a title image -->
+  <div id='images'>
     <img class='title' src="assets/images/Title.png" alt="Title">
   </div>
 
@@ -63,32 +58,49 @@
     <li>
       <div>Look</div>
       <ul id="lookMenu">
-        <li><div id="scroll-look">Scroll</div></li>
-        <li><div id="wheel-look">Wheel</div></li>
-        <li><div id="paper-look">Paper</div></li>
+        <li>
+          <div id="scroll-look">Scroll</div>
+        </li>
+        <li>
+          <div id="wheel-look">Wheel</div>
+        </li>
+        <li>
+          <div id="paper-look">Paper</div>
+        </li>
       </ul>
     </li>
 
     <li>
       <div>Think</div>
       <ul id="thinkMenu">
-        <li><div id="scroll-think">Scroll</div></li>
-        <li><div id="wheel-think">Wheel</div></li>
-        <li><div id="paper-think">Paper</div></li>
+        <li>
+          <div id="scroll-think">Scroll</div>
+        </li>
+        <li>
+          <div id="wheel-think">Wheel</div>
+        </li>
+        <li>
+          <div id="paper-think">Paper</div>
+        </li>
       </ul>
     </li>
 
-    <li><div id="room">My Room</div></li>
+    <li>
+      <div id="room">My Room</div>
+    </li>
 
-    <li><div id="experiment">Experiment!</div></li>
+    <li>
+      <div id="experiment">Experiment!</div>
+    </li>
 
   </ul>
 
   <!-- Adding a textbox -->
   <div id='textbox'>
+    <!-- A message shows before the game properly starts -->
     Now loading...
-    </div>
+  </div>
 
-  </body>
+</body>
 
 </html>

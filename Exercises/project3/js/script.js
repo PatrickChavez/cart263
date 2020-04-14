@@ -2,11 +2,73 @@
 
 /********************************************************************
 
-Title of Project
-Author Name
+From Me To You
+Patrick Chavez-Nadarajah
 
-This is a template. Fill in the title, author, and this description
-to match your project! Write JavaScript to do amazing things below!
+Gather hints around your room in order to craft a potion that can turn your mermaid
+friend into a human! Examine objects and figure out their hidden meanings in order to
+know the ingredients you need.
+
+*Credits*
+
+Scroll Class based on Pippin Barr's Predator-Prey Simulation
+https://github.com/pippinbarr/cart253-2019/blob/master/games/game-oop-predator-prey.zip
+
+Canvas position based on p5 reference
+https://p5js.org/reference/#/p5.Element/position
+
+Wheel object based on p5 reference
+https://p5js.org/reference/#/p5/atan2
+
+Scroll Text from Lorem Ipsum
+https://www.lipsum.com/
+
+******************************
+Music
+
+Hinokageri/Shade of the Sun/日の陰り
+Amacha Music Studio
+https://amachamusic.chagasi.com/genre_piano3.html
+
+Hisame/Ice Rain/氷雨
+Amacha Music Studio
+https://amachamusic.chagasi.com/genre_piano4.html
+
+Harunoyokan/Premonition of Spring/春の予感
+Amacha Music Studio
+https://amachamusic.chagasi.com/genre_easylistening2.html
+
+Shinkaigyonoyuuei/Deep-Sea Fish Swimming/深海魚の遊泳
+Amacha Music Studio
+https://amachamusic.chagasi.com/image_ayashii.html
+
+Torinouta/Song of Birds/鳥の歌
+Amacha Music Studio
+https://amachamusic.chagasi.com/image_shimijimi7.html
+
+System 46/システム46 (Sound Effect)
+Maou Damashii
+https://maoudamashii.jokersounds.com/list/se6.html
+
+One Point 23/ワンポイント23 (Sound Effect)
+Maou Damashii
+https://maoudamashii.jokersounds.com/list/se2.html
+******************************
+
+******************************
+Fonts
+
+Caviar Dreams font by Lauren Thompson
+https://www.dafont.com/caviar-dreams.font?l[]=10&l[]=1
+http://www.nymfont.com/
+
+Naomis Hand font by Naomi D.
+https://www.dafont.com/naomis-hand.font?l[]=10&l[]=1
+
+04b_30 font by 04
+https://www.dafont.com/04b-30.font
+http://www.04.jp.org/
+******************************
 
 *********************************************************************/
 
@@ -29,26 +91,17 @@ let normalEnding;
 let goodEnding;
 
 // Adding variables for item objects
-// let scrollIcon;
-// let wheelIcon;
-// let paperIcon;
 let scrollObject;
 let wheelObject;
 
 // Adding variables for the state images
-// let titleImage;
 let hubImage;
 let experimentImage;
 let storyImagePlaceholder;
-// let normalEndImagePlaceholder;
-// let goodEndImagePlaceholder;
 let scrollBackground;
 let wheelBackground;
 
 // Adding variables for the object images
-// let scrollIconImage;
-// let wheelIconImage;
-// let paperIconImage;
 let wheelImage;
 let scrollImage;
 let paperImageNormal;
@@ -56,21 +109,22 @@ let paperImageBad;
 let paperImageGood;
 
 // Making an array for the story images and their number
+// The intro
 let introImages = [];
 let introNumber = 10;
-
+// The scroll
 let scrollStoryImages = [];
 let scrollStoryNumber = 14;
-
+// The wheel
 let wheelStoryImages = [];
 let wheelStoryNumber = 16;
-
+// The paper
 let paperStoryImages = [];
 let paperStoryNumber = 18;
-
+// The normal ending
 let normalEndStoryImages = [];
 let normalEndStoryNumber = 15;
-
+// The good ending
 let goodEndStoryImages = [];
 let goodEndStoryNumber = 11;
 
@@ -95,13 +149,10 @@ let parserAnswers = ["anemone", "872"];
 // Calls functions once the webpage has loaded
 function setupDocument() {
   // Displaying the in-game menu
-  $( "#menu" ).menu();
-  // Dialog test
+  $("#menu").menu();
+  // Showing the dialog box when the "experiment" option is chosen
   $('#experiment').on('click', showDialog);
-  // Textbox test
-  // setInterval(stateText, 250); // Updates every half second
-  // stateText();
-  // Menu state test
+  // The state changes when a menu option is chosen
   $('#scroll-look').on('click', clickScrollState);
   $('#scroll-think').on('click', clickScrollStory);
   $('#wheel-look').on('click', clickWheelState);
@@ -109,9 +160,8 @@ function setupDocument() {
   $('#paper-look').on('click', clickPaperState);
   $('#paper-think').on('click', clickPaperStory);
   $('#room').on('click', clickHubState);
-  // Music test
+  // The music plays upon startup
   stateMusic();
-  // json test
   // Loading the .json file
   $.getJSON("data/mermaid_game_script.json")
     // Call the dataLoaded() function if the loading succeeds
@@ -137,10 +187,9 @@ function gameScriptNotLoaded(request, text, error) {
 
 // showDialog
 //
-// Shows a dialog box
+// Shows a dialog box asking the player if they are ready to experiment
 function showDialog() {
-  // Turning the $dialog variable into an actual dialog window
-  // It also slowly fades in
+  // Making a dialog window that slowly fades in
   $('#dialog').fadeIn("slow").dialog({
     // Adding options with anonymous functions
     buttons: {
@@ -160,9 +209,10 @@ function showDialog() {
   dialogSFX.play();
 }
 
-// menuStateChange Test
+// menuStateChange
 //
-//
+// A series of functions that call a particular state and change music as well as text
+// The hub state
 function clickHubState() {
   currentState = hubState;
   // The music changes
@@ -170,49 +220,50 @@ function clickHubState() {
   // The text changes
   stateText();
 }
+// The scroll state
 function clickScrollState() {
   currentState = scrollState;
   // The text changes
   stateText();
 }
-
+// The scroll story sequence
 function clickScrollStory() {
   currentState = scrollStory;
   stateMusic();
   // The menu disappears
   $("#menu").css("opacity", 0);
 }
-
+// The wheel state
 function clickWheelState() {
   currentState = wheelState;
   // The text changes
   stateText();
 }
-
+// The wheel story sequence
 function clickWheelStory() {
   currentState = wheelStory;
   stateMusic();
   // The menu disappears
   $("#menu").css("opacity", 0);
 }
-
+// The paper state
 function clickPaperState() {
   currentState = paperState;
-  // Calling textParser() here to prevent it from being overwritten by stateText()
+  // Calling textParser()
   textParser();
   $('#submit-button').on("click", checkAnswerPaper);
 }
-
+// The paper story sequence
 function clickPaperStory() {
   currentState = paperStory;
   stateMusic();
   // The menu disappears
   $("#menu").css("opacity", 0);
 }
-
+// The experiment state
 function clickExperimentState() {
   currentState = experimentState;
-  // Calling textParser() here to prevent it from being overwritten by stateText()
+  // Calling textParser()
   textParser();
   $('#submit-button').on("click", checkAnswerExperiment);
 }
@@ -221,10 +272,8 @@ function clickExperimentState() {
 //
 // The music changes depending on the state
 function stateMusic() {
+  // Title state
   if (currentState === titleState) {
-    // currentMusic.loop = true;
-    // currentMusic.currentTime = 0;
-    // currentMusic.play();
     // Setting up how the music plays
     titleMusic.loop = true;
     titleMusic.currentTime = 0;
@@ -232,6 +281,7 @@ function stateMusic() {
     // Putting the song as the current music
     currentMusic = titleMusic;
   }
+  // Hub state
   else if (currentState === hubState) {
     // Pausing the current music
     currentMusic.pause();
@@ -242,6 +292,7 @@ function stateMusic() {
     // Putting the song as the current music
     currentMusic = hubMusic;
   }
+  // The item story states
   else if (currentState === scrollStory || currentState === wheelStory || currentState === paperStory) {
     // Pausing the current music
     currentMusic.pause();
@@ -252,7 +303,7 @@ function stateMusic() {
     // Putting the song as the current music
     currentMusic = storyMusic;
   }
-
+  // Normal ending
   else if (currentState === normalEnding) {
     // Pausing the current music
     currentMusic.pause();
@@ -263,6 +314,7 @@ function stateMusic() {
     // Putting the song as the current music
     currentMusic = normalEndingMusic;
   }
+  // Good ending
   else if (currentState === goodEnding) {
     // Pausing the current music
     currentMusic.pause();
@@ -279,33 +331,18 @@ function stateMusic() {
 //
 // Changes the current text of the textbox based on the state
 function stateText() {
-  // if (currentState === titleState) {
-  //   $('#textbox').text("Click to advance!");
-  // }
+  // Hub state
   if (currentState === hubState) {
     $('#textbox').text("Click an action on the menu!");
   }
+  // Scroll state
   else if (currentState === scrollState) {
     $('#textbox').text("Use the left and right arrow keys to move the scroll!");
   }
+  // Wheel state
   else if (currentState === wheelState) {
     $('#textbox').text("Use the mouse to rotate the wheel!");
   }
-  // else if (currentState === scrollStory) {
-  //   $('#textbox').text("Story!");
-  // }
-  // else if (currentState === wheelStory) {
-  //   $('#textbox').text("Story!");
-  // }
-  // else if (currentState === paperStory) {
-  //   $('#textbox').text("Story!");
-  // }
-  // else if (currentState === normalEnding) {
-  //   $('#textbox').text("Normal!");
-  // }
-  // else if (currentState === goodEnding) {
-  //   $('#textbox').text("Good!");
-  // }
 }
 
 // textParser()
@@ -322,7 +359,6 @@ function textParser() {
   buttonDiv.append('<button id="submit-button" type="button">Submit</button>');
   // Adding the button to the textbox
   $('#textbox').append(buttonDiv);
-
 }
 
 // checkAnswerPaper()
@@ -331,19 +367,16 @@ function textParser() {
 function checkAnswerPaper() {
   // Making the parser text into a variable that always turns into lowercase
   let answer = $('#text-parser').text().toLowerCase();
-  // If the answer is correct, then the counter increases and image changes
+  // If the answer is correct, then the counter increases and the image changes
   if (answer === parserAnswers[0]) {
-    console.log("Yeah!");
     paperStateCounter = 2;
     // A sound effect plays
     positiveSFX.play();
   }
   // If the answer is wrong, the counter also increases and the image also changes
   else {
-    console.log("Huh?");
     paperStateCounter = 1;
   }
-  console.log($('#text-parser').text());
 }
 
 // checkAnswerExperiment()
@@ -352,9 +385,8 @@ function checkAnswerPaper() {
 function checkAnswerExperiment() {
   // Making the parser text into a variable
   let answer = $('#text-parser').text();
-  // If the answer is correct, then the good ending happens
+  // If the answer is correct, then the good ending is called
   if (answer === parserAnswers[1]) {
-    console.log("Yeah!");
     // The state changes
     currentState = goodEnding;
     // Music and a sound effect plays
@@ -363,9 +395,8 @@ function checkAnswerExperiment() {
     // The menu disappears
     $("#menu").css("opacity", 0);
   }
-  // If the answer is wrong, then the normal ending happens
+  // If the answer is wrong, then the normal ending is called
   else {
-    console.log("Huh?");
     // The state changes
     currentState = normalEnding;
     // Music plays
@@ -373,7 +404,6 @@ function checkAnswerExperiment() {
     // The menu disappears
     $("#menu").css("opacity", 0);
   }
-  console.log($('#text-parser').text());
 }
 
 // preload()
@@ -381,63 +411,55 @@ function checkAnswerExperiment() {
 // p5 function that loads files before the program starts
 function preload() {
   // Loading variables for the scene images
-  // titleImage = loadImage("assets/images/TitlePlaceholder2.png");
   hubImage = loadImage("assets/images/HubRoom.png");
   experimentImage = loadImage("assets/images/ExperimentImage.png");
   storyImagePlaceholder = loadImage("assets/images/StoryPlaceholder.png");
-  // normalEndImagePlaceholder = loadImage("assets/images/NormalEndPlaceholder.png");
-  // goodEndImagePlaceholder = loadImage("assets/images/GoodEndPlaceholder.png");
   scrollBackground = loadImage("assets/images/ScrollBG.png");
   wheelBackground = loadImage("assets/images/WheelBG.png");
   // Loading variables for the item images
-  // The hub icons
-  // scrollIconImage = loadImage("assets/images/ScrollIcon.png");
-  // wheelIconImage = loadImage("assets/images/WheelNoText.png");
-  // paperIconImage = loadImage("assets/images/MagicPaperItem.png");
-
   // The main items in their states
   scrollImage = loadImage("assets/images/Scroll.png");
   wheelImage = loadImage("assets/images/Wheel.png");
   paperImageNormal = loadImage("assets/images/PaperNormal.png");
   paperImageBad = loadImage("assets/images/PaperNothing.png");
   paperImageGood = loadImage("assets/images/PaperGood.png");
-
   // Making for loops for the story images
+  // Intro
   for (let i = 1; i <= introNumber; i++) {
     // Setting the file path
     let filePath = "assets/images/intro" + i + ".png";
     // Loading the images into the array
     introImages.push(loadImage(filePath));
   }
-
+  // Scroll
   for (let i = 1; i <= scrollStoryNumber; i++) {
     // Setting the file path
     let filePath = "assets/images/scroll" + i + ".png";
     // Loading the images into the array
     scrollStoryImages.push(loadImage(filePath));
   }
-
+  // Wheel
   for (let i = 1; i <= wheelStoryNumber; i++) {
     // Setting the file path
     let filePath = "assets/images/wheel" + i + ".png";
     // Loading the images into the array
     wheelStoryImages.push(loadImage(filePath));
   }
-
+  // Paper
   for (let i = 1; i <= paperStoryNumber; i++) {
     // Setting the file path
     let filePath = "assets/images/paper" + i + ".png";
     // Loading the images into the array
     paperStoryImages.push(loadImage(filePath));
   }
-
+  // Normal ending
   for (let i = 1; i <= normalEndStoryNumber; i++) {
     // Setting the file path
     let filePath = "assets/images/normalend" + i + ".png";
     // Loading the images into the array
     normalEndStoryImages.push(loadImage(filePath));
   }
-
+  // Good ending
   for (let i = 1; i <= goodEndStoryNumber; i++) {
     // Setting the file path
     let filePath = "assets/images/goodend" + i + ".png";
@@ -465,17 +487,11 @@ function setup() {
   experimentState = new ExperimentState();
   normalEnding = new NormalEnding();
   goodEnding = new GoodEnding();
-
   // Setting the current state
   currentState = titleState;
-
-  // // Adding the items
-  // scrollIcon = new Item(150, 150, scrollIconImage, 25);
-  // wheelIcon = new Item(350, 50, wheelIconImage, 25);
-  // paperIcon = new Item(450, 250, paperIconImage, 25);
+  // Adding the items
   wheelObject = new Wheel(-20, -5, wheelImage, 540, 320);
   scrollObject = new Scroll(1000, 175, scrollImage);
-
 }
 
 // draw()
