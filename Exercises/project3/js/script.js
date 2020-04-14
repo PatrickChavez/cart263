@@ -29,14 +29,14 @@ let normalEnding;
 let goodEnding;
 
 // Adding variables for item objects
-let scrollIcon;
-let wheelIcon;
-let paperIcon;
+// let scrollIcon;
+// let wheelIcon;
+// let paperIcon;
 let scrollObject;
 let wheelObject;
 
 // Adding variables for the state images
-let titleImage;
+// let titleImage;
 let hubImage;
 let experimentImage;
 let storyImagePlaceholder;
@@ -55,11 +55,20 @@ let paperImageNormal;
 let paperImageBad;
 let paperImageGood;
 
-// Making an array for the intro images and their number
+// Making an array for the story images and their number
 let introImages = [];
 let introNumber = 10;
 
-// json stuff
+let scrollStoryImages = [];
+let scrollStoryNumber = 14;
+
+let wheelStoryImages = [];
+let wheelStoryNumber = 16;
+
+let paperStoryImages = [];
+let paperStoryNumber = 18;
+
+// JSON Variable
 let gameScript;
 
 // Adding variables for the music and sound effects
@@ -366,7 +375,7 @@ function checkAnswerExperiment() {
 // p5 function that loads files before the program starts
 function preload() {
   // Loading variables for the scene images
-  titleImage = loadImage("assets/images/TitlePlaceholder2.png");
+  // titleImage = loadImage("assets/images/TitlePlaceholder2.png");
   hubImage = loadImage("assets/images/HubRoom.png");
   experimentImage = loadImage("assets/images/ExperimentImage.png");
   storyImagePlaceholder = loadImage("assets/images/StoryPlaceholder.png");
@@ -387,12 +396,33 @@ function preload() {
   paperImageBad = loadImage("assets/images/PaperNothing.png");
   paperImageGood = loadImage("assets/images/PaperGood.png");
 
-  // Making for loops for the intro images
+  // Making for loops for the story images
   for (let i = 1; i <= introNumber; i++) {
     // Setting the file path
     let filePath = "assets/images/intro" + i + ".png";
     // Loading the images into the array
     introImages.push(loadImage(filePath));
+  }
+
+  for (let i = 1; i <= scrollStoryNumber; i++) {
+    // Setting the file path
+    let filePath = "assets/images/scroll" + i + ".png";
+    // Loading the images into the array
+    scrollStoryImages.push(loadImage(filePath));
+  }
+
+  for (let i = 1; i <= wheelStoryNumber; i++) {
+    // Setting the file path
+    let filePath = "assets/images/wheel" + i + ".png";
+    // Loading the images into the array
+    wheelStoryImages.push(loadImage(filePath));
+  }
+
+  for (let i = 1; i <= paperStoryNumber; i++) {
+    // Setting the file path
+    let filePath = "assets/images/paper" + i + ".png";
+    // Loading the images into the array
+    paperStoryImages.push(loadImage(filePath));
   }
 }
 
