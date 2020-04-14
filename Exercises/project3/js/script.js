@@ -251,6 +251,8 @@ function clickWheelStory() {
 // The paper state
 function clickPaperState() {
   currentState = paperState;
+  // The paperStateCounter becomes 0
+  paperStateCounter = 0;
   // Calling textParser()
   textParser();
   $('#submit-button').on("click", checkAnswerPaper);
