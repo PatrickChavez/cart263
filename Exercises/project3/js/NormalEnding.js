@@ -4,7 +4,7 @@
 class NormalEnding extends State {
   constructor() {
     super();
-    // Keeping track of the array index
+    // Keeping track of the JSON normalEndingScript array index
     this.scriptPosition = 0;
   }
 
@@ -18,47 +18,33 @@ class NormalEnding extends State {
     // The image changes based on the script position
     if (this.scriptPosition === 0) {
       image(normalEndStoryImages[0], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 1) {
+    } else if (this.scriptPosition === 1) {
       image(normalEndStoryImages[1], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 2) {
+    } else if (this.scriptPosition === 2) {
       image(normalEndStoryImages[2], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 3) {
+    } else if (this.scriptPosition === 3) {
       image(normalEndStoryImages[3], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 4) {
+    } else if (this.scriptPosition === 4) {
       image(normalEndStoryImages[4], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 5) {
+    } else if (this.scriptPosition === 5) {
       image(normalEndStoryImages[5], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 7) {
+    } else if (this.scriptPosition === 7) {
       image(normalEndStoryImages[6], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 8) {
+    } else if (this.scriptPosition === 8) {
       image(normalEndStoryImages[7], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 11) {
+    } else if (this.scriptPosition === 11) {
       image(normalEndStoryImages[8], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 12) {
+    } else if (this.scriptPosition === 12) {
       image(normalEndStoryImages[9], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 15) {
+    } else if (this.scriptPosition === 15) {
       image(normalEndStoryImages[10], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 17) {
+    } else if (this.scriptPosition === 17) {
       image(normalEndStoryImages[11], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 18) {
+    } else if (this.scriptPosition === 18) {
       image(normalEndStoryImages[12], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 20) {
+    } else if (this.scriptPosition === 20) {
       image(normalEndStoryImages[13], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 21) {
+    } else if (this.scriptPosition === 21) {
       image(normalEndStoryImages[14], 0, 0, width, height);
     }
   }
@@ -69,7 +55,6 @@ class NormalEnding extends State {
   mousePressed() {
     // The dialog advances with each mouse click
     this.scriptPosition += 1;
-
     // The game proceeds to the hub screen once the script length is reached
     if (this.scriptPosition === gameScript.normalEndingScript.length) {
       // The game/webpage resets

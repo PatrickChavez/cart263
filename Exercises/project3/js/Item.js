@@ -1,7 +1,6 @@
 // Item
 //
-// A class representing an object the player interacts with that either brings
-// up dialogue, or changes the game state among many other things
+// A parent class representing an object that the player interacts with
 class Item {
   // constructor
   //
@@ -21,7 +20,7 @@ class Item {
   // Shows an appropritate item on the canvas
   display() {
     push();
-    // Centering image for precision shoud interaction occur
+    // Centering image for precision
     imageMode(CENTER);
     image(this.image, this.x, this.y, this.radius * 2, this.radius * 2);
     pop();

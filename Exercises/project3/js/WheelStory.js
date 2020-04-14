@@ -4,7 +4,7 @@
 class WheelStory extends State {
   constructor() {
     super();
-    // Keeping track of the array index
+    // Keeping track of the JSON wheelScript array index
     this.scriptPosition = 0;
   }
 
@@ -18,50 +18,35 @@ class WheelStory extends State {
     // The image changes based on the script position
     if (this.scriptPosition === 0) {
       image(wheelStoryImages[0], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 2) {
+    } else if (this.scriptPosition === 2) {
       image(wheelStoryImages[1], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 3) {
+    } else if (this.scriptPosition === 3) {
       image(wheelStoryImages[2], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 5) {
+    } else if (this.scriptPosition === 5) {
       image(wheelStoryImages[3], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 7) {
+    } else if (this.scriptPosition === 7) {
       image(wheelStoryImages[4], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 8) {
+    } else if (this.scriptPosition === 8) {
       image(wheelStoryImages[5], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 11) {
+    } else if (this.scriptPosition === 11) {
       image(wheelStoryImages[6], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 12) {
+    } else if (this.scriptPosition === 12) {
       image(wheelStoryImages[7], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 13) {
+    } else if (this.scriptPosition === 13) {
       image(wheelStoryImages[8], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 15) {
+    } else if (this.scriptPosition === 15) {
       image(wheelStoryImages[9], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 17) {
+    } else if (this.scriptPosition === 17) {
       image(wheelStoryImages[10], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 19) {
+    } else if (this.scriptPosition === 19) {
       image(wheelStoryImages[11], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 20) {
+    } else if (this.scriptPosition === 20) {
       image(wheelStoryImages[12], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 22) {
+    } else if (this.scriptPosition === 22) {
       image(wheelStoryImages[13], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 25) {
+    } else if (this.scriptPosition === 25) {
       image(wheelStoryImages[14], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 27) {
+    } else if (this.scriptPosition === 27) {
       image(wheelStoryImages[15], 0, 0, width, height);
     }
   }
@@ -72,7 +57,6 @@ class WheelStory extends State {
   mousePressed() {
     // The dialog advances with each mouse click
     this.scriptPosition += 1;
-
     // The game proceeds to the hub screen once the script length is reached
     if (this.scriptPosition === gameScript.wheelScript.length) {
       currentState = hubState;

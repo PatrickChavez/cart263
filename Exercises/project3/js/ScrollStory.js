@@ -4,7 +4,7 @@
 class ScrollStory extends State {
   constructor() {
     super();
-    // Keeping track of the array index
+    // Keeping track of the JSON scrollScript array index
     this.scriptPosition = 0;
   }
 
@@ -18,44 +18,31 @@ class ScrollStory extends State {
     // The image changes based on the script position
     if (this.scriptPosition === 0) {
       image(scrollStoryImages[0], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 1) {
+    } else if (this.scriptPosition === 1) {
       image(scrollStoryImages[1], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 2) {
+    } else if (this.scriptPosition === 2) {
       image(scrollStoryImages[2], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 5) {
+    } else if (this.scriptPosition === 5) {
       image(scrollStoryImages[3], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 7) {
+    } else if (this.scriptPosition === 7) {
       image(scrollStoryImages[4], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 9) {
+    } else if (this.scriptPosition === 9) {
       image(scrollStoryImages[5], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 13) {
+    } else if (this.scriptPosition === 13) {
       image(scrollStoryImages[6], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 14) {
+    } else if (this.scriptPosition === 14) {
       image(scrollStoryImages[7], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 16) {
+    } else if (this.scriptPosition === 16) {
       image(scrollStoryImages[8], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 18) {
+    } else if (this.scriptPosition === 18) {
       image(scrollStoryImages[9], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 19) {
+    } else if (this.scriptPosition === 19) {
       image(scrollStoryImages[10], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 20) {
+    } else if (this.scriptPosition === 20) {
       image(scrollStoryImages[11], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 21) {
+    } else if (this.scriptPosition === 21) {
       image(scrollStoryImages[12], 0, 0, width, height);
-    }
-    else if (this.scriptPosition === 22) {
+    } else if (this.scriptPosition === 22) {
       image(scrollStoryImages[13], 0, 0, width, height);
     }
   }
@@ -64,11 +51,8 @@ class ScrollStory extends State {
   //
   //
   mousePressed() {
-    // // The script appears in the textbox
-    // $('#textbox').text(gameScript.scrollScript[this.scriptPosition]);
     // The dialog advances with each mouse click
     this.scriptPosition += 1;
-
     // The game proceeds to the hub screen once the script length is reached
     if (this.scriptPosition === gameScript.scrollScript.length) {
       currentState = hubState;

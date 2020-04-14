@@ -8,7 +8,7 @@ class PaperState extends State {
 
   // draw()
   //
-  // Shows the paper
+  // Shows the paper depending on the paperStateCounter
   draw() {
     // Displaying the normal state of the paper
     image(paperImageNormal, 0, 0, width, height);
@@ -20,12 +20,5 @@ class PaperState extends State {
     else if (paperStateCounter === 1) {
       image(paperImageBad, 0, 0, width, height);
     }
-  }
-
-  // mousePressed()
-  //
-  //
-  mousePressed() {
-
   }
 }

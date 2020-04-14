@@ -1,6 +1,6 @@
 // State
 //
-// Template for the various game screens that appear throughout the program
+// Parent class for the various game screens that appear throughout the program
 class State {
   constructor() {
 

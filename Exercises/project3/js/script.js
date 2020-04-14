@@ -223,6 +223,8 @@ function clickHubState() {
 // The scroll state
 function clickScrollState() {
   currentState = scrollState;
+  // Resets the scroll's position
+  scrollObject = new Scroll(1000, 175, scrollImage);
   // The text changes
   stateText();
 }

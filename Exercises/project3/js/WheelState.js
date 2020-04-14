@@ -15,11 +15,4 @@ class WheelState extends State {
     // Displaying the wheel and its handling
     wheelObject.rotation();
   }
-
-  // mousePressed()
-  //
-  //
-  mousePressed() {
-
-  }
 }

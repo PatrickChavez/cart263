@@ -17,11 +17,4 @@ class ScrollState extends State {
     scrollObject.handleInput();
     scrollObject.move();
   }
-
-  // mousePressed()
-  //
-  //
-  mousePressed() {
-
-  }
 }

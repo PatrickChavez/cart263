@@ -8,20 +8,9 @@ class HubState extends State {
 
   // draw()
   //
-  // Shows the background and displays the items
+  // Shows the background
   draw() {
     // Displaying the background
     image(hubImage, 0, 0, width, height);
-    // // Displaying the items
-    // scrollIcon.display();
-    // wheelIcon.display();
-    // paperIcon.display();
-  }
-
-  // mousePressed()
-  //
-  //
-  mousePressed() {
-
   }
 }
