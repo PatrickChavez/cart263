@@ -68,6 +68,12 @@ let wheelStoryNumber = 16;
 let paperStoryImages = [];
 let paperStoryNumber = 18;
 
+let normalEndStoryImages = [];
+let normalEndStoryNumber = 15;
+
+let goodEndStoryImages = [];
+let goodEndStoryNumber = 11;
+
 // JSON Variable
 let gameScript;
 
@@ -423,6 +429,20 @@ function preload() {
     let filePath = "assets/images/paper" + i + ".png";
     // Loading the images into the array
     paperStoryImages.push(loadImage(filePath));
+  }
+
+  for (let i = 1; i <= normalEndStoryNumber; i++) {
+    // Setting the file path
+    let filePath = "assets/images/normalend" + i + ".png";
+    // Loading the images into the array
+    normalEndStoryImages.push(loadImage(filePath));
+  }
+
+  for (let i = 1; i <= goodEndStoryNumber; i++) {
+    // Setting the file path
+    let filePath = "assets/images/goodend" + i + ".png";
+    // Loading the images into the array
+    goodEndStoryImages.push(loadImage(filePath));
   }
 }
 

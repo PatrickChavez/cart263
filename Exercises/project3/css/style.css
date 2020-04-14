@@ -2,7 +2,7 @@
 body {
   /* Setting the background */
   /* A full url is used in order to display the image online */
-  background-image: url("https://patrickchavez.github.io/cart263/Exercises/project3/assets/images/GameBackground2.png");
+  background-image: url("https://patrickchavez.github.io/cart263/Exercises/project3/assets/images/GameBackground.png");
   /* The player cannot select text */
   user-select: none;
 }
