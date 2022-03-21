@@ -3,6 +3,7 @@ body {
   /* Setting the background */
   /* A full url is used in order to display the image online */
   background-image: url("https://patrickchavez.github.io/cart263/Exercises/project3/assets/images/MermaidGameBackground.png");
+  background-size: 120%;
   /* The player cannot select text */
   user-select: none;
 }
@@ -21,11 +22,11 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 200px;
+  margin-top: 230px;
   /* Font */
   font-family: sans-serif;
   color: lavender;
-  padding: 0.2em;
+  padding: 0.5em;
   font-size: 24px;
 }
 
@@ -43,6 +44,8 @@ body {
   font-size: 24px;
   /* Setting opacity to 0 in order to display it later without messing up the webpage */
   opacity: 0;
+  /* Position */
+  margin-left: 5%;
 }
 
 /* Setting the "look" menu aesthetics */
