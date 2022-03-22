@@ -478,7 +478,8 @@ function preload() {
 function setup() {
   // Creating the canvas and adjusting its position by pixels
   let p5Canvas = createCanvas(650, 340);
-  p5Canvas.position(windowWidth/3.5, 130);
+  // Canvas centering tutorial found here: https://github.com/processing/p5.js/wiki/Positioning-your-canvas 
+  p5Canvas.position((windowWidth-width)/2, 130);
   // Creating the states
   titleState = new TitleState();
   hubState = new HubState();
